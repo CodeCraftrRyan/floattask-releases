@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FloatTask</title>
+<meta name="description" content="FloatTask keeps today's tasks in a small panel that stays on top of every app on your Mac or PC, with timers, Google Calendar prep and AI task entry.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,750&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
+<link rel="canonical" href="https://floattask.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%234b5be0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='11' rx='5.5'/%3E%3Cpath d='M9 8.5l2 2 4-4M5 18h14M8 21.5h8'/%3E%3C/g%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://floattask.com/">
+<meta property="og:title" content="FloatTask — today's list, always in the corner">
+<meta property="og:description" content="A small task panel that stays on top of every app on your Mac or PC, with timers, Google Calendar prep and AI task entry.">
+<meta property="og:image" content="https://floattask.com/shots/app-dashboard-light.webp">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+/* Layout: a desktop seen from its lower-left corner — the hero is a "screen" with the
+   widget pinned bottom-left, and a working copy of the widget sits in this page's own corner. */
+:root {
+  /* FloatTask's own palette (src/app/app.css) */
+  --bg: oklch(0.984 0.004 270);
+  --surface: oklch(1 0 0);
+  --raised: oklch(0.956 0.005 272);
+  --line: oklch(0.9 0.008 272);
+  --ink: oklch(0.245 0.013 275);
+  --ink-2: oklch(0.4 0.018 276);
+  --muted: oklch(0.505 0.02 276);
+  --accent: oklch(0.528 0.196 270);
+  --accent-ink: oklch(0.5 0.195 271);
+  --accent-soft: oklch(0.934 0.024 272);
+  --on-accent: oklch(1 0 0);
+  --lilac: oklch(0.62 0.19 298);
+  --ok: oklch(0.55 0.145 150);
+  --danger: oklch(0.577 0.205 27);
+  --wall-a: oklch(0.86 0.035 262);
+  --wall-b: oklch(0.93 0.02 300);
+  --menubar: oklch(1 0 0 / .62);
+  --shadow: 0 24px 60px oklch(0.42 0.06 270 / .22), 0 2px 6px oklch(0.42 0.06 270 / .08);
+  --show-l: block; --show-d: none;
+
+  --f-display: 'Bricolage Grotesque', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --f-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --f-mono: 'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --wrap: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: oklch(0.173 0.004 270); --surface: oklch(0.216 0.008 275); --raised: oklch(0.235 0.005 275);
+    --line: oklch(0.287 0.008 275); --ink: oklch(0.93 0.006 270); --ink-2: oklch(0.8 0.01 272); --muted: oklch(0.64 0.014 276);
+    --accent: oklch(0.686 0.153 271); --accent-ink: oklch(0.78 0.09 271); --accent-soft: oklch(0.29 0.029 272); --on-accent: oklch(0.16 0.027 265);
+    --lilac: oklch(0.692 0.16 298); --ok: oklch(0.733 0.135 153); --danger: oklch(0.682 0.16 23);
+    --wall-a: oklch(0.3 0.05 268); --wall-b: oklch(0.24 0.04 300); --menubar: oklch(0.2 0.01 275 / .7);
+    --shadow: 0 24px 60px oklch(0 0 0 / .45), 0 2px 6px oklch(0 0 0 / .3);
+    --show-l: none; --show-d: block; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: oklch(0.173 0.004 270); --surface: oklch(0.216 0.008 275); --raised: oklch(0.235 0.005 275);
+  --line: oklch(0.287 0.008 275); --ink: oklch(0.93 0.006 270); --ink-2: oklch(0.8 0.01 272); --muted: oklch(0.64 0.014 276);
+  --accent: oklch(0.686 0.153 271); --accent-ink: oklch(0.78 0.09 271); --accent-soft: oklch(0.29 0.029 272); --on-accent: oklch(0.16 0.027 265);
+  --lilac: oklch(0.692 0.16 298); --ok: oklch(0.733 0.135 153); --danger: oklch(0.682 0.16 23);
+  --wall-a: oklch(0.3 0.05 268); --wall-b: oklch(0.24 0.04 300); --menubar: oklch(0.2 0.01 275 / .7);
+  --shadow: 0 24px 60px oklch(0 0 0 / .45), 0 2px 6px oklch(0 0 0 / .3);
+  --show-l: none; --show-d: block; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 17px/1.55 var(--f-body); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(16px, 4vw, 32px); }
+a { color: var(--accent-ink); }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+p { margin: 0; }
+kbd, .mono { font-family: var(--f-mono); font-size: .86em; }
+kbd { padding: 1px 6px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; background: var(--surface); white-space: nowrap; }
+.shot-l { display: var(--show-l); } .shot-d { display: var(--show-d); }
+img { max-width: 100%; height: auto; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+/* ---------- header ---------- */
+.top { display: flex; align-items: center; gap: 24px; padding-block: 20px; }
+.logo { display: inline-flex; align-items: center; gap: 9px; font: 650 19px/1 var(--f-display); color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
+.logo svg { color: var(--accent); }
+.top nav { margin-left: auto; display: flex; align-items: center; gap: 22px; font-size: 15px; }
+.top nav a { color: var(--ink-2); text-decoration: none; }
+.top nav a:hover { color: var(--ink); }
+.btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 8px; font: 600 15px/1 var(--f-body); text-decoration: none; border: 1px solid transparent; cursor: pointer; }
+.btn.primary { background: var(--accent); color: var(--on-accent); }
+.btn.primary:hover { filter: brightness(1.07); }
+.btn.quiet { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn.quiet:hover { background: var(--raised); }
+.btn.small { height: 36px; padding: 0 14px; font-size: 14px; }
+.btn svg { width: 18px; height: 18px; }
+
+/* ---------- hero ---------- */
+.hero { padding-block: clamp(24px, 6vw, 64px) 0; display: grid; gap: 28px; }
+.hero h1 { font-size: clamp(2.5rem, 6.4vw, 4.6rem); line-height: .98; font-weight: 750; letter-spacing: -.035em; max-width: 13ch; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.lede { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--ink-2); max-width: 54ch; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.cta .meta { font-size: 14px; color: var(--muted); }
+.cta .meta span + span::before { content: "·"; margin: 0 7px; }
+
+.screen {
+  position: relative; margin-top: 12px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line);
+  background: linear-gradient(135deg, var(--wall-a), var(--wall-b)); box-shadow: var(--shadow);
+  aspect-ratio: 16 / 9.4; max-width: 100%;
+}
+.menubar { position: absolute; inset: 0 0 auto 0; height: 30px; display: flex; align-items: center; gap: 14px; padding: 0 14px; background: var(--menubar); backdrop-filter: blur(12px); font-size: 12.5px; color: var(--ink); z-index: 3; }
+.menubar b { font-weight: 600; }
+.menubar .tray { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; font-family: var(--f-mono); font-size: 12px; }
+.menubar .tray svg { width: 15px; height: 15px; color: var(--accent); }
+.menubar .clock { font-variant-numeric: tabular-nums; }
+.screen .app { position: absolute; top: 9%; right: 3%; width: 76%; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); }
+.screen .widget { position: absolute; left: 2.6%; bottom: 3.5%; width: 23%; filter: drop-shadow(0 18px 30px oklch(0 0 0 / .28)); z-index: 2; }
+.screen .corner-note {
+  position: absolute; left: 27%; bottom: 6%; z-index: 2; display: flex; align-items: center; gap: 8px;
+  font: 500 13px/1.3 var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line);
+  padding: 7px 11px; border-radius: 999px; box-shadow: 0 6px 18px oklch(0 0 0 / .12);
+}
+.screen .corner-note svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; }
+
+/* ---------- sections ---------- */
+section { padding-block: clamp(56px, 9vw, 104px) 0; }
+.eyebrow { font: 500 13px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-ink); }
+.sec-head { display: grid; gap: 12px; max-width: 640px; margin-bottom: 36px; }
+.sec-head h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); line-height: 1.05; font-weight: 700; letter-spacing: -.025em; }
+.sec-head p { color: var(--ink-2); }
+
+/* three states of the same list */
+.states { display: grid; grid-template-columns: 1fr 1fr 1.6fr; gap: 20px; align-items: start; }
+.state { display: grid; gap: 14px; min-width: 0; }
+.state figure { margin: 0; display: grid; place-items: end start; min-height: 0; }
+.state .stage { border-radius: 12px; border: 1px solid var(--line); background: linear-gradient(160deg, var(--wall-a), var(--wall-b)); padding: 18px; display: grid; place-items: center; height: clamp(260px, 26vw, 320px); overflow: hidden; }
+.state .stage img { max-height: 100%; width: auto; object-fit: contain; }
+.state .stage img.widget-img { max-width: 82%; filter: drop-shadow(0 12px 24px oklch(0 0 0 / .25)); }
+.state .stage img.pill-img { width: 62%; max-height: none; filter: drop-shadow(0 8px 16px oklch(0 0 0 / .2)); }
+.state .stage.app-stage { padding: 14px; }
+.state .stage img.app-img { width: 100%; height: auto; max-height: none; }
+.state .stage img.app-img { border-radius: 8px; box-shadow: var(--shadow); }
+.state h3 { font-size: 1.25rem; font-weight: 650; letter-spacing: -.01em; }
+.state p { font-size: 15.5px; color: var(--ink-2); }
+.state .keys { font-size: 14px; color: var(--muted); }
+
+/* feature rows */
+.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.feature + .feature { margin-top: clamp(56px, 8vw, 96px); }
+.feature.flip .copy { order: 2; }
+.feature .copy { display: grid; gap: 16px; min-width: 0; }
+.feature h3 { font-size: clamp(1.6rem, 2.8vw, 2.15rem); line-height: 1.08; font-weight: 700; letter-spacing: -.02em; }
+.feature .copy > p { color: var(--ink-2); max-width: 46ch; }
+.example { font: 400 15px/1.5 var(--f-mono); padding: 12px 14px; border-radius: 8px; background: var(--raised); border: 1px solid var(--line); color: var(--ink); }
+.example .arrow { display: block; margin-top: 8px; color: var(--muted); font-family: var(--f-body); font-size: 14px; }
+.ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 15.5px; color: var(--ink-2); }
+.ticks li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; }
+.ticks li::before { content: ""; width: 14px; height: 14px; margin-top: 5px; border-radius: 4px; background: var(--accent); mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='m3 7 3 3 5-6' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat; }
+.feature .art { min-width: 0; border-radius: 14px; border: 1px solid var(--line); background: linear-gradient(150deg, var(--wall-a), var(--wall-b)); padding: clamp(16px, 3vw, 32px); display: grid; place-items: center; }
+.feature .art img.tall { width: min(330px, 100%); filter: drop-shadow(0 16px 30px oklch(0 0 0 / .25)); }
+.feature .art img.wide { border-radius: 8px; box-shadow: var(--shadow); }
+
+/* small facts */
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.fact { padding: 24px 22px 26px 0; border-bottom: 1px solid var(--line); display: grid; gap: 8px; align-content: start; min-width: 0; }
+.fact:not(:nth-child(3n+1)) { padding-left: 22px; border-left: 1px solid var(--line); }
+.fact h3 { font: 600 17px/1.3 var(--f-body); }
+.fact p { font-size: 15px; color: var(--ink-2); }
+.fact .mono { color: var(--accent-ink); }
+
+/* download */
+.download { margin-top: clamp(56px, 9vw, 104px); padding: clamp(28px, 5vw, 56px); border-radius: 18px; background: var(--surface); border: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px 48px; }
+.download h2 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); line-height: 1.05; font-weight: 700; letter-spacing: -.025em; }
+.download .copy { display: grid; gap: 14px; align-content: start; }
+.download .copy p { color: var(--ink-2); }
+.dl-list { display: grid; gap: 10px; align-content: start; }
+.dl { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: var(--ink); background: var(--bg); }
+.dl:hover { border-color: var(--accent); }
+.dl.suggested { border-color: var(--accent); background: var(--accent-soft); }
+.dl svg.os { width: 24px; height: 24px; color: var(--ink); }
+.dl b { display: block; font-weight: 600; font-size: 16px; }
+.dl small { display: block; color: var(--muted); font-size: 13.5px; }
+.dl .get { font: 500 13px/1 var(--f-mono); color: var(--accent-ink); }
+.first-run { font-size: 14px; color: var(--muted); display: grid; gap: 6px; padding-top: 6px; }
+.first-run b { color: var(--ink-2); font-weight: 600; }
+
+footer { padding-block: 48px 120px; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; color: var(--muted); font-size: 14px; }
+footer .logo { font-size: 16px; }
+footer .right { margin-left: auto; }
+
+/* ---------- the live widget in this page's corner ---------- */
+.demo { position: fixed; left: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 50; font-family: var(--f-body); }
+.demo-pill {
+  display: flex; align-items: center; gap: 8px; height: 52px; padding: 0 16px 0 13px; border-radius: 26px; cursor: pointer;
+  background: var(--surface); color: var(--ink); border: 0; box-shadow: 0 0 0 1.5px var(--accent), 0 10px 28px oklch(0 0 0 / .22), 0 0 0 6px oklch(0.528 0.196 270 / .12);
+  font: 500 15px/1 var(--f-mono); position: relative;
+}
+.demo-pill svg { width: 24px; height: 24px; color: var(--ink); }
+.demo-pill .t { color: var(--accent-ink); font-variant-numeric: tabular-nums; min-width: 5ch; text-align: left; }
+.demo-pill .badge { position: absolute; top: -5px; right: -5px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 10px; background: var(--danger); color: oklch(1 0 0); font: 700 11px/20px var(--f-body); text-align: center; border: 2px solid var(--surface); }
+.demo-pill .hint { position: absolute; left: calc(100% + 10px); white-space: nowrap; font: 500 13px/1 var(--f-body); color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); padding: 7px 10px; border-radius: 999px; box-shadow: 0 6px 16px oklch(0 0 0 / .1); }
+.demo-panel { width: min(320px, calc(100vw - 32px)); border-radius: 10px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); overflow: hidden; }
+.demo-head { display: flex; align-items: center; gap: 8px; padding: 10px 8px 9px 12px; border-bottom: 1px solid var(--line); }
+.demo-head svg.mark { width: 20px; height: 20px; color: var(--accent); }
+.demo-head .tag { font: 500 11px/1 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.demo-head button { margin-left: auto; width: 30px; height: 30px; border-radius: 6px; border: 0; background: transparent; color: var(--muted); cursor: pointer; display: grid; place-items: center; }
+.demo-head button:hover { background: var(--raised); color: var(--ink); }
+.demo-list { padding: 10px; display: grid; gap: 6px; }
+.demo-task { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 9px 9px 9px 10px; border-radius: 6px; background: var(--raised); border: 1px solid transparent; }
+.demo-task.running { border-color: var(--accent); }
+.demo-task.done .name { text-decoration: line-through; color: var(--muted); }
+.demo-task .chk { width: 17px; height: 17px; margin-top: 1px; border-radius: 4px; border: 1px solid var(--muted); background: transparent; cursor: pointer; padding: 0; display: grid; place-items: center; color: var(--on-accent); }
+.demo-task.done .chk { background: var(--accent); border-color: var(--accent); }
+.demo-task .name { font-size: 14px; line-height: 1.35; }
+.demo-task .meta { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.demo-task .chip { font-size: 11.5px; padding: 1px 6px; border-radius: 4px; background: var(--line); color: var(--ink-2); }
+.demo-task .chip.today { background: var(--accent-soft); color: var(--accent-ink); }
+.demo-task .chip.late { background: oklch(0.577 0.205 27 / .16); color: var(--danger); }
+.demo-task .tm { display: flex; align-items: center; gap: 7px; font: 400 12.5px/1 var(--f-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.demo-task .play { width: 28px; height: 28px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; background: var(--line); color: var(--ink); }
+.demo-task.running .play { background: var(--accent); color: var(--on-accent); }
+.demo-task .play svg { width: 11px; height: 11px; }
+.demo-foot { padding: 0 12px 12px; font-size: 12.5px; color: var(--muted); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .states { grid-template-columns: 1fr 1fr; }
+  .states .state:last-child { grid-column: 1 / -1; }
+  .feature, .feature.flip { grid-template-columns: 1fr; }
+  .feature.flip .copy { order: 0; }
+  .facts { grid-template-columns: 1fr 1fr; }
+  .fact:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
+  .fact:nth-child(2n) { padding-left: 22px; border-left: 1px solid var(--line); }
+  .download { grid-template-columns: 1fr; }
+  .screen .corner-note { display: none; }
+}
+@media (max-width: 600px) {
+  .top nav a:not(.btn) { display: none; }
+  .screen { aspect-ratio: 4 / 3.4; }
+  .screen .app { width: 92%; right: 4%; top: 12%; }
+  .screen .widget { width: 42%; }
+  .menubar .menu-items { display: none; }
+  .states { grid-template-columns: 1fr; }
+  .states .state:last-child { grid-column: auto; }
+  .state .stage { height: 280px; }
+  .facts { grid-template-columns: 1fr; }
+  .fact, .fact:nth-child(2n), .fact:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
+  .demo-pill .hint { display: none; }
+  footer .right { margin-left: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .demo-panel { animation: rise .18s ease-out; }
+  @keyframes rise { from { transform: translateY(8px); opacity: .6; } }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="11" rx="5.5"/><path d="M9 8.5l2 2 4-4M5 18h14M8 21.5h8"/></g></symbol>
+  <symbol id="apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.9-.9-3.1-.8-1.6 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6-.1 0-2.4-.9-2.4-3.7zM14.2 5.6c.6-.8 1.1-1.8 1-2.9-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.3z"/></symbol>
+  <symbol id="windows" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5.5l7.4-1v7.1H3V5.5zm0 13l7.4 1v-7H3v6zm8.3 1.1L21 21v-8.4h-9.7v7zm0-15.2v7.2H21V3l-9.7 1.4z"/></symbol>
+  <symbol id="play" viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor"/></symbol>
+  <symbol id="pause" viewBox="0 0 12 12"><rect x="2" y="1.5" width="3" height="9" rx="1" fill="currentColor"/><rect x="7" y="1.5" width="3" height="9" rx="1" fill="currentColor"/></symbol>
+  <symbol id="down" viewBox="0 0 24 24"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#top" aria-label="FloatTask home"><svg width="24" height="24"><use href="#mark"/></svg>FloatTask</a>
+    <nav aria-label="Site">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a class="btn primary small" href="#download"><svg><use href="#down"/></svg>Download</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <h1>Today's list, <em>always in the corner.</em></h1>
+      <p class="lede">FloatTask keeps your tasks in a small panel that stays on top of every app on your Mac or PC. Start a timer, tick things off, or type a messy note and let AI turn it into a proper task — without switching windows.</p>
+      <div class="cta">
+        <a class="btn primary" id="hero-dl" href="#download"><svg><use href="#down"/></svg><span>Download FloatTask</span></a>
+        <a class="btn quiet" href="#how">See how it works</a>
+        <p class="meta"><span>macOS &amp; Windows</span><span id="hero-version">Early access</span></p>
+      </div>
+
+      <div class="screen" role="img" aria-label="A desktop with the FloatTask full app open, and the FloatTask widget pinned in the lower-left corner.">
+        <div class="menubar" aria-hidden="true">
+          <b>FloatTask</b><span class="menu-items">File&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;View&nbsp;&nbsp;&nbsp;Window</span>
+          <span class="tray"><svg><use href="#mark"/></svg><span class="clock" data-demo-clock>55:23</span></span>
+        </div>
+        <img class="app shot-l" src="shots/app-dashboard-light.webp" width="2560" height="1600" alt="">
+        <img class="app shot-d" src="shots/app-dashboard-dark.webp" width="2560" height="1600" alt="">
+        <img class="widget shot-l" src="shots/widget-light.webp" width="640" height="896" alt="">
+        <img class="widget shot-d" src="shots/widget-dark.webp" width="640" height="896" alt="">
+        <span class="corner-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>Stays on top, even over full-screen apps</span>
+      </div>
+    </div>
+
+    <section id="how" aria-labelledby="how-h">
+      <div class="sec-head">
+        <p class="eyebrow">One list, three sizes</p>
+        <h2 id="how-h">As small or as big as the moment needs.</h2>
+        <p>The widget, the pill and the full app are the same list. A change in one shows up in the others instantly.</p>
+      </div>
+      <div class="states">
+        <div class="state">
+          <figure class="stage">
+            <img class="widget-img shot-l" src="shots/widget-light.webp" width="640" height="896" alt="The FloatTask widget showing three tasks due today, one with a running timer.">
+            <img class="widget-img shot-d" src="shots/widget-dark.webp" width="640" height="896" alt="The FloatTask widget showing three tasks due today, one with a running timer.">
+          </figure>
+          <h3>The widget</h3>
+          <p>Today's tasks, a timer on each one, and a box to add more. Drag it anywhere; drag its top edge to make it taller.</p>
+        </div>
+        <div class="state">
+          <figure class="stage pill-stage">
+            <img class="pill-img shot-l" src="shots/pill-light.webp" width="420" height="228" alt="The collapsed FloatTask pill showing a running timer of 55:23 and 3 tasks due.">
+            <img class="pill-img shot-d" src="shots/pill-dark.webp" width="420" height="228" alt="The collapsed FloatTask pill showing a running timer of 55:23 and 3 tasks due.">
+          </figure>
+          <h3>The pill</h3>
+          <p>Collapse it to a small button that shows how many tasks are due and, if you like, the running timer.</p>
+          <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>L</kbd> to show or collapse</p>
+        </div>
+        <div class="state">
+          <figure class="stage app-stage">
+            <img class="app-img shot-l" src="shots/app-board-light.webp" width="2560" height="1600" alt="The FloatTask full app in Board view with Backlog, To do, In progress and Done columns.">
+            <img class="app-img shot-d" src="shots/app-board-dark.webp" width="2560" height="1600" alt="The FloatTask full app in Board view with Backlog, To do, In progress and Done columns.">
+          </figure>
+          <h3>The full app</h3>
+          <p>Plan the week in Dashboard, List, Board or Calendar view, with an AI assistant on the side.</p>
+          <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>F</kbd> to open</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" aria-labelledby="ai-h">
+      <div class="feature">
+        <div class="copy">
+          <p class="eyebrow">Add with AI</p>
+          <h3 id="ai-h">Type it the way you'd say it.</h3>
+          <p>Write a quick note and press <kbd>⌘</kbd> <kbd>↵</kbd>. FloatTask works out the title, due date, project and type, splits a list into separate tasks, and warns you when something is already on your list.</p>
+          <p class="example">send budget draft to sam fri 3pm for q4 planning, use revised version w/ travel split out
+            <span class="arrow">→ “Send budget draft to Sam” · Friday 3:00 PM · Follow-up · Q4 planning</span></p>
+          <p style="font-size:15px;color:var(--muted)">Nothing is saved until you click Add. Plain <kbd>↵</kbd> still adds the text exactly as typed.</p>
+        </div>
+        <div class="art">
+          <img class="tall shot-l" src="shots/widget-ai-light.webp" width="640" height="1040" alt="The widget showing a typed note turned into a proposed task with a due date, type, project and notes.">
+          <img class="tall shot-d" src="shots/widget-ai-dark.webp" width="640" height="1040" alt="The widget showing a typed note turned into a proposed task with a due date, type, project and notes.">
+        </div>
+      </div>
+
+      <div class="feature flip">
+        <div class="copy">
+          <p class="eyebrow">Plan the week</p>
+          <h3>See the whole week, then get back to the corner.</h3>
+          <p>The full app has a dashboard of what's due and overdue, time logged by project, and your upcoming meetings.</p>
+          <ul class="ticks">
+            <li>Dashboard, List, Board and Calendar views of the same tasks</li>
+            <li>Drag cards between columns or onto a day in the calendar</li>
+            <li>Ask the assistant to plan your afternoon or catch what slipped</li>
+          </ul>
+        </div>
+        <div class="art">
+          <img class="wide shot-l" src="shots/app-dashboard-light.webp" width="2560" height="1600" alt="The FloatTask dashboard with today's tasks, upcoming meetings, time by project and completed tasks per day.">
+          <img class="wide shot-d" src="shots/app-dashboard-dark.webp" width="2560" height="1600" alt="The FloatTask dashboard with today's tasks, upcoming meetings, time by project and completed tasks per day.">
+        </div>
+      </div>
+
+      <div class="facts" style="margin-top: clamp(56px, 8vw, 96px)">
+        <div class="fact"><h3>A timer on every task</h3><p>One click to start. Time adds up by project, and an optional bell rings <span class="mono">every 30 min</span> so the hours don't slip by.</p></div>
+        <div class="fact"><h3>Ready for your meetings</h3><p>Connect Google Calendar to see what's next, link tasks to meetings, and get suggested prep tasks.</p></div>
+        <div class="fact"><h3>A nudge the day before</h3><p>A notification <span class="mono">24 h</span> before anything is due, written to tell you what actually needs doing.</p></div>
+        <div class="fact"><h3>Out of the way when you need it</h3><p>Shrinks to the pill when another app goes full-screen, and comes back when you leave.</p></div>
+        <div class="fact"><h3>Light and dark</h3><p>Follows your system setting, or pick one. Readable text sizes in both.</p></div>
+        <div class="fact"><h3>Your tasks stay on your computer</h3><p>Tasks are stored locally. AI features are optional and only run when you add your own API key.</p></div>
+      </div>
+    </section>
+
+    <section id="download" aria-labelledby="dl-h" style="padding-top:0">
+      <div class="download">
+        <div class="copy">
+          <p class="eyebrow">Early access</p>
+          <h2 id="dl-h">Download FloatTask</h2>
+          <p>For macOS on Apple Silicon or Intel, and Windows 10 or 11. The app updates itself when a new version is out.</p>
+          <div class="first-run">
+            <p><b>First launch on a Mac:</b> FloatTask isn't notarized by Apple yet. Right-click the app in Applications and choose Open, then Open again.</p>
+            <p><b>On Windows:</b> if SmartScreen appears, choose More info, then Run anyway.</p>
+          </div>
+        </div>
+        <div class="dl-list" id="dl-list">
+          <a class="dl" data-os="mac-arm" href="#" rel="noopener">
+            <svg class="os"><use href="#apple"/></svg>
+            <span><b>Mac with Apple Silicon</b><small>M1 and later · .dmg</small></span><span class="get">Download</span>
+          </a>
+          <a class="dl" data-os="mac-intel" href="#" rel="noopener">
+            <svg class="os"><use href="#apple"/></svg>
+            <span><b>Mac with Intel</b><small>.dmg</small></span><span class="get">Download</span>
+          </a>
+          <a class="dl" data-os="win" href="#" rel="noopener">
+            <svg class="os"><use href="#windows"/></svg>
+            <span><b>Windows</b><small>64-bit installer · .exe</small></span><span class="get">Download</span>
+          </a>
+          <p class="first-run" id="dl-note">All releases and notes are on the <a id="all-releases" href="#" rel="noopener">releases page</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="#top"><svg width="20" height="20"><use href="#mark"/></svg>FloatTask</a>
+    <span>© 2026 FloatTask</span>
+    <span class="right">floattask.com</span>
+  </footer>
+</div>
+
+<!-- A working copy of the widget, in this page's own lower-left corner -->
+<div class="demo" id="demo" aria-live="polite"></div>
+
+<script>
+(() => {
+  // ---- downloads -----------------------------------------------------------
+  // Where installers are published: the public releases repo (source is private).
+  const RELEASES_REPO = 'CodeCraftrRyan/floattask-releases';
+  const releasesUrl = `https://github.com/${RELEASES_REPO}/releases/latest`;
+  const files = { 'mac-arm': (v) => `FloatTask-${v}-mac-arm64.dmg`, 'mac-intel': (v) => `FloatTask-${v}-mac-x64.dmg`, 'win': (v) => `FloatTask-${v}-win-x64.exe` };
+  const links = document.querySelectorAll('.dl[data-os]');
+  links.forEach((a) => { a.href = releasesUrl; });
+  document.getElementById('all-releases').href = releasesUrl;
+
+  // Suggest the visitor's platform.
+  const ua = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || navigator.userAgent || '';
+  const os = /win/i.test(ua) ? 'win' : /mac/i.test(ua) ? 'mac-arm' : null;
+  const heroBtn = document.getElementById('hero-dl');
+  if (os) {
+    document.querySelector(`.dl[data-os="${os}"]`)?.classList.add('suggested');
+    heroBtn.querySelector('span').textContent = os === 'win' ? 'Download for Windows' : 'Download for Mac';
+  }
+
+  // Point each button straight at its file when the latest release can be read.
+  fetch(`https://api.github.com/repos/${RELEASES_REPO}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } })
+    .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+    .then((rel) => {
+      const v = String(rel.tag_name || '').replace(/^v/, '');
+      const names = new Set((rel.assets || []).map((x) => x.name));
+      links.forEach((a) => {
+        const name = files[a.dataset.os](v);
+        if (names.has(name)) a.href = `https://github.com/${RELEASES_REPO}/releases/download/${rel.tag_name}/${name}`;
+      });
+      if (v) document.getElementById('hero-version').textContent = `Version ${v}`;
+      if (os) heroBtn.href = document.querySelector(`.dl[data-os="${os}"]`).href;
+    })
+    .catch(() => { /* release info unavailable: buttons stay on the releases page */ });
+
+  // ---- live widget demo ----------------------------------------------------
+  const icon = (id, cls = '') => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
+  const pad = (n) => String(n).padStart(2, '0');
+  const fmt = (s) => { s = Math.floor(s); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60; return h ? `${h}:${pad(m)}:${pad(x)}` : `${m}:${pad(x)}`; };
+  const startedAt = Date.now();
+  const tasks = [
+    { id: 1, name: 'Draft launch announcement', chips: [['today', 'Today 3:00 PM'], ['', 'Deliverable']], secs: 3323, running: true, done: false },
+    { id: 2, name: 'Review homepage copy with Maya', chips: [['late', 'Overdue · 9:30 AM'], ['', 'Follow-up']], secs: 900, running: false, done: false },
+    { id: 3, name: 'Log hours for last week', chips: [['today', 'Today 5:00 PM'], ['', 'Admin']], secs: 0, running: false, done: false },
+  ];
+  let open = false, tickFrom = Date.now();
+  const root = document.getElementById('demo');
+  const running = () => tasks.find((t) => t.running);
+  const due = () => tasks.filter((t) => !t.done).length;
+
+  function render() {
+    const r = running();
+    if (!open) {
+      root.innerHTML = `<button class="demo-pill" id="demo-pill" aria-expanded="false" aria-label="FloatTask demo widget: ${due()} tasks due${r ? ', timer ' + fmt(r.secs) : ''}. Click to open.">
+        ${icon('mark')}${r ? `<span class="t" data-t>${fmt(r.secs)}</span>` : ''}${due() ? `<span class="badge">${due()}</span>` : ''}
+        <span class="hint">This is FloatTask — try it</span></button>`;
+    } else {
+      root.innerHTML = `<div class="demo-panel" role="region" aria-label="FloatTask demo widget">
+        <div class="demo-head">${icon('mark', 'mark')}<span class="tag">Live demo</span>
+          <button type="button" data-collapse aria-label="Collapse to pill"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button></div>
+        <div class="demo-list">${tasks.map((t) => `
+          <div class="demo-task ${t.running ? 'running' : ''} ${t.done ? 'done' : ''}" data-id="${t.id}">
+            <button type="button" class="chk" data-done aria-label="${t.done ? 'Mark not done' : 'Mark done'}: ${t.name}">${t.done ? '<svg viewBox="0 0 14 14" width="11" height="11"><path d="m3 7 3 3 5-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>' : ''}</button>
+            <div><div class="name">${t.name}</div><div class="meta">${t.chips.map(([c, l]) => `<span class="chip ${c}">${l}</span>`).join('')}</div></div>
+            <div class="tm"><span data-t="${t.id}">${fmt(t.secs)}</span><button type="button" class="play" data-play aria-label="${t.running ? 'Pause' : 'Start'} timer">${icon(t.running ? 'pause' : 'play')}</button></div>
+          </div>`).join('')}</div>
+        <p class="demo-foot">Tick tasks off, start a timer, then collapse it with the — button.</p>
+      </div>`;
+    }
+  }
+  root.addEventListener('click', (e) => {
+    if (e.target.closest('#demo-pill')) { open = true; render(); root.querySelector('[data-collapse]')?.focus(); return; }
+    if (e.target.closest('[data-collapse]')) { open = false; render(); document.getElementById('demo-pill')?.focus(); return; }
+    const row = e.target.closest('.demo-task'); if (!row) return;
+    const t = tasks.find((x) => x.id === Number(row.dataset.id));
+    if (e.target.closest('[data-done]')) { t.done = !t.done; if (t.done) t.running = false; }
+    if (e.target.closest('[data-play]')) { const was = t.running; tasks.forEach((x) => { x.running = false; }); t.running = !was; if (t.running) t.done = false; }
+    render();
+  });
+  // One clock for the demo and the hero's menu bar.
+  setInterval(() => {
+    const now = Date.now(), dt = (now - tickFrom) / 1000; tickFrom = now;
+    const r = running(); if (r) r.secs += dt;
+    if (r) {
+      root.querySelectorAll(`[data-t="${r.id}"], .demo-pill [data-t]`).forEach((el) => { el.textContent = fmt(r.secs); });
+    }
+    document.querySelectorAll('[data-demo-clock]').forEach((el) => { el.textContent = fmt(r ? r.secs : tasks[0].secs); });
+  }, 1000);
+  render();
+})();
+</script>
+</body>
+</html>
