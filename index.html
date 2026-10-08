@@ -171,6 +171,7 @@ section { padding-block: clamp(56px, 9vw, 104px) 0; }
 
 /* pricing */
 .plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 880px; }
+.plans.single { grid-template-columns: minmax(0, 460px); }
 .plan { display: grid; gap: 14px; align-content: start; padding: clamp(22px, 3.5vw, 32px); border-radius: 18px; border: 1px solid var(--line); background: var(--surface); min-width: 0; }
 .plan.pro { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 18px 40px oklch(0.42 0.06 270 / .14); }
 .plan-name { font: 500 13px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-ink); }
@@ -300,7 +301,7 @@ footer .right { margin-left: auto; }
       <div class="cta">
         <a class="btn primary" id="hero-dl" href="#download"><svg><use href="#down"/></svg><span>Download FloatTask</span></a>
         <a class="btn quiet" href="#how">See how it works</a>
-        <p class="meta"><span>Free to download</span><span>macOS &amp; Windows</span><span id="hero-version">Early access</span></p>
+        <p class="meta"><span>7-day free trial</span><span>macOS &amp; Windows</span><span id="hero-version">Early access</span></p>
       </div>
 
       <div class="screen" role="img" aria-label="A desktop with the FloatTask full app open, and the FloatTask widget pinned in the lower-left corner.">
@@ -399,31 +400,22 @@ footer .right { margin-left: auto; }
     <section id="pricing" aria-labelledby="price-h">
       <div class="sec-head">
         <p class="eyebrow">Pricing</p>
-        <h2 id="price-h">Free to use. Pro when the AI becomes a habit.</h2>
-        <p>Everything except the higher AI limits is free. Try Pro free for 7 days from inside the app whenever you're ready — Pro is tied to the Google account you sign in with, so it follows you to every computer.</p>
+        <h2 id="price-h">One plan. Try it free for 7 days.</h2>
+        <p>Download FloatTask, sign in with Google and start your trial. Your plan is tied to that Google account, so it follows you to every computer.</p>
       </div>
-      <div class="plans">
-        <div class="plan">
-          <p class="plan-name">Free</p>
-          <p class="price"><b>$0</b></p>
-          <ul class="ticks">
-            <li>The corner widget, pill and full app</li>
-            <li>Timers, reminders and Google Calendar</li>
-            <li>A daily allowance of AI chats and Add with AI</li>
-          </ul>
-          <a class="btn quiet" href="#download"><svg><use href="#down"/></svg>Download free</a>
-        </div>
+      <div class="plans single">
         <div class="plan pro">
           <p class="plan-name">FloatTask Pro <span class="trial-tag">7 days free</span></p>
           <p class="price"><b>$8</b><span>/ month</span></p>
           <p class="alt-price">or $72 / year — save 25%</p>
           <ul class="ticks">
-            <li>Everything in Free</li>
-            <li>Much higher daily AI limits for the assistant, Add with AI and briefs</li>
+            <li>The corner widget, pill and full app on Mac and Windows</li>
+            <li>FloatTask AI: chat, Add with AI, smart reminders and briefs</li>
+            <li>Google Calendar, timers and the timer bell</li>
             <li>Try it free for 7 days — cancel before it ends and you pay nothing</li>
           </ul>
           <a class="btn primary" href="#download"><svg><use href="#down"/></svg>Download, then start your free trial</a>
-          <p class="how-upgrade">In FloatTask: <b>Settings › FloatTask AI › Start 7-day free trial</b>. Card required; secure checkout by Stripe. One trial per account.</p>
+          <p class="how-upgrade">You start the trial the first time you open FloatTask. Card required; secure checkout by Stripe. One trial per account.</p>
         </div>
       </div>
     </section>
@@ -433,7 +425,7 @@ footer .right { margin-left: auto; }
         <div class="copy">
           <p class="eyebrow">Early access</p>
           <h2 id="dl-h">Download FloatTask</h2>
-          <p>For macOS on Apple Silicon or Intel, and Windows 10 or 11. The app updates itself when a new version is out.</p>
+          <p>For macOS on Apple Silicon or Intel, and Windows 10 or 11. Sign in with Google on first launch to start your 7-day free trial. The app updates itself when a new version is out.</p>
           <div class="first-run">
             <p><b>First launch on a Mac:</b> FloatTask isn't notarized by Apple yet. Right-click the app in Applications and choose Open, then Open again.</p>
             <p><b>On Windows:</b> if SmartScreen appears, choose More info, then Run anyway.</p>
