@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en">
+<!-- Pre-launch mode: remove class="prelaunch" below to open downloads and the buy buttons. -->
+<html lang="en" class="prelaunch">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -185,6 +186,14 @@ section { padding-block: clamp(56px, 9vw, 104px) 0; }
 .how-upgrade b { color: var(--ink-2); font-weight: 600; }
 .trial-tag { margin-left: 8px; padding: 3px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); letter-spacing: .04em; }
 
+/* pre-launch: html.prelaunch hides downloads/buy buttons and shows beta notes */
+.prelaunch .launch-only { display: none !important; }
+html:not(.prelaunch) .prelaunch-only { display: none !important; }
+.beta-bar { background: var(--accent-soft); color: var(--accent-ink); font-size: 14.5px; text-align: center; padding: 10px 16px; }
+.beta-bar a { color: inherit; font-weight: 600; }
+.beta-note { display: grid; gap: 12px; align-content: start; padding: 22px; border: 1px dashed var(--accent); border-radius: 12px; background: var(--bg); }
+.beta-note p { color: var(--ink-2); }
+
 /* download */
 .download { margin-top: clamp(56px, 9vw, 104px); padding: clamp(28px, 5vw, 56px); border-radius: 18px; background: var(--surface); border: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px 48px; }
 .download h2 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); line-height: 1.05; font-weight: 700; letter-spacing: -.025em; }
@@ -273,6 +282,7 @@ footer .right { margin-left: auto; }
 </style>
 </head>
 <body>
+<div class="beta-bar prelaunch-only" role="note">FloatTask is in private beta — public launch is coming soon. <a href="/contact.html">Ask for early access</a></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="mark" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="11" rx="5.5"/><path d="M9 8.5l2 2 4-4M5 18h14M8 21.5h8"/></g></symbol>
   <symbol id="apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.9-.9-3.1-.8-1.6 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6-.1 0-2.4-.9-2.4-3.7zM14.2 5.6c.6-.8 1.1-1.8 1-2.9-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.3z"/></symbol>
@@ -290,7 +300,8 @@ footer .right { margin-left: auto; }
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="/contact.html">Contact</a>
-      <a class="btn primary small" href="#download"><svg><use href="#down"/></svg>Download</a>
+      <a class="btn primary small launch-only" href="#download"><svg><use href="#down"/></svg>Download</a>
+      <a class="btn primary small prelaunch-only" href="/contact.html">Get early access</a>
     </nav>
   </header>
 
@@ -299,7 +310,8 @@ footer .right { margin-left: auto; }
       <h1>Today's list, <em>always in the corner.</em></h1>
       <p class="lede">FloatTask keeps your tasks in a small panel that stays on top of every app on your Mac or PC. Start a timer, tick things off, or type a messy note and let AI turn it into a proper task — without switching windows.</p>
       <div class="cta">
-        <a class="btn primary" id="hero-dl" href="#download"><svg><use href="#down"/></svg><span>Download FloatTask</span></a>
+        <a class="btn primary launch-only" id="hero-dl" href="#download"><svg><use href="#down"/></svg><span>Download FloatTask</span></a>
+        <a class="btn primary prelaunch-only" href="/contact.html">Request early access</a>
         <a class="btn quiet" href="#how">See how it works</a>
         <p class="meta"><span>7-day free trial</span><span>macOS &amp; Windows</span><span id="hero-version">Early access</span></p>
       </div>
@@ -414,8 +426,10 @@ footer .right { margin-left: auto; }
             <li>Google Calendar, timers and the timer bell</li>
             <li>Try it free for 7 days — cancel before it ends and you pay nothing</li>
           </ul>
-          <a class="btn primary" href="#download"><svg><use href="#down"/></svg>Download, then start your free trial</a>
-          <p class="how-upgrade">You start the trial the first time you open FloatTask. Card required; secure checkout by Stripe. One trial per account.</p>
+          <a class="btn primary launch-only" href="#download"><svg><use href="#down"/></svg>Download, then start your free trial</a>
+          <a class="btn primary prelaunch-only" href="/contact.html">Request early access</a>
+          <p class="how-upgrade prelaunch-only">Launching soon — this is the price at launch. Nothing can be purchased yet.</p>
+          <p class="how-upgrade launch-only">You start the trial the first time you open FloatTask. Card required; secure checkout by Stripe. One trial per account.</p>
         </div>
       </div>
     </section>
@@ -424,14 +438,20 @@ footer .right { margin-left: auto; }
       <div class="download">
         <div class="copy">
           <p class="eyebrow">Early access</p>
-          <h2 id="dl-h">Download FloatTask</h2>
+          <h2 id="dl-h" class="launch-only">Download FloatTask</h2>
+          <h2 class="prelaunch-only">Private beta</h2>
           <p>For macOS on Apple Silicon or Intel, and Windows 10 or 11. Sign in with Google on first launch to start your 7-day free trial. The app updates itself when a new version is out.</p>
           <div class="first-run">
             <p><b>First launch on a Mac:</b> drag FloatTask to Applications and open it. If macOS says it can't verify the developer, click Done, then open System Settings › Privacy &amp; Security, scroll down and click <b>Open Anyway</b>. You only need to do this once.</p>
             <p><b>On Windows:</b> if SmartScreen appears, choose More info, then Run anyway.</p>
           </div>
         </div>
-        <div class="dl-list" id="dl-list">
+        <div class="beta-note prelaunch-only">
+          <p><b>Downloads open at launch.</b> FloatTask is being tested by a small group right now.</p>
+          <p>Want to try it before then? Send a note and we'll get you set up.</p>
+          <a class="btn primary small" href="/contact.html" style="justify-self:start">Ask for early access</a>
+        </div>
+        <div class="dl-list launch-only" id="dl-list">
           <a class="dl" data-os="mac-arm" href="#" rel="noopener">
             <svg class="os"><use href="#apple"/></svg>
             <span><b>Mac with Apple Silicon</b><small>M1 and later · .dmg</small></span><span class="get">Download</span>
