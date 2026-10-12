@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terms of Service · FloatTask</title>
+<meta name="description" content="The terms for using FloatTask: plans, free trial, billing, cancellation and refunds, AI features.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,750&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
+<link rel="canonical" href="https://floattask.com/terms.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%234b5be0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='11' rx='5.5'/%3E%3Cpath d='M9 8.5l2 2 4-4M5 18h14M8 21.5h8'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+:root {
+  /* FloatTask's own palette (src/app/app.css) */
+  --bg: oklch(0.984 0.004 270);
+  --surface: oklch(1 0 0);
+  --raised: oklch(0.956 0.005 272);
+  --line: oklch(0.9 0.008 272);
+  --ink: oklch(0.245 0.013 275);
+  --ink-2: oklch(0.4 0.018 276);
+  --muted: oklch(0.505 0.02 276);
+  --accent: oklch(0.528 0.196 270);
+  --accent-ink: oklch(0.5 0.195 271);
+  --accent-soft: oklch(0.934 0.024 272);
+  --on-accent: oklch(1 0 0);
+  --lilac: oklch(0.62 0.19 298);
+  --ok: oklch(0.55 0.145 150);
+  --danger: oklch(0.577 0.205 27);
+  --wall-a: oklch(0.86 0.035 262);
+  --wall-b: oklch(0.93 0.02 300);
+  --menubar: oklch(1 0 0 / .62);
+  --shadow: 0 24px 60px oklch(0.42 0.06 270 / .22), 0 2px 6px oklch(0.42 0.06 270 / .08);
+  --show-l: block; --show-d: none;
+
+  --f-display: 'Bricolage Grotesque', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --f-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --f-mono: 'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --wrap: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: oklch(0.173 0.004 270); --surface: oklch(0.216 0.008 275); --raised: oklch(0.235 0.005 275);
+    --line: oklch(0.287 0.008 275); --ink: oklch(0.93 0.006 270); --ink-2: oklch(0.8 0.01 272); --muted: oklch(0.64 0.014 276);
+    --accent: oklch(0.686 0.153 271); --accent-ink: oklch(0.78 0.09 271); --accent-soft: oklch(0.29 0.029 272); --on-accent: oklch(0.16 0.027 265);
+    --lilac: oklch(0.692 0.16 298); --ok: oklch(0.733 0.135 153); --danger: oklch(0.682 0.16 23);
+    --wall-a: oklch(0.3 0.05 268); --wall-b: oklch(0.24 0.04 300); --menubar: oklch(0.2 0.01 275 / .7);
+    --shadow: 0 24px 60px oklch(0 0 0 / .45), 0 2px 6px oklch(0 0 0 / .3);
+    --show-l: none; --show-d: block; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: oklch(0.173 0.004 270); --surface: oklch(0.216 0.008 275); --raised: oklch(0.235 0.005 275);
+  --line: oklch(0.287 0.008 275); --ink: oklch(0.93 0.006 270); --ink-2: oklch(0.8 0.01 272); --muted: oklch(0.64 0.014 276);
+  --accent: oklch(0.686 0.153 271); --accent-ink: oklch(0.78 0.09 271); --accent-soft: oklch(0.29 0.029 272); --on-accent: oklch(0.16 0.027 265);
+  --lilac: oklch(0.692 0.16 298); --ok: oklch(0.733 0.135 153); --danger: oklch(0.682 0.16 23);
+  --wall-a: oklch(0.3 0.05 268); --wall-b: oklch(0.24 0.04 300); --menubar: oklch(0.2 0.01 275 / .7);
+  --shadow: 0 24px 60px oklch(0 0 0 / .45), 0 2px 6px oklch(0 0 0 / .3);
+  --show-l: none; --show-d: block; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 17px/1.55 var(--f-body); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(16px, 4vw, 32px); }
+a { color: var(--accent-ink); }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+p { margin: 0; }
+kbd, .mono { font-family: var(--f-mono); font-size: .86em; }
+kbd { padding: 1px 6px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; background: var(--surface); white-space: nowrap; }
+.shot-l { display: var(--show-l); } .shot-d { display: var(--show-d); }
+img { max-width: 100%; height: auto; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+/* ---------- header ---------- */
+.top { display: flex; align-items: center; gap: 24px; padding-block: 20px; }
+.logo { display: inline-flex; align-items: center; gap: 9px; font: 650 19px/1 var(--f-display); color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
+.logo svg { color: var(--accent); }
+.top nav { margin-left: auto; display: flex; align-items: center; gap: 22px; font-size: 15px; }
+.top nav a { color: var(--ink-2); text-decoration: none; }
+.top nav a:hover { color: var(--ink); }
+.btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 8px; font: 600 15px/1 var(--f-body); text-decoration: none; border: 1px solid transparent; cursor: pointer; }
+.btn.primary { background: var(--accent); color: var(--on-accent); }
+.btn.primary:hover { filter: brightness(1.07); }
+.btn.quiet { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn.quiet:hover { background: var(--raised); }
+.btn.small { height: 36px; padding: 0 14px; font-size: 14px; }
+.btn svg { width: 18px; height: 18px; }
+
+footer { padding-block: 48px 120px; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; color: var(--muted); font-size: 14px; }
+footer .logo { font-size: 16px; }
+footer .right { margin-left: auto; }
+
+[hidden] { display: none !important; }
+.eyebrow { font: 500 13px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-ink); }
+footer a:not(.logo) { color: var(--muted); }
+.top nav a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+
+/* ---------- legal ---------- */
+.legal { padding-block: clamp(32px, 7vw, 80px) 0; display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 68ch); gap: clamp(32px, 6vw, 80px); align-items: start; }
+.legal h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.02; font-weight: 750; letter-spacing: -.03em; }
+.legal .meta { display: grid; gap: 14px; position: sticky; top: 24px; }
+.legal .meta p { color: var(--ink-2); font-size: 15px; }
+.legal .toc { display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 14px; font-size: 14.5px; }
+.legal .toc a { color: var(--ink-2); text-decoration: none; }
+.legal .toc a:hover { color: var(--ink); }
+.doc { display: grid; gap: 14px; color: var(--ink-2); }
+.doc h2 { font-size: 1.45rem; font-weight: 700; letter-spacing: -.02em; color: var(--ink); margin-top: 22px; scroll-margin-top: 24px; }
+.doc h2:first-child { margin-top: 0; }
+.doc h3 { font-size: 1.05rem; font-weight: 650; color: var(--ink); margin-top: 6px; }
+.doc ul { margin: 0; padding-left: 22px; display: grid; gap: 8px; }
+.doc li::marker { color: var(--accent); }
+.doc strong { color: var(--ink); font-weight: 600; }
+.doc table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); }
+.doc th { font: 500 12.5px/1 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.doc .note { padding: 14px 18px; border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 10px 10px 0; font-size: 15.5px; }
+@media (max-width: 860px) {
+  .legal { grid-template-columns: 1fr; }
+  .legal .meta { position: static; }
+}
+@media (max-width: 560px) {
+  .top nav a:not(.btn):not([aria-current]) { display: none; }
+  footer .right { margin-left: 0; }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="11" rx="5.5"/><path d="M9 8.5l2 2 4-4M5 18h14M8 21.5h8"/></g></symbol>
+  <symbol id="down" viewBox="0 0 24 24"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/" aria-label="FloatTask home"><svg width="24" height="24"><use href="#mark"/></svg>FloatTask</a>
+    <nav aria-label="Site">
+      <a href="/#how">How it works</a>
+      <a href="/#features">Features</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/contact.html">Contact</a>
+      <a class="btn primary small" href="/#download"><svg><use href="#down"/></svg>Download</a>
+    </nav>
+  </header>
+
+  <main class="legal">
+    <aside class="meta">
+      <p class="eyebrow">Terms</p>
+      <h1>Terms of <em style="font-style:normal;color:var(--accent)">service</em></h1>
+      <p>Plain-English terms for using FloatTask, including trials, billing and refunds.</p>
+      <p><strong style="color:var(--ink)">Last updated:</strong> October 12, 2026</p>
+      <nav class="toc" aria-label="On this page">
+        <a href="#summary">The short version</a>
+        <a href="#account">Your account</a>
+        <a href="#plans">Plans, trials and billing</a>
+        <a href="#refunds">Cancelling and refunds</a>
+        <a href="#ai">AI features</a>
+        <a href="#use">Acceptable use</a>
+        <a href="#software">The software</a>
+        <a href="#warranty">Warranty and liability</a>
+        <a href="#termination">Termination</a>
+        <a href="#changes">Changes</a>
+        <a href="#law">Governing law</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </aside>
+    <article class="doc">
+
+      <h2 id="summary">The short version</h2>
+      <ul>
+        <li>FloatTask is a paid app with a 7-day free trial. Card required; cancel before the trial ends and you pay nothing.</li>
+        <li>Subscriptions renew automatically until you cancel. You can cancel anytime from Settings → Manage billing.</li>
+        <li>Your tasks are yours and stay on your computer. We don't claim any rights to them.</li>
+        <li>AI output can be wrong — check anything that matters.</li>
+        <li>Don't use FloatTask to break the law, abuse the AI service, or attack our systems.</li>
+      </ul>
+
+      <h2 id="account">Your account</h2>
+      <p>You sign in to FloatTask with a Google account. Your subscription is tied to that account and works on any computer you sign in to. You're responsible for keeping that account secure. One person, one account: sharing a subscription across people isn't allowed. You must be at least 13 (or the age of digital consent where you live) to use FloatTask.</p>
+
+      <h2 id="plans">Plans, trials and billing</h2>
+      <ul>
+        <li><strong>Plans.</strong> FloatTask Pro and FloatTask Pro+ are monthly or yearly subscriptions. Current prices are shown on <a href="/#pricing">floattask.com</a> and in the app before you subscribe. Prices are in US dollars and may exclude sales tax or VAT, which is added at checkout where we're required to collect it.</li>
+        <li><strong>Free trial.</strong> New accounts get a 7-day free trial of the plan they choose. A card is required to start it. If you don't cancel before the trial ends, your subscription starts and the card is charged. One trial per Google account.</li>
+        <li><strong>Renewal.</strong> Subscriptions renew automatically at the end of each billing period at the then-current price until you cancel. We'll give you at least 30 days' notice of any price increase before it applies to you.</li>
+        <li><strong>Switching plans.</strong> You can move between Pro and Pro+ or between monthly and yearly in Settings. Changes are prorated on your next invoice.</li>
+        <li><strong>Failed payments.</strong> If a payment fails we'll retry it for a while and keep your access during that time. If it keeps failing, your plan ends and the app locks until you update your card.</li>
+        <li><strong>Payments</strong> are processed by Stripe under <a href="https://stripe.com/legal/consumer" rel="noopener">Stripe's terms</a>.</li>
+      </ul>
+
+      <h2 id="refunds">Cancelling and refunds</h2>
+      <ul>
+        <li><strong>Cancel anytime</strong> from Settings → Manage billing. You keep access until the end of the period you've paid for, and you won't be charged again.</li>
+        <li><strong>Trial:</strong> cancel before it ends and nothing is charged.</li>
+        <li><strong>Refunds:</strong> if FloatTask isn't working out, email us within 14 days of a charge and we'll refund it in full — no questions. Outside that window we don't refund partial periods, except where the law requires it or something on our side stopped you from using the app.</li>
+        <li>Refunds go back to the original payment method and can take 5–10 business days to appear.</li>
+      </ul>
+
+      <h2 id="ai">AI features</h2>
+      <p>FloatTask AI uses third-party language models to draft tasks, write reminders and answer questions about your tasks and calendar. It can make mistakes, miss things, or invent details. It's a convenience, not a source of truth: review what it produces before you rely on it. Each plan includes a fair-use allowance of AI requests per day and a monthly usage ceiling; when you reach it, AI features pause until the next day or month. We may adjust allowances and the models used to keep the service sustainable, and we'll say so in the app when we do. You keep any rights you have in what you type and in the output you receive.</p>
+
+      <h2 id="use">Acceptable use</h2>
+      <p>You agree not to: use FloatTask for anything unlawful; attempt to access, probe or disrupt our servers or other users' accounts; automate or resell access to the AI service; reverse engineer the app to extract the service credentials it contains; or use the AI features to generate content that's abusive, infringing or intended to harm others. We may suspend or terminate accounts that break these rules.</p>
+
+      <h2 id="software">The software</h2>
+      <p>We grant you a personal, non-exclusive, non-transferable licence to install and use FloatTask on computers you control, for as long as you have an active plan. FloatTask, its name, logo and code are ours; your tasks, notes and content are yours. Updates may add, change or remove features, and we may stop supporting old versions.</p>
+
+      <h2 id="warranty">Warranty and liability</h2>
+      <p>FloatTask is provided "as is". To the fullest extent permitted by law we disclaim all warranties, express or implied, including fitness for a particular purpose and uninterrupted or error-free operation. We're not liable for lost data, lost profits, or indirect or consequential damages, and our total liability to you for any claim is limited to the amount you paid us in the 12 months before the claim. Some jurisdictions don't allow these limits, in which case they apply to the extent permitted. Keep a backup of anything important — your task data lives on your computer.</p>
+
+      <h2 id="termination">Termination</h2>
+      <p>You can stop using FloatTask and delete your account at any time (see the <a href="/privacy.html">privacy policy</a>). We may end or suspend access if you break these terms or if we discontinue the service; if we discontinue it, we'll give reasonable notice and refund any prepaid, unused time.</p>
+
+      <h2 id="changes">Changes</h2>
+      <p>We may update these terms. For material changes we'll update the date above and notify you in the app or by email before they take effect. Continued use after that means you accept the new terms.</p>
+
+      <h2 id="law">Governing law</h2>
+      <p>These terms are governed by the laws of the District of Columbia, USA, without regard to conflict-of-law rules. Any dispute will be resolved in the courts located there, unless your local consumer law gives you the right to bring it elsewhere. If any part of these terms is unenforceable, the rest still applies.</p>
+
+      <h2 id="contact">Contact</h2>
+      <p>Questions about these terms: <a href="/contact.html">floattask.com/contact</a> or <a href="mailto:admin@yourtrinkets.com">admin@yourtrinkets.com</a>.</p>
+
+    </article>
+  </main>
+
+  <footer>
+    <a class="logo" href="/"><svg width="20" height="20"><use href="#mark"/></svg>FloatTask</a>
+    <span>© 2026 FloatTask</span>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/contact.html">Contact</a>
+    <span class="right">floattask.com</span>
+  </footer>
+</div>
+</body>
+</html>
