@@ -1,6 +1,6 @@
 <!doctype html>
-<!-- Pre-launch mode: remove class="prelaunch" below to open downloads and the buy buttons. -->
-<html lang="en" class="prelaunch">
+<!-- Pre-launch mode: add class="prelaunch" to <html> to hide downloads and the buy buttons. -->
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -215,7 +215,7 @@
         <a class="btn primary launch-only" id="hero-dl" href="#download"><svg><use href="#down"/></svg><span>Download FloatTask</span></a>
         <a class="btn primary prelaunch-only" href="/contact.html">Request early access</a>
         <a class="btn quiet" href="#how">See how it works</a>
-        <p class="meta"><span>7-day free trial</span><span>macOS &amp; Windows</span><span id="hero-version">Early access</span></p>
+        <p class="meta"><span>7-day free trial</span><span>macOS &amp; Windows</span><span id="hero-version">Free download</span></p>
       </div>
 
       <div class="screen" role="img" aria-label="A desktop with FloatTask's home page open: My Day with a running timer, goals beside the day's schedule, and Tasks, Assist and Insights cards. The FloatTask widget is pinned in the lower-left corner, and the collapsed timer ring sits above it.">
@@ -423,7 +423,7 @@
     <section id="download" aria-labelledby="dl-h">
       <div class="card download">
         <div class="copy">
-          <p class="eyebrow">Early access</p>
+          <p class="eyebrow launch-only">Download</p><p class="eyebrow prelaunch-only">Early access</p>
           <h2 id="dl-h" class="launch-only">Download FloatTask</h2>
           <h2 class="prelaunch-only">Private beta</h2>
           <p>For macOS on Apple Silicon or Intel, and Windows 10 or 11. Sign in with Google on first launch to start your 7-day free trial. The app updates itself when a new version is out.</p>
@@ -441,7 +441,7 @@
           <a class="dl" data-os="mac-arm" href="#" rel="noopener"><svg class="os"><use href="#apple"/></svg><span><b>Mac with Apple Silicon</b><small>M1 and later · .dmg</small></span><span class="get">Download</span></a>
           <a class="dl" data-os="mac-intel" href="#" rel="noopener"><svg class="os"><use href="#apple"/></svg><span><b>Mac with Intel</b><small>.dmg</small></span><span class="get">Download</span></a>
           <a class="dl" data-os="win" href="#" rel="noopener"><svg class="os"><use href="#windows"/></svg><span><b>Windows</b><small>64-bit installer · .exe</small></span><span class="get">Download</span></a>
-          <p class="first-run" id="dl-note">All releases and notes are on the <a id="all-releases" href="#" rel="noopener">releases page</a>.</p>
+          <p class="first-run" id="dl-note" style="display:block">All releases and notes are on the <a id="all-releases" href="#" rel="noopener">releases page</a>.</p>
         </div>
       </div>
     </section>
