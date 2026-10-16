@@ -4,281 +4,175 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>FloatTask</title>
-<meta name="description" content="FloatTask keeps today's tasks in a small panel that stays on top of every app on your Mac or PC, with timers, Google Calendar prep and AI task entry.">
+<title>FloatTask — always in your corner</title>
+<meta name="description" content="FloatTask is a calm planner that floats over your work on Mac and Windows: a few goals for today, a timer on each, your day on one screen — for work, school and the rest of life.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,650;12..96,750&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,500;1,8..60,600&display=swap">
 <link rel="canonical" href="https://floattask.com/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%234b5be0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='11' rx='5.5'/%3E%3Cpath d='M9 8.5l2 2 4-4M5 18h14M8 21.5h8'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23b07a3a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='11' rx='5.5'/%3E%3Cpath d='M9 8.5l2 2 4-4M5 18h14M8 21.5h8'/%3E%3C/g%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://floattask.com/">
-<meta property="og:title" content="FloatTask — today's list, always in the corner">
-<meta property="og:description" content="A small task panel that stays on top of every app on your Mac or PC, with timers, Google Calendar prep and AI task entry.">
-<meta property="og:image" content="https://floattask.com/shots/app-dashboard-light.webp">
+<meta property="og:title" content="FloatTask — always in your corner">
+<meta property="og:description" content="A calm planner that floats over your work: a few goals for today, a timer on each, and your whole day on one screen. For Mac and Windows.">
+<meta property="og:image" content="https://floattask.com/shots/og-home.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="site.css">
 <style>
-/* Layout: a desktop seen from its lower-left corner — the hero is a "screen" with the
-   widget pinned bottom-left, and a working copy of the widget sits in this page's own corner. */
-:root {
-  /* FloatTask's own palette (src/app/app.css) */
-  --bg: oklch(0.984 0.004 270);
-  --surface: oklch(1 0 0);
-  --raised: oklch(0.956 0.005 272);
-  --line: oklch(0.9 0.008 272);
-  --ink: oklch(0.245 0.013 275);
-  --ink-2: oklch(0.4 0.018 276);
-  --muted: oklch(0.505 0.02 276);
-  --accent: oklch(0.528 0.196 270);
-  --accent-ink: oklch(0.5 0.195 271);
-  --accent-soft: oklch(0.934 0.024 272);
-  --on-accent: oklch(1 0 0);
-  --lilac: oklch(0.62 0.19 298);
-  --ok: oklch(0.55 0.145 150);
-  --danger: oklch(0.577 0.205 27);
-  --wall-a: oklch(0.86 0.035 262);
-  --wall-b: oklch(0.93 0.02 300);
-  --menubar: oklch(1 0 0 / .62);
-  --shadow: 0 24px 60px oklch(0.42 0.06 270 / .22), 0 2px 6px oklch(0.42 0.06 270 / .08);
-  --show-l: block; --show-d: none;
-
-  --f-display: 'Bricolage Grotesque', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --f-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --f-mono: 'DM Mono', ui-monospace, 'SF Mono', Menlo, monospace;
-  --wrap: 1120px;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: oklch(0.173 0.004 270); --surface: oklch(0.216 0.008 275); --raised: oklch(0.235 0.005 275);
-    --line: oklch(0.287 0.008 275); --ink: oklch(0.93 0.006 270); --ink-2: oklch(0.8 0.01 272); --muted: oklch(0.64 0.014 276);
-    --accent: oklch(0.686 0.153 271); --accent-ink: oklch(0.78 0.09 271); --accent-soft: oklch(0.29 0.029 272); --on-accent: oklch(0.16 0.027 265);
-    --lilac: oklch(0.692 0.16 298); --ok: oklch(0.733 0.135 153); --danger: oklch(0.682 0.16 23);
-    --wall-a: oklch(0.3 0.05 268); --wall-b: oklch(0.24 0.04 300); --menubar: oklch(0.2 0.01 275 / .7);
-    --shadow: 0 24px 60px oklch(0 0 0 / .45), 0 2px 6px oklch(0 0 0 / .3);
-    --show-l: none; --show-d: block; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: oklch(0.173 0.004 270); --surface: oklch(0.216 0.008 275); --raised: oklch(0.235 0.005 275);
-  --line: oklch(0.287 0.008 275); --ink: oklch(0.93 0.006 270); --ink-2: oklch(0.8 0.01 272); --muted: oklch(0.64 0.014 276);
-  --accent: oklch(0.686 0.153 271); --accent-ink: oklch(0.78 0.09 271); --accent-soft: oklch(0.29 0.029 272); --on-accent: oklch(0.16 0.027 265);
-  --lilac: oklch(0.692 0.16 298); --ok: oklch(0.733 0.135 153); --danger: oklch(0.682 0.16 23);
-  --wall-a: oklch(0.3 0.05 268); --wall-b: oklch(0.24 0.04 300); --menubar: oklch(0.2 0.01 275 / .7);
-  --shadow: 0 24px 60px oklch(0 0 0 / .45), 0 2px 6px oklch(0 0 0 / .3);
-  --show-l: none; --show-d: block; color-scheme: dark;
-}
-
-* { box-sizing: border-box; }
-body { background: var(--bg); color: var(--ink); font: 400 17px/1.55 var(--f-body); -webkit-font-smoothing: antialiased; }
-.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(16px, 4vw, 32px); }
-a { color: var(--accent-ink); }
-h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
-p { margin: 0; }
-kbd, .mono { font-family: var(--f-mono); font-size: .86em; }
-kbd { padding: 1px 6px; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; background: var(--surface); white-space: nowrap; }
-.shot-l { display: var(--show-l); } .shot-d { display: var(--show-d); }
-img { max-width: 100%; height: auto; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-
-/* ---------- header ---------- */
-.top { display: flex; align-items: center; gap: 24px; padding-block: 20px; }
-.logo { display: inline-flex; align-items: center; gap: 9px; font: 650 19px/1 var(--f-display); color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
-.logo svg { color: var(--accent); }
-.top nav { margin-left: auto; display: flex; align-items: center; gap: 22px; font-size: 15px; }
-.top nav a { color: var(--ink-2); text-decoration: none; }
-.top nav a:hover { color: var(--ink); }
-.btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 8px; font: 600 15px/1 var(--f-body); text-decoration: none; border: 1px solid transparent; cursor: pointer; }
-.btn.primary { background: var(--accent); color: var(--on-accent); }
-.btn.primary:hover { filter: brightness(1.07); }
-.btn.quiet { background: transparent; color: var(--ink); border-color: var(--line); }
-.btn.quiet:hover { background: var(--raised); }
-.btn.small { height: 36px; padding: 0 14px; font-size: 14px; }
-.btn svg { width: 18px; height: 18px; }
-
-/* ---------- hero ---------- */
-.hero { padding-block: clamp(24px, 6vw, 64px) 0; display: grid; gap: 28px; }
-.hero h1 { font-size: clamp(2.5rem, 6.4vw, 4.6rem); line-height: .98; font-weight: 750; letter-spacing: -.035em; max-width: 13ch; }
-.hero h1 em { font-style: normal; color: var(--accent); }
-.lede { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--ink-2); max-width: 54ch; }
+/* ---------- this page ---------- */
+/* hero: a desktop seen from its lower-left corner — the full app, with the widget and the ring pinned in the corner */
+.hero { padding-block: clamp(20px, 5vw, 56px) 0; display: grid; gap: 26px; }
+.hero h1 { font-size: clamp(2.6rem, 6.6vw, 4.9rem); line-height: 1; letter-spacing: -.025em; max-width: 12ch; }
+.hero h1 em { display: block; font-style: italic; font-weight: 600; color: var(--gold-ink); }
+.lede { font-size: clamp(1.06rem, 1.6vw, 1.22rem); color: var(--ink-2); max-width: 56ch; }
 .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
 .cta .meta { font-size: 14px; color: var(--muted); }
 .cta .meta span + span::before { content: "·"; margin: 0 7px; }
 
-.screen {
-  position: relative; margin-top: 12px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line);
-  background: linear-gradient(135deg, var(--wall-a), var(--wall-b)); box-shadow: var(--shadow);
-  aspect-ratio: 16 / 9.4; max-width: 100%;
-}
-.menubar { position: absolute; inset: 0 0 auto 0; height: 30px; display: flex; align-items: center; gap: 14px; padding: 0 14px; background: var(--menubar); backdrop-filter: blur(12px); font-size: 12.5px; color: var(--ink); z-index: 3; }
-.menubar b { font-weight: 600; }
-.menubar .tray { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; font-family: var(--f-mono); font-size: 12px; }
-.menubar .tray svg { width: 15px; height: 15px; color: var(--accent); }
-.menubar .clock { font-variant-numeric: tabular-nums; }
-.screen .app { position: absolute; top: 9%; right: 3%; width: 76%; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); }
-.screen .widget { position: absolute; left: 2.6%; bottom: 3.5%; width: 23%; filter: drop-shadow(0 18px 30px oklch(0 0 0 / .28)); z-index: 2; }
-.screen .corner-note {
-  position: absolute; left: 27%; bottom: 6%; z-index: 2; display: flex; align-items: center; gap: 8px;
-  font: 500 13px/1.3 var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line);
-  padding: 7px 11px; border-radius: 999px; box-shadow: 0 6px 18px oklch(0 0 0 / .12);
-}
-.screen .corner-note svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; }
+.screen { position: relative; margin-top: 10px; border-radius: 22px; overflow: hidden; border: 1px solid var(--line);
+  background: radial-gradient(120% 90% at 0% 100%, color-mix(in oklab, var(--a-myday) 30%, var(--bg)), transparent 60%), radial-gradient(90% 80% at 100% 0%, color-mix(in oklab, var(--a-insights) 26%, var(--bg)), transparent 60%), var(--raised);
+  box-shadow: var(--shadow); aspect-ratio: 16 / 10.2; }
+.screen .app { position: absolute; top: 5%; right: 3%; width: 78%; border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); }
+.screen .widget { position: absolute; left: 2.6%; bottom: 4%; width: 20%; filter: drop-shadow(0 18px 30px oklch(0 0 0 / .25)); z-index: 2; }
+.screen .ring { position: absolute; left: 3%; top: 10%; width: 8.5%; z-index: 2; filter: drop-shadow(0 10px 18px oklch(0 0 0 / .2)); }
+.screen .corner-note { position: absolute; left: 24%; bottom: 5%; z-index: 3; display: flex; align-items: center; gap: 8px; font: 500 13px/1.3 var(--f-body); color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line); padding: 8px 12px; border-radius: 999px; box-shadow: 0 6px 18px oklch(0 0 0 / .12); }
+.screen .corner-note svg { width: 14px; height: 14px; color: var(--gold-ink); flex-shrink: 0; }
 
-/* ---------- sections ---------- */
-section { padding-block: clamp(56px, 9vw, 104px) 0; }
-.eyebrow { font: 500 13px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-ink); }
-.sec-head { display: grid; gap: 12px; max-width: 640px; margin-bottom: 36px; }
-.sec-head h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); line-height: 1.05; font-weight: 700; letter-spacing: -.025em; }
-.sec-head p { color: var(--ink-2); }
-
-/* three states of the same list */
-.states { display: grid; grid-template-columns: 1fr 1fr 1.6fr; gap: 20px; align-items: start; }
-.state { display: grid; gap: 14px; min-width: 0; }
-.state figure { margin: 0; display: grid; place-items: end start; min-height: 0; }
-.state .stage { border-radius: 12px; border: 1px solid var(--line); background: linear-gradient(160deg, var(--wall-a), var(--wall-b)); padding: 18px; display: grid; place-items: center; height: clamp(260px, 26vw, 320px); overflow: hidden; }
-.state .stage img { max-height: 100%; width: auto; object-fit: contain; }
-.state .stage img.widget-img { max-width: 82%; filter: drop-shadow(0 12px 24px oklch(0 0 0 / .25)); }
-.state .stage img.pill-img { width: 62%; max-height: none; filter: drop-shadow(0 8px 16px oklch(0 0 0 / .2)); }
-.state .stage.app-stage { padding: 14px; }
-.state .stage img.app-img { width: 100%; height: auto; max-height: none; }
-.state .stage img.app-img { border-radius: 8px; box-shadow: var(--shadow); }
-.state h3 { font-size: 1.25rem; font-weight: 650; letter-spacing: -.01em; }
-.state p { font-size: 15.5px; color: var(--ink-2); }
-.state .keys { font-size: 14px; color: var(--muted); }
+/* one day, three sizes */
+.sizes { display: grid; grid-template-columns: 1fr 1fr 1.7fr; gap: 18px; align-items: stretch; }
+.size .stage { display: grid; place-items: center; height: clamp(250px, 26vw, 330px); padding: 18px; border-radius: 16px; overflow: hidden;
+  background: radial-gradient(90% 80% at 50% 100%, color-mix(in oklab, var(--c) 22%, var(--surface)), var(--surface)); }
+.size .stage img { max-height: 100%; width: auto; }
+.size .stage .w { max-width: 76%; filter: drop-shadow(0 12px 24px oklch(0 0 0 / .22)); }
+.size .stage .r { width: 46%; max-height: none; filter: drop-shadow(0 10px 20px oklch(0 0 0 / .2)); }
+.size .stage .a { width: 100%; height: auto; max-height: none; border-radius: 10px; box-shadow: var(--shadow); }
+.size p { font-size: 15.5px; color: var(--ink-2); padding: 0 6px; }
+.size .keys { font-size: 14px; color: var(--muted); }
 
 /* feature rows */
-.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
-.feature + .feature { margin-top: clamp(56px, 8vw, 96px); }
+.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.feature + .feature { margin-top: clamp(56px, 8vw, 104px); }
 .feature.flip .copy { order: 2; }
 .feature .copy { display: grid; gap: 16px; min-width: 0; }
-.feature h3 { font-size: clamp(1.6rem, 2.8vw, 2.15rem); line-height: 1.08; font-weight: 700; letter-spacing: -.02em; }
+.feature h3 { font-size: clamp(1.7rem, 3vw, 2.3rem); line-height: 1.08; letter-spacing: -.015em; }
 .feature .copy > p { color: var(--ink-2); max-width: 46ch; }
-.example { font: 400 15px/1.5 var(--f-mono); padding: 12px 14px; border-radius: 8px; background: var(--raised); border: 1px solid var(--line); color: var(--ink); }
-.example .arrow { display: block; margin-top: 8px; color: var(--muted); font-family: var(--f-body); font-size: 14px; }
-.ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 15.5px; color: var(--ink-2); }
-.ticks li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; }
-.ticks li::before { content: ""; width: 14px; height: 14px; margin-top: 5px; border-radius: 4px; background: var(--accent); mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='m3 7 3 3 5-6' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat; }
-.feature .art { min-width: 0; border-radius: 14px; border: 1px solid var(--line); background: linear-gradient(150deg, var(--wall-a), var(--wall-b)); padding: clamp(16px, 3vw, 32px); display: grid; place-items: center; }
-.feature .art img.tall { width: min(330px, 100%); filter: drop-shadow(0 16px 30px oklch(0 0 0 / .25)); }
-.feature .art img.wide { border-radius: 8px; box-shadow: var(--shadow); }
+.feature .art { min-width: 0; border-radius: 20px; padding: clamp(14px, 2.4vw, 26px); display: grid; place-items: center;
+  background: linear-gradient(150deg, color-mix(in oklab, var(--c) 22%, var(--surface)), color-mix(in oklab, var(--c) 6%, var(--surface))); border: 1px solid var(--line); }
+.feature .art img.wide { border-radius: 12px; box-shadow: var(--shadow); }
+.feature .art img.tall { width: min(300px, 100%); filter: drop-shadow(0 16px 30px oklch(0 0 0 / .22)); }
+.example { font: 400 15px/1.5 var(--f-body); padding: 14px 16px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line-strong); color: var(--ink); }
+.example .arrow { display: block; margin-top: 8px; color: var(--muted); font-size: 14px; }
+
+/* work · school · personal */
+.uses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.uses .card p { color: var(--ink-2); font-size: 15.5px; }
+.uses .ticks { font-size: 15px; }
+
+/* themes */
+.themes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.themes figure { margin: 0; display: grid; gap: 8px; }
+.themes img { border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 8px 24px oklch(0 0 0 / .12); aspect-ratio: 16 / 10; object-fit: cover; }
+.themes figcaption { font-size: 14.5px; color: var(--ink-2); padding-left: 2px; }
+.themes figcaption b { color: var(--ink); font-weight: 600; }
+.also { margin-top: 14px; font-size: 15px; color: var(--muted); }
+.swatches { display: inline-flex; gap: 6px; vertical-align: middle; margin-left: 6px; }
+.swatches i { width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--line-strong); }
 
 /* small facts */
-.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
-.fact { padding: 24px 22px 26px 0; border-bottom: 1px solid var(--line); display: grid; gap: 8px; align-content: start; min-width: 0; }
-.fact:not(:nth-child(3n+1)) { padding-left: 22px; border-left: 1px solid var(--line); }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.fact { padding: 20px 22px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); display: grid; gap: 8px; align-content: start; }
 .fact h3 { font: 600 17px/1.3 var(--f-body); }
 .fact p { font-size: 15px; color: var(--ink-2); }
-.fact .mono { color: var(--accent-ink); }
-
 
 /* pricing */
-.plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 880px; }
-.plans.single { grid-template-columns: minmax(0, 460px); }
-.plan { display: grid; gap: 14px; align-content: start; padding: clamp(22px, 3.5vw, 32px); border-radius: 18px; border: 1px solid var(--line); background: var(--surface); min-width: 0; }
-.plan.pro { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 18px 40px oklch(0.42 0.06 270 / .14); }
-.plan-name { font: 500 13px/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent-ink); }
+.plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 900px; }
+.plan { display: grid; gap: 14px; align-content: start; padding: 12px 12px clamp(22px, 3vw, 28px); border-radius: 22px; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow-sm); min-width: 0; }
+.plan > :not(.band) { margin-inline: 14px; }
+.plan.pro { box-shadow: 0 0 0 2px color-mix(in oklab, var(--a-myday) 55%, transparent), var(--shadow-sm); }
 .price { display: flex; align-items: baseline; gap: 8px; }
-.price b { font: 750 clamp(2.4rem, 4.4vw, 3rem)/1 var(--f-display); letter-spacing: -.03em; }
+.price b { font: 700 clamp(2.4rem, 4.4vw, 3rem)/1 var(--f-serif); letter-spacing: -.02em; }
 .price span { color: var(--muted); font-size: 15px; }
 .alt-price { margin-top: -6px; font-size: 14.5px; color: var(--ink-2); }
-.plan .ticks { margin: 4px 0 6px; }
 .plan .btn { justify-self: start; }
 .how-upgrade { font-size: 13.5px; color: var(--muted); }
-.how-upgrade b { color: var(--ink-2); font-weight: 600; }
-.trial-tag { margin-left: 8px; padding: 3px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); letter-spacing: .04em; }
-
-/* pre-launch: html.prelaunch hides downloads/buy buttons and shows beta notes */
-.prelaunch .launch-only { display: none !important; }
-html:not(.prelaunch) .prelaunch-only { display: none !important; }
-.beta-bar { background: var(--accent-soft); color: var(--accent-ink); font-size: 14.5px; text-align: center; padding: 10px 16px; }
-.beta-bar a { color: inherit; font-weight: 600; }
-.beta-note { display: grid; gap: 12px; align-content: start; padding: 22px; border: 1px dashed var(--accent); border-radius: 12px; background: var(--bg); }
-.beta-note p { color: var(--ink-2); }
+.trial-tag { margin-left: auto; padding: 4px 10px; border-radius: 999px; background: var(--surface); font: 600 12px/1 var(--f-body); color: var(--ink-2); }
 
 /* download */
-.download { margin-top: clamp(56px, 9vw, 104px); padding: clamp(28px, 5vw, 56px); border-radius: 18px; background: var(--surface); border: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px 48px; }
-.download h2 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); line-height: 1.05; font-weight: 700; letter-spacing: -.025em; }
+.download { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px 44px; padding: clamp(26px, 5vw, 52px); }
+.download h2 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); line-height: 1.05; }
 .download .copy { display: grid; gap: 14px; align-content: start; }
 .download .copy p { color: var(--ink-2); }
 .dl-list { display: grid; gap: 10px; align-content: start; }
-.dl { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: var(--ink); background: var(--bg); }
-.dl:hover { border-color: var(--accent); }
-.dl.suggested { border-color: var(--accent); background: var(--accent-soft); }
+.dl { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--line-strong); border-radius: 14px; text-decoration: none; color: var(--ink); background: var(--surface); }
+.dl:hover { border-color: var(--gold-ink); }
+.dl.suggested { border-color: transparent; background: color-mix(in oklab, var(--a-myday) 24%, var(--surface)); }
 .dl svg.os { width: 24px; height: 24px; color: var(--ink); }
 .dl b { display: block; font-weight: 600; font-size: 16px; }
 .dl small { display: block; color: var(--muted); font-size: 13.5px; }
-.dl .get { font: 500 13px/1 var(--f-mono); color: var(--accent-ink); }
+.dl .get { font: 600 13.5px/1 var(--f-body); color: var(--gold-ink); }
 .first-run { font-size: 14px; color: var(--muted); display: grid; gap: 6px; padding-top: 6px; }
 .first-run b { color: var(--ink-2); font-weight: 600; }
-
-footer { padding-block: 48px 120px; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; color: var(--muted); font-size: 14px; }
-footer .logo { font-size: 16px; }
-footer .right { margin-left: auto; }
+.beta-note { display: grid; gap: 12px; align-content: start; padding: 22px; border: 1.5px dashed color-mix(in oklab, var(--a-myday) 60%, var(--line-strong)); border-radius: 18px; background: var(--bg); }
+.beta-note p { color: var(--ink-2); }
 
 /* ---------- the live widget in this page's corner ---------- */
-.demo { position: fixed; left: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 50; font-family: var(--f-body); }
-.demo-pill {
-  display: flex; align-items: center; gap: 8px; height: 52px; padding: 0 16px 0 13px; border-radius: 26px; cursor: pointer;
-  background: var(--surface); color: var(--ink); border: 0; box-shadow: 0 0 0 1.5px var(--accent), 0 10px 28px oklch(0 0 0 / .22), 0 0 0 6px oklch(0.528 0.196 270 / .12);
-  font: 500 15px/1 var(--f-mono); position: relative;
-}
-.demo-pill svg { width: 24px; height: 24px; color: var(--ink); }
-.demo-pill .t { color: var(--accent-ink); font-variant-numeric: tabular-nums; min-width: 5ch; text-align: left; }
-.demo-pill .badge { position: absolute; top: -5px; right: -5px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 10px; background: var(--danger); color: oklch(1 0 0); font: 700 11px/20px var(--f-body); text-align: center; border: 2px solid var(--surface); }
-.demo-pill .hint { position: absolute; left: calc(100% + 10px); white-space: nowrap; font: 500 13px/1 var(--f-body); color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); padding: 7px 10px; border-radius: 999px; box-shadow: 0 6px 16px oklch(0 0 0 / .1); }
-.demo-panel { width: min(320px, calc(100vw - 32px)); border-radius: 10px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); overflow: hidden; }
-.demo-head { display: flex; align-items: center; gap: 8px; padding: 10px 8px 9px 12px; border-bottom: 1px solid var(--line); }
-.demo-head svg.mark { width: 20px; height: 20px; color: var(--accent); }
-.demo-head .tag { font: 500 11px/1 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
-.demo-head button { margin-left: auto; width: 30px; height: 30px; border-radius: 6px; border: 0; background: transparent; color: var(--muted); cursor: pointer; display: grid; place-items: center; }
+.demo { position: fixed; left: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 50; font-family: var(--f-body); }
+@media (max-width: 1240px) { .demo { display: none; } }
+.demo-ring { position: relative; width: 66px; height: 66px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: var(--surface); color: var(--gold-ink);
+  box-shadow: 0 0 0 1px var(--line-strong), 0 12px 28px oklch(0 0 0 / .22); display: grid; place-items: center; }
+.demo-ring svg.arc { position: absolute; inset: 4px; width: calc(100% - 8px); height: calc(100% - 8px); transform: rotate(-90deg); }
+.demo-ring svg.arc circle { fill: none; stroke-width: 5; stroke-linecap: round; }
+.demo-ring .trk { stroke: color-mix(in oklab, var(--ink) 10%, transparent); }
+.demo-ring .val { stroke: color-mix(in oklab, var(--a-myday) 80%, var(--surface)); }
+.demo-ring .mark { width: 26px; height: 26px; }
+.demo-ring .t { position: absolute; left: 52px; top: -10px; padding: 4px 9px; border-radius: 999px; background: color-mix(in oklab, var(--a-myday) 70%, var(--surface)); color: var(--ink); font: 700 13px/1 var(--f-body); font-variant-numeric: tabular-nums; box-shadow: 0 4px 12px oklch(0 0 0 / .15); }
+.demo-ring .hint { position: absolute; left: calc(100% + 14px); top: 50%; translate: 0 -50%; white-space: nowrap; font: 500 13px/1 var(--f-body); color: var(--ink-2); background: var(--surface); border: 1px solid var(--line); padding: 8px 11px; border-radius: 999px; box-shadow: 0 6px 16px oklch(0 0 0 / .1); }
+.demo-panel { width: min(320px, calc(100vw - 32px)); border-radius: 22px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); overflow: hidden; padding: 14px; }
+.demo-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.demo-head .tag { font: 600 13px/1 var(--f-body); color: var(--ink-2); }
+.demo-head button { margin-left: auto; width: 30px; height: 30px; border-radius: 9px; border: 0; background: transparent; color: var(--muted); cursor: pointer; display: grid; place-items: center; }
 .demo-head button:hover { background: var(--raised); color: var(--ink); }
-.demo-list { padding: 10px; display: grid; gap: 6px; }
-.demo-task { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 9px 9px 9px 10px; border-radius: 6px; background: var(--raised); border: 1px solid transparent; }
-.demo-task.running { border-color: var(--accent); }
+.demo-focus { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center; margin-bottom: 12px; }
+.demo-focus .big { position: relative; width: 64px; height: 64px; display: grid; place-items: center; font: 700 15px/1 var(--f-body); font-variant-numeric: tabular-nums; }
+.demo-focus .big svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.demo-focus .big circle { fill: none; stroke-width: 5; stroke-linecap: round; }
+.demo-focus b { display: block; font: 600 16px/1.25 var(--f-body); }
+.demo-focus small { color: var(--muted); font-size: 13px; }
+.demo-list { display: grid; gap: 4px; }
+.demo-task { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto 32px; gap: 10px; align-items: center; padding: 8px 8px 8px 6px; border-radius: 12px; }
+.demo-task.running { background: color-mix(in oklab, var(--a-myday) 18%, var(--surface)); }
+.demo-task .chk { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--c); background: transparent; cursor: pointer; padding: 0; display: grid; place-items: center; color: var(--surface); }
+.demo-task.done .chk { background: var(--c); }
 .demo-task.done .name { text-decoration: line-through; color: var(--muted); }
-.demo-task .chk { width: 17px; height: 17px; margin-top: 1px; border-radius: 4px; border: 1px solid var(--muted); background: transparent; cursor: pointer; padding: 0; display: grid; place-items: center; color: var(--on-accent); }
-.demo-task.done .chk { background: var(--accent); border-color: var(--accent); }
-.demo-task .name { font-size: 14px; line-height: 1.35; }
-.demo-task .meta { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
-.demo-task .chip { font-size: 11.5px; padding: 1px 6px; border-radius: 4px; background: var(--line); color: var(--ink-2); }
-.demo-task .chip.today { background: var(--accent-soft); color: var(--accent-ink); }
-.demo-task .chip.late { background: oklch(0.577 0.205 27 / .16); color: var(--danger); }
-.demo-task .tm { display: flex; align-items: center; gap: 7px; font: 400 12.5px/1 var(--f-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
-.demo-task .play { width: 28px; height: 28px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; background: var(--line); color: var(--ink); }
-.demo-task.running .play { background: var(--accent); color: var(--on-accent); }
+.demo-task .name { font-size: 14px; font-weight: 600; line-height: 1.25; }
+.demo-task small { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+.demo-task .tm { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.demo-task .play { width: 30px; height: 30px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; background: var(--raised); color: var(--ink); }
+.demo-task.running .play { background: color-mix(in oklab, var(--a-myday) 75%, var(--surface)); }
 .demo-task .play svg { width: 11px; height: 11px; }
-.demo-foot { padding: 0 12px 12px; font-size: 12.5px; color: var(--muted); }
+.demo-foot { margin-top: 10px; font-size: 12.5px; color: var(--muted); }
 
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
-  .states { grid-template-columns: 1fr 1fr; }
-  .states .state:last-child { grid-column: 1 / -1; }
-  .feature, .feature.flip { grid-template-columns: 1fr; }
-  .feature.flip .copy { order: 0; }
+  .sizes { grid-template-columns: 1fr 1fr; } .sizes .size:last-child { grid-column: 1 / -1; }
+  .feature, .feature.flip { grid-template-columns: 1fr; } .feature.flip .copy { order: 0; }
+  .uses { grid-template-columns: 1fr; }
+  .themes { grid-template-columns: 1fr 1fr; }
   .facts { grid-template-columns: 1fr 1fr; }
-  .fact:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
-  .fact:nth-child(2n) { padding-left: 22px; border-left: 1px solid var(--line); }
-  .download { grid-template-columns: 1fr; }
-  .plans { grid-template-columns: 1fr; }
+  .download, .plans { grid-template-columns: 1fr; }
   .screen .corner-note { display: none; }
 }
 @media (max-width: 600px) {
-  .top nav a:not(.btn) { display: none; }
-  .screen { aspect-ratio: 4 / 3.4; }
-  .screen .app { width: 92%; right: 4%; top: 12%; }
-  .screen .widget { width: 42%; }
-  .menubar .menu-items { display: none; }
-  .states { grid-template-columns: 1fr; }
-  .states .state:last-child { grid-column: auto; }
-  .state .stage { height: 280px; }
+  .screen { aspect-ratio: 4 / 3.6; }
+  .screen .app { width: 94%; right: 3%; top: 4%; }
+  .screen .widget { width: 36%; }
+  .screen .ring { display: none; }
+  .sizes { grid-template-columns: 1fr; } .sizes .size:last-child { grid-column: auto; }
   .facts { grid-template-columns: 1fr; }
-  .fact, .fact:nth-child(2n), .fact:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
-  .demo-pill .hint { display: none; }
-  footer .right { margin-left: 0; }
+  .demo-ring .hint { display: none; }
 }
-@media (prefers-reduced-motion: no-preference) {
-  .demo-panel { animation: rise .18s ease-out; }
-  @keyframes rise { from { transform: translateY(8px); opacity: .6; } }
-}
+@media (prefers-reduced-motion: no-preference) { .demo-panel { animation: rise .18s ease-out; } @keyframes rise { from { transform: translateY(8px); opacity: .6; } } }
 </style>
 </head>
 <body>
@@ -290,14 +184,21 @@ footer .right { margin-left: auto; }
   <symbol id="play" viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor"/></symbol>
   <symbol id="pause" viewBox="0 0 12 12"><rect x="2" y="1.5" width="3" height="9" rx="1" fill="currentColor"/><rect x="7" y="1.5" width="3" height="9" rx="1" fill="currentColor"/></symbol>
   <symbol id="down" viewBox="0 0 24 24"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-day" viewBox="0 0 24 24"><path d="M4 7l2 2 3.5-3.5M4 15l2 2 3.5-3.5M12 7h8M12 16h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-proj" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5A2.5 2.5 0 0 1 6 5h4l2 2.5h6a2.5 2.5 0 0 1 2.5 2.5v7A2.5 2.5 0 0 1 18 19.5H6A2.5 2.5 0 0 1 3.5 17z"/><path d="M8 14h3M8 11h5"/></g></symbol>
+  <symbol id="i-class" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.5c0 1.4 2.5 3 5.5 3s5.5-1.6 5.5-3V11M21.5 9v5.5"/></g></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20 15 9M14 4v3M18.5 5.5l-2 2M20 10h-3M12.5 5.5l2 2"/></g></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.2 0 1.8-.9 1.6-1.9-.3-1.3.6-2.4 1.9-2.4h1.7a3.3 3.3 0 0 0 3.3-3.3C20.5 7.6 16.7 3.5 12 3.5z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7.5" r="1"/><circle cx="15" cy="8" r="1"/></g></symbol>
 </svg>
 
 <div class="wrap">
   <header class="top">
-    <a class="logo" href="#top" aria-label="FloatTask home"><svg width="24" height="24"><use href="#mark"/></svg>FloatTask</a>
+    <a class="logo" href="/" aria-label="FloatTask home"><svg width="26" height="26"><use href="#mark"/></svg>FloatTask</a>
     <nav aria-label="Site">
       <a href="#how">How it works</a>
       <a href="#features">Features</a>
+      <a href="#uses">Work, school &amp; life</a>
       <a href="#pricing">Pricing</a>
       <a href="/contact.html">Contact</a>
       <a class="btn primary small launch-only" href="#download"><svg><use href="#down"/></svg>Download</a>
@@ -307,8 +208,9 @@ footer .right { margin-left: auto; }
 
   <main id="top">
     <div class="hero">
-      <h1>Today's list, <em>always in the corner.</em></h1>
-      <p class="lede">FloatTask keeps your tasks in a small panel that stays on top of every app on your Mac or PC. Start a timer, tick things off, or type a messy note and let AI turn it into a proper task — without switching windows.</p>
+      <p class="eyebrow">A calm planner for Mac &amp; Windows</p>
+      <h1>FloatTask <em>always in your corner</em></h1>
+      <p class="lede">A few goals for today, one timer that counts the time you give them, and your whole day on one screen. FloatTask floats over every app in a small widget — for work, for school, and for everything else.</p>
       <div class="cta">
         <a class="btn primary launch-only" id="hero-dl" href="#download"><svg><use href="#down"/></svg><span>Download FloatTask</span></a>
         <a class="btn primary prelaunch-only" href="/contact.html">Request early access</a>
@@ -316,98 +218,168 @@ footer .right { margin-left: auto; }
         <p class="meta"><span>7-day free trial</span><span>macOS &amp; Windows</span><span id="hero-version">Early access</span></p>
       </div>
 
-      <div class="screen" role="img" aria-label="A desktop with the FloatTask full app open, and the FloatTask widget pinned in the lower-left corner.">
-        <div class="menubar" aria-hidden="true">
-          <b>FloatTask</b><span class="menu-items">File&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;View&nbsp;&nbsp;&nbsp;Window</span>
-          <span class="tray"><svg><use href="#mark"/></svg><span class="clock" data-demo-clock>55:23</span></span>
-        </div>
-        <img class="app shot-l" src="shots/app-dashboard-light.webp" width="2560" height="1600" alt="">
-        <img class="app shot-d" src="shots/app-dashboard-dark.webp" width="2560" height="1600" alt="">
-        <img class="widget shot-l" src="shots/widget-light.webp" width="640" height="896" alt="">
-        <img class="widget shot-d" src="shots/widget-dark.webp" width="640" height="896" alt="">
-        <span class="corner-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>Stays on top, even over full-screen apps</span>
+      <div class="screen" role="img" aria-label="A desktop with FloatTask's home page open: My Day with a running timer, goals beside the day's schedule, and Tasks, Assist and Insights cards. The FloatTask widget is pinned in the lower-left corner, and the collapsed timer ring sits above it.">
+        <img class="app shot-l" src="shots/home-light.webp" width="2400" height="1500" alt="">
+        <img class="app shot-d" src="shots/home-dark.webp" width="2400" height="1500" alt="">
+        <img class="ring shot-l" src="shots/ring-light.webp" width="240" height="184" alt="">
+        <img class="ring shot-d" src="shots/ring-dark.webp" width="240" height="184" alt="">
+        <img class="widget shot-l" src="shots/widget-light.webp" width="640" height="1040" alt="">
+        <img class="widget shot-d" src="shots/widget-dark.webp" width="640" height="1040" alt="">
+        <span class="corner-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>Floats over every app, out of the way when you go full-screen</span>
       </div>
     </div>
 
     <section id="how" aria-labelledby="how-h">
       <div class="sec-head">
-        <p class="eyebrow">One list, three sizes</p>
+        <p class="eyebrow">One day, three sizes</p>
         <h2 id="how-h">As small or as big as the moment needs.</h2>
-        <p>The widget, the pill and the full app are the same list. A change in one shows up in the others instantly.</p>
+        <p>The ring, the widget and the full app show the same day. Start a timer in one and it's running in the others.</p>
       </div>
-      <div class="states">
-        <div class="state">
+      <div class="sizes">
+        <div class="card size" style="--c: var(--a-myday)">
+          <div class="band"><h3>The ring</h3></div>
           <figure class="stage">
-            <img class="widget-img shot-l" src="shots/widget-light.webp" width="640" height="896" alt="The FloatTask widget showing three tasks due today, one with a running timer.">
-            <img class="widget-img shot-d" src="shots/widget-dark.webp" width="640" height="896" alt="The FloatTask widget showing three tasks due today, one with a running timer.">
+            <img class="r shot-l" src="shots/ring-light.webp" width="240" height="184" alt="The collapsed FloatTask ring with a running timer of 42:01 in a small pill.">
+            <img class="r shot-d" src="shots/ring-dark.webp" width="240" height="184" alt="The collapsed FloatTask ring with a running timer of 42:01 in a small pill.">
           </figure>
-          <h3>The widget</h3>
-          <p>Today's tasks, a timer on each one, and a box to add more. Drag it anywhere; drag its top edge to make it taller.</p>
+          <p>A small circle with one arc per goal, and the running time beside it. Click to start or pause; drag it anywhere.</p>
+          <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>L</kbd> to show or tuck away</p>
         </div>
-        <div class="state">
-          <figure class="stage pill-stage">
-            <img class="pill-img shot-l" src="shots/pill-light.webp" width="420" height="228" alt="The collapsed FloatTask pill showing a running timer of 55:23 and 3 tasks due.">
-            <img class="pill-img shot-d" src="shots/pill-dark.webp" width="420" height="228" alt="The collapsed FloatTask pill showing a running timer of 55:23 and 3 tasks due.">
+        <div class="card size" style="--c: var(--a-tasks)">
+          <div class="band"><h3>The widget</h3></div>
+          <figure class="stage">
+            <img class="w shot-l" src="shots/widget-light.webp" width="640" height="1040" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals and every other open task, each with a timer.">
+            <img class="w shot-d" src="shots/widget-dark.webp" width="640" height="1040" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals and every other open task, each with a timer.">
           </figure>
-          <h3>The pill</h3>
-          <p>Collapse it to a small button that shows how many tasks are due and, if you like, the running timer.</p>
-          <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>L</kbd> to show or collapse</p>
+          <p>Every open task with a timer on each, plus a Meetings tab. Drag its top edge to make it taller.</p>
+          <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>Space</kbd> jots a task from any app</p>
         </div>
-        <div class="state">
-          <figure class="stage app-stage">
-            <img class="app-img shot-l" src="shots/app-board-light.webp" width="2560" height="1600" alt="The FloatTask full app in Board view with Backlog, To do, In progress and Done columns.">
-            <img class="app-img shot-d" src="shots/app-board-dark.webp" width="2560" height="1600" alt="The FloatTask full app in Board view with Backlog, To do, In progress and Done columns.">
+        <div class="card size" style="--c: var(--a-insights)">
+          <div class="band"><h3>The full app</h3></div>
+          <figure class="stage">
+            <img class="a shot-l" src="shots/home-light.webp" width="2400" height="1500" alt="FloatTask's home page in the full app.">
+            <img class="a shot-d" src="shots/home-dark.webp" width="2400" height="1500" alt="FloatTask's home page in the full app.">
           </figure>
-          <h3>The full app</h3>
-          <p>Plan the week in Dashboard, List, Board or Calendar view, with an AI assistant on the side.</p>
-          <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>F</kbd> to open</p>
+          <p>Your day on one screen: the task in focus, goals beside your schedule, notes, reminders, tasks, Assist and a week of insights.</p>
+          <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>F</kbd> opens it on home</p>
         </div>
       </div>
     </section>
 
-    <section id="features" aria-labelledby="ai-h">
+    <section id="features" aria-labelledby="day-h">
       <div class="feature">
         <div class="copy">
-          <p class="eyebrow">Add with AI</p>
-          <h3 id="ai-h">Type it the way you'd say it.</h3>
-          <p>Write a quick note and press <kbd>⌘</kbd> <kbd>↵</kbd>. FloatTask works out the title, due date, project and type, splits a list into separate tasks, and warns you when something is already on your list.</p>
-          <p class="example">send budget draft to sam fri 3pm for q4 planning, use revised version w/ travel split out
-            <span class="arrow">→ “Send budget draft to Sam” · Friday 3:00 PM · Follow-up · Q4 planning</span></p>
-          <p style="font-size:15px;color:var(--muted)">Nothing is saved until you click Add. Plain <kbd>↵</kbd> still adds the text exactly as typed.</p>
+          <p class="eyebrow">My Day</p>
+          <h3 id="day-h">Pick a few goals. Give each one your time.</h3>
+          <p>Home opens on what matters now: the goal in focus with a big Start focus button, the rest of today's goals beside your schedule, and a line for when you're free next.</p>
+          <ul class="ticks">
+            <li>A timer that only counts up — nothing ticks down at you</li>
+            <li>Google Calendar meetings and class times on the same schedule</li>
+            <li>A notes pad and quick reminders with a time, right on home</li>
+            <li>An evening reflection to close the day, if you want one</li>
+          </ul>
         </div>
-        <div class="art">
-          <img class="tall shot-l" src="shots/widget-ai-light.webp" width="640" height="1040" alt="The widget showing a typed note turned into a proposed task with a due date, type, project and notes.">
-          <img class="tall shot-d" src="shots/widget-ai-dark.webp" width="640" height="1040" alt="The widget showing a typed note turned into a proposed task with a due date, type, project and notes.">
+        <div class="art" style="--c: var(--a-myday)">
+          <img class="wide shot-l" src="shots/home-light.webp" width="2400" height="1500" alt="The home page: My Day with the current focus and its timer, five goals, the schedule with meetings and a Now line, Notes and Reminders, and Tasks, Assist, Insights and Settings down the right.">
+          <img class="wide shot-d" src="shots/home-dark.webp" width="2400" height="1500" alt="The home page in the Dark theme.">
         </div>
       </div>
 
       <div class="feature flip">
         <div class="copy">
-          <p class="eyebrow">Plan the week</p>
-          <h3>See the whole week, then get back to the corner.</h3>
-          <p>The full app has a dashboard of what's due and overdue, time logged by project, and your upcoming meetings.</p>
+          <p class="eyebrow">Projects</p>
+          <h3>Every project at a glance — and what it's taking.</h3>
+          <p>Projects sit side by side with a description, a task count and progress. Open one for its tasks, or switch to Insights to see where the time went.</p>
           <ul class="ticks">
-            <li>Dashboard, List, Board and Calendar views of the same tasks</li>
-            <li>Drag cards between columns or onto a day in the calendar</li>
-            <li>Ask the assistant to plan your afternoon or catch what slipped</li>
+            <li>Insights across projects: tasks, done this week, progress and time logged</li>
+            <li>Time taken against your estimates, once tasks finish</li>
+            <li>Rename a project or pick any colour for its label</li>
           </ul>
         </div>
-        <div class="art">
-          <img class="wide shot-l" src="shots/app-dashboard-light.webp" width="2560" height="1600" alt="The FloatTask dashboard with today's tasks, upcoming meetings, time by project and completed tasks per day.">
-          <img class="wide shot-d" src="shots/app-dashboard-dark.webp" width="2560" height="1600" alt="The FloatTask dashboard with today's tasks, upcoming meetings, time by project and completed tasks per day.">
+        <div class="art" style="--c: var(--a-projects)">
+          <img class="wide shot-l" src="shots/projects-light.webp" width="2400" height="1500" alt="The Projects page on its Insights tab: totals, tasks finished per day, and a table of every project with tasks, open, done this week, progress and time logged.">
+          <img class="wide shot-d" src="shots/projects-dark.webp" width="2400" height="1500" alt="The Projects Insights tab in the Dark theme.">
         </div>
       </div>
 
-      <div class="facts" style="margin-top: clamp(56px, 8vw, 96px)">
-        <div class="fact"><h3>A timer on every task</h3><p>One click to start. Time adds up by project, and an optional bell rings <span class="mono">every 30 min</span> so the hours don't slip by.</p></div>
-        <div class="fact"><h3>Ready for your meetings</h3><p>Connect Google Calendar to see what's next, link tasks to meetings, and get suggested prep tasks.</p></div>
-        <div class="fact"><h3>A nudge the day before</h3><p>A notification <span class="mono">24 h</span> before anything is due, written to tell you what actually needs doing.</p></div>
-        <div class="fact"><h3>Out of the way when you need it</h3><p>Shrinks to the pill when another app goes full-screen, and comes back when you leave.</p></div>
-        <div class="fact"><h3>Light and dark</h3><p>Follows your system setting, or pick one. Readable text sizes in both.</p></div>
-        <div class="fact"><h3>Your tasks stay on your computer</h3><p>Tasks are stored locally. AI is built in — sign in with Google and it's on, no API key needed.</p></div>
+      <div class="feature">
+        <div class="copy">
+          <p class="eyebrow">Assist</p>
+          <h3>Type it the way you'd say it.</h3>
+          <p>Ask FloatTask to plan your day, break a big task into steps, or sum up your notes. Or jot a messy line and let it work out the title, due date and project.</p>
+          <p class="example">send budget draft to sam fri 3pm for q4 planning, use revised version w/ travel split out
+            <span class="arrow">→ “Send budget draft to Sam” · Friday 3:00 PM · Follow-up · Q4 planning</span></p>
+          <p style="font-size:15px;color:var(--muted)">It asks before it changes or deletes anything. Built in — sign in with Google and it's on, no API key needed.</p>
+        </div>
+        <div class="art" style="--c: var(--a-assistant)">
+          <img class="tall shot-l" src="shots/widget-light.webp" width="640" height="1040" alt="The FloatTask widget with the task in focus and every open task, each with a timer.">
+          <img class="tall shot-d" src="shots/widget-dark.webp" width="640" height="1040" alt="The FloatTask widget in the Dark theme.">
+        </div>
       </div>
     </section>
 
+    <section id="uses" aria-labelledby="uses-h">
+      <div class="sec-head">
+        <p class="eyebrow">Work, school &amp; life</p>
+        <h2 id="uses-h">Pick what it's for. Pick more than one.</h2>
+        <p>Choose when you first open FloatTask, and change it any time in Settings. Turning one off hides it; nothing is deleted.</p>
+      </div>
+      <div class="uses">
+        <div class="card" style="--c: var(--a-tasks)">
+          <div class="band"><svg class="ico"><use href="#i-proj"/></svg><h3>Work</h3></div>
+          <p>Projects, meetings and the working day — with Google Calendar prep and time by project.</p>
+          <ul class="ticks"><li>Meeting notes and suggested prep tasks</li><li>Working hours and a plan for the free gaps</li></ul>
+        </div>
+        <div class="card" style="--c: var(--a-classes)">
+          <div class="band"><svg class="ico"><use href="#i-class"/></svg><h3>School</h3></div>
+          <p>A Classes page with your timetable, and homework sorted by when it's due.</p>
+          <ul class="ticks"><li>Teacher, room and meeting times for each class</li><li>Class times on My Day; "Due soon" in the widget</li><li>Study time by class in Insights</li></ul>
+        </div>
+        <div class="card" style="--c: var(--a-myday)">
+          <div class="band"><svg class="ico"><use href="#i-home"/></svg><h3>Personal</h3></div>
+          <p>Home, errands and life admin, with reminders at the time you set.</p>
+          <ul class="ticks"><li>Errand, Chore, Appointment, Bill and Call task types</li><li>Home, Errands and Family lists to start with</li></ul>
+        </div>
+      </div>
+      <div class="feature" style="margin-top: clamp(40px, 6vw, 72px)">
+        <div class="copy">
+          <p class="eyebrow">For students</p>
+          <h3>Your week of classes, and what's due next.</h3>
+          <p>Add each class once — its teacher, room and when it meets. The week lays itself out, and every class keeps its own homework, reading and exam prep in order of due date.</p>
+        </div>
+        <div class="art" style="--c: var(--a-classes)">
+          <img class="wide shot-l" src="shots/classes-light.webp" width="2400" height="1500" alt="The Classes page: this week's timetable with Biology, Calculus, English and Chemistry, and a card per class with its teacher, room, times, next class and homework by due date.">
+          <img class="wide shot-d" src="shots/classes-dark.webp" width="2400" height="1500" alt="The Classes page in the Dark theme.">
+        </div>
+      </div>
+    </section>
+
+    <section id="themes" aria-labelledby="themes-h">
+      <div class="sec-head">
+        <p class="eyebrow">Make it yours</p>
+        <h2 id="themes-h">Painted scenes, or something quieter.</h2>
+        <p>Four painted scenes come with a paid plan. The widget follows along.</p>
+      </div>
+      <div class="themes">
+        <figure><img src="shots/theme-garden.webp" width="1440" height="900" alt="FloatTask's home in the Garden theme, with leaves and blossoms around the edges." loading="lazy"><figcaption><b>Garden</b> · leaves &amp; blossoms</figcaption></figure>
+        <figure><img src="shots/theme-science.webp" width="1440" height="900" alt="FloatTask's home in the Science theme, on blue graph paper with molecules, flasks and a star chart." loading="lazy"><figcaption><b>Science</b> · lab notes &amp; star charts</figcaption></figure>
+        <figure><img src="shots/theme-underwater.webp" width="1440" height="900" alt="FloatTask's home in the Underwater theme." loading="lazy"><figcaption><b>Underwater</b> · deep sea &amp; sea glass</figcaption></figure>
+        <figure><img src="shots/theme-space.webp" width="1440" height="900" alt="FloatTask's home in the Space theme." loading="lazy"><figcaption><b>Space</b> · starlight</figcaption></figure>
+      </div>
+      <p class="also">Also: Warm Paper, Glacier, Light and Dark — or follow your computer's setting.<span class="swatches" aria-hidden="true"><i style="background:#f3ece0"></i><i style="background:#e3f1fb"></i><i style="background:#fafafb"></i><i style="background:#1b1c21"></i></span></p>
+    </section>
+
+    <section aria-labelledby="facts-h">
+      <div class="sec-head"><p class="eyebrow">The small things</p><h2 id="facts-h">Made to stay out of your way.</h2></div>
+      <div class="facts">
+        <div class="fact"><h3>A timer on every task</h3><p>One click to start. Time adds up by project, and an optional bell rings every 15, 30 or 60 minutes.</p></div>
+        <div class="fact"><h3>Ready for your meetings</h3><p>Connect Google Calendar to see what's next, keep notes per meeting, and get suggested prep tasks.</p></div>
+        <div class="fact"><h3>A nudge at the right time</h3><p>Reminders at the time you set, and a note the day before anything is due.</p></div>
+        <div class="fact"><h3>Out of the way when you need it</h3><p>Tucks into the ring when an app goes full-screen, and fades back until you hover over it.</p></div>
+        <div class="fact"><h3>Jot it from anywhere</h3><p><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>Space</kbd> opens a quick box over any app. Type, press return, carry on.</p></div>
+        <div class="fact"><h3>Your tasks stay on your computer</h3><p>Tasks, notes and timers are stored locally. Sign in with Google to turn on AI and your plan.</p></div>
+      </div>
+    </section>
 
     <section id="pricing" aria-labelledby="price-h">
       <div class="sec-head">
@@ -416,14 +388,14 @@ footer .right { margin-left: auto; }
         <p>Download FloatTask, sign in with Google and start your trial. Your plan is tied to that Google account, so it follows you to every computer. Switch between Pro and Pro+ anytime.</p>
       </div>
       <div class="plans">
-        <div class="plan pro">
-          <p class="plan-name">FloatTask Pro <span class="trial-tag">7 days free</span></p>
+        <div class="plan pro" style="--c: var(--a-myday)">
+          <div class="band"><h3>FloatTask Pro</h3><span class="trial-tag">7 days free</span></div>
           <p class="price"><b>$8</b><span>/ month</span></p>
           <p class="alt-price">or $72 / year — save 25%</p>
           <ul class="ticks">
-            <li>The corner widget, pill and full app on Mac and Windows</li>
-            <li>FloatTask AI: chat, Add with AI, smart reminders and briefs</li>
-            <li>Google Calendar, timers and the timer bell</li>
+            <li>The ring, widget and full app on Mac and Windows</li>
+            <li>FloatTask AI: Assist, Add with AI, smart reminders and briefs</li>
+            <li>Google Calendar, timers, Classes and all four painted scenes</li>
             <li>Try it free for 7 days — cancel before it ends and you pay nothing</li>
           </ul>
           <a class="btn primary launch-only" href="#download"><svg><use href="#down"/></svg>Download, then start your free trial</a>
@@ -431,25 +403,25 @@ footer .right { margin-left: auto; }
           <p class="how-upgrade prelaunch-only">Launching soon — this is the price at launch. Nothing can be purchased yet.</p>
           <p class="how-upgrade launch-only">You start the trial the first time you open FloatTask. Card required; secure checkout by Stripe. One trial per account.</p>
         </div>
-        <div class="plan">
-          <p class="plan-name">FloatTask Pro+ <span class="trial-tag">7 days free</span></p>
+        <div class="plan" style="--c: var(--a-insights)">
+          <div class="band"><h3>FloatTask Pro+</h3><span class="trial-tag">7 days free</span></div>
           <p class="price"><b>$15</b><span>/ month</span></p>
           <p class="alt-price">or $135 / year — save 25%</p>
           <ul class="ticks">
             <li>Everything in Pro</li>
             <li>2–3× the AI allowance: up to 1,000 chats and 6,000 quick actions a day</li>
-            <li>The strongest model in the chat panel for deeper planning and longer briefs</li>
+            <li>The strongest model in Assist for deeper planning and longer briefs</li>
             <li>First access to new features as they land</li>
           </ul>
-          <a class="btn launch-only" href="#download"><svg><use href="#down"/></svg>Download, then pick Pro+</a>
-          <a class="btn prelaunch-only" href="/contact.html">Request early access</a>
+          <a class="btn quiet launch-only" href="#download"><svg><use href="#down"/></svg>Download, then pick Pro+</a>
+          <a class="btn quiet prelaunch-only" href="/contact.html">Request early access</a>
           <p class="how-upgrade">Already on Pro? Upgrade from Settings — the difference is prorated.</p>
         </div>
       </div>
     </section>
 
-    <section id="download" aria-labelledby="dl-h" style="padding-top:0">
-      <div class="download">
+    <section id="download" aria-labelledby="dl-h">
+      <div class="card download">
         <div class="copy">
           <p class="eyebrow">Early access</p>
           <h2 id="dl-h" class="launch-only">Download FloatTask</h2>
@@ -466,18 +438,9 @@ footer .right { margin-left: auto; }
           <a class="btn primary small" href="/contact.html" style="justify-self:start">Ask for early access</a>
         </div>
         <div class="dl-list launch-only" id="dl-list">
-          <a class="dl" data-os="mac-arm" href="#" rel="noopener">
-            <svg class="os"><use href="#apple"/></svg>
-            <span><b>Mac with Apple Silicon</b><small>M1 and later · .dmg</small></span><span class="get">Download</span>
-          </a>
-          <a class="dl" data-os="mac-intel" href="#" rel="noopener">
-            <svg class="os"><use href="#apple"/></svg>
-            <span><b>Mac with Intel</b><small>.dmg</small></span><span class="get">Download</span>
-          </a>
-          <a class="dl" data-os="win" href="#" rel="noopener">
-            <svg class="os"><use href="#windows"/></svg>
-            <span><b>Windows</b><small>64-bit installer · .exe</small></span><span class="get">Download</span>
-          </a>
+          <a class="dl" data-os="mac-arm" href="#" rel="noopener"><svg class="os"><use href="#apple"/></svg><span><b>Mac with Apple Silicon</b><small>M1 and later · .dmg</small></span><span class="get">Download</span></a>
+          <a class="dl" data-os="mac-intel" href="#" rel="noopener"><svg class="os"><use href="#apple"/></svg><span><b>Mac with Intel</b><small>.dmg</small></span><span class="get">Download</span></a>
+          <a class="dl" data-os="win" href="#" rel="noopener"><svg class="os"><use href="#windows"/></svg><span><b>Windows</b><small>64-bit installer · .exe</small></span><span class="get">Download</span></a>
           <p class="first-run" id="dl-note">All releases and notes are on the <a id="all-releases" href="#" rel="noopener">releases page</a>.</p>
         </div>
       </div>
@@ -485,11 +448,11 @@ footer .right { margin-left: auto; }
   </main>
 
   <footer>
-    <a class="logo" href="#top"><svg width="20" height="20"><use href="#mark"/></svg>FloatTask</a>
+    <a class="logo" href="/"><svg width="22" height="22"><use href="#mark"/></svg>FloatTask</a>
     <span>© 2026 FloatTask</span>
-    <a href="/privacy.html" style="color:inherit">Privacy</a>
-    <a href="/terms.html" style="color:inherit">Terms</a>
-    <a href="/contact.html" style="color:inherit">Contact</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/contact.html">Contact</a>
     <span class="right">floattask.com</span>
   </footer>
 </div>
@@ -532,58 +495,60 @@ footer .right { margin-left: auto; }
     })
     .catch(() => { /* release info unavailable: buttons stay on the releases page */ });
 
-  // ---- live widget demo ----------------------------------------------------
+  // ---- live widget demo: the ring, and the widget it opens into ------------
   const icon = (id, cls = '') => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
   const pad = (n) => String(n).padStart(2, '0');
   const fmt = (s) => { s = Math.floor(s); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60; return h ? `${h}:${pad(m)}:${pad(x)}` : `${m}:${pad(x)}`; };
-  const startedAt = Date.now();
   const tasks = [
-    { id: 1, name: 'Draft launch announcement', chips: [['today', 'Today 3:00 PM'], ['', 'Deliverable']], secs: 3323, running: true, done: false },
-    { id: 2, name: 'Review homepage copy with Maya', chips: [['late', 'Overdue · 9:30 AM'], ['', 'Follow-up']], secs: 900, running: false, done: false },
-    { id: 3, name: 'Log hours for last week', chips: [['today', 'Today 5:00 PM'], ['', 'Admin']], secs: 0, running: false, done: false },
+    { id: 1, name: 'Draft launch announcement', sub: 'Website · goal 1', c: '#c96f52', est: 3600, secs: 2521, running: true, done: false },
+    { id: 2, name: 'Review homepage copy', sub: 'Website · goal 2', c: '#c96f52', est: 1800, secs: 900, running: false, done: false },
+    { id: 3, name: 'Read chapter 4', sub: 'History · due tomorrow', c: '#b06ab3', est: 2700, secs: 0, running: false, done: false },
   ];
   let open = false, tickFrom = Date.now();
   const root = document.getElementById('demo');
   const running = () => tasks.find((t) => t.running);
-  const due = () => tasks.filter((t) => !t.done).length;
+  const focusT = () => running() || tasks.find((t) => !t.done) || tasks[0];
+  const C = (r) => 2 * Math.PI * r;
+  const arc = (r, pct) => `<circle class="trk" cx="50" cy="50" r="${r}"/><circle class="val" cx="50" cy="50" r="${r}" stroke-dasharray="${(C(r) * Math.min(1, pct)).toFixed(1)} ${C(r).toFixed(1)}"/>`;
 
   function render() {
-    const r = running();
+    const r = running(), f = focusT();
     if (!open) {
-      root.innerHTML = `<button class="demo-pill" id="demo-pill" aria-expanded="false" aria-label="FloatTask demo widget: ${due()} tasks due${r ? ', timer ' + fmt(r.secs) : ''}. Click to open.">
-        ${icon('mark')}${r ? `<span class="t" data-t>${fmt(r.secs)}</span>` : ''}${due() ? `<span class="badge">${due()}</span>` : ''}
-        <span class="hint">This is FloatTask — try it</span></button>`;
-    } else {
-      root.innerHTML = `<div class="demo-panel" role="region" aria-label="FloatTask demo widget">
-        <div class="demo-head">${icon('mark', 'mark')}<span class="tag">Live demo</span>
-          <button type="button" data-collapse aria-label="Collapse to pill"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg></button></div>
-        <div class="demo-list">${tasks.map((t) => `
-          <div class="demo-task ${t.running ? 'running' : ''} ${t.done ? 'done' : ''}" data-id="${t.id}">
-            <button type="button" class="chk" data-done aria-label="${t.done ? 'Mark not done' : 'Mark done'}: ${t.name}">${t.done ? '<svg viewBox="0 0 14 14" width="11" height="11"><path d="m3 7 3 3 5-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>' : ''}</button>
-            <div><div class="name">${t.name}</div><div class="meta">${t.chips.map(([c, l]) => `<span class="chip ${c}">${l}</span>`).join('')}</div></div>
-            <div class="tm"><span data-t="${t.id}">${fmt(t.secs)}</span><button type="button" class="play" data-play aria-label="${t.running ? 'Pause' : 'Start'} timer">${icon(t.running ? 'pause' : 'play')}</button></div>
-          </div>`).join('')}</div>
-        <p class="demo-foot">Tick tasks off, start a timer, then collapse it with the — button.</p>
-      </div>`;
+      const doneN = tasks.filter((t) => t.done).length;
+      root.innerHTML = `<button class="demo-ring" id="demo-ring" aria-expanded="false" aria-label="FloatTask demo: ${doneN} of ${tasks.length} goals done${r ? ', timer ' + fmt(r.secs) : ''}. Click to open.">
+        <svg class="arc" viewBox="0 0 100 100" aria-hidden="true">${arc(44, (doneN + (r ? 0.5 : 0)) / tasks.length)}</svg>${icon('mark', 'mark')}
+        ${r ? `<span class="t" data-t>${fmt(r.secs)}</span>` : ''}<span class="hint">This is FloatTask — try it</span></button>`;
+      return;
     }
+    root.innerHTML = `<div class="demo-panel" role="region" aria-label="FloatTask demo widget">
+      <div class="demo-head"><span class="tag">Today · ${tasks.filter((t) => t.done).length} of ${tasks.length} done</span>
+        <button type="button" data-collapse aria-label="Shrink to the ring"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 12h12"/></svg></button></div>
+      <div class="demo-focus"><div class="big"><svg viewBox="0 0 100 100" aria-hidden="true" style="--x:0">${arc(44, f.secs / f.est).replace('class="trk"', 'class="trk" style="stroke:color-mix(in oklab, var(--ink) 10%, transparent)"').replace('class="val"', 'class="val" style="stroke:color-mix(in oklab, var(--a-myday) 80%, var(--surface))"')}</svg><span data-big>${fmt(f.secs)}</span></div>
+        <div><b>${f.name}</b><small>${f.sub.split(' · ')[0]} · ${r ? 'running' : 'paused'}</small></div></div>
+      <div class="demo-list">${tasks.map((t) => `
+        <div class="demo-task ${t.running ? 'running' : ''} ${t.done ? 'done' : ''}" data-id="${t.id}" style="--c:${t.c}">
+          <button type="button" class="chk" data-done aria-label="${t.done ? 'Mark not done' : 'Mark done'}: ${t.name}">${t.done ? '<svg viewBox="0 0 14 14" width="11" height="11"><path d="m3 7 3 3 5-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>' : ''}</button>
+          <div class="name">${t.name}<small>${t.sub}</small></div>
+          <span class="tm" data-t="${t.id}">${fmt(t.secs)}</span>
+          <button type="button" class="play" data-play aria-label="${t.running ? 'Pause' : 'Start'} timer">${icon(t.running ? 'pause' : 'play')}</button>
+        </div>`).join('')}</div>
+      <p class="demo-foot">Start a timer, tick a goal off, then shrink it back to the ring.</p>
+    </div>`;
   }
   root.addEventListener('click', (e) => {
-    if (e.target.closest('#demo-pill')) { open = true; render(); root.querySelector('[data-collapse]')?.focus(); return; }
-    if (e.target.closest('[data-collapse]')) { open = false; render(); document.getElementById('demo-pill')?.focus(); return; }
+    if (e.target.closest('#demo-ring')) { open = true; render(); root.querySelector('[data-collapse]')?.focus(); return; }
+    if (e.target.closest('[data-collapse]')) { open = false; render(); document.getElementById('demo-ring')?.focus(); return; }
     const row = e.target.closest('.demo-task'); if (!row) return;
     const t = tasks.find((x) => x.id === Number(row.dataset.id));
     if (e.target.closest('[data-done]')) { t.done = !t.done; if (t.done) t.running = false; }
     if (e.target.closest('[data-play]')) { const was = t.running; tasks.forEach((x) => { x.running = false; }); t.running = !was; if (t.running) t.done = false; }
     render();
   });
-  // One clock for the demo and the hero's menu bar.
   setInterval(() => {
     const now = Date.now(), dt = (now - tickFrom) / 1000; tickFrom = now;
-    const r = running(); if (r) r.secs += dt;
-    if (r) {
-      root.querySelectorAll(`[data-t="${r.id}"], .demo-pill [data-t]`).forEach((el) => { el.textContent = fmt(r.secs); });
-    }
-    document.querySelectorAll('[data-demo-clock]').forEach((el) => { el.textContent = fmt(r ? r.secs : tasks[0].secs); });
+    const r = running(); if (!r) return;
+    r.secs += dt;
+    root.querySelectorAll(`[data-t="${r.id}"], .demo-ring [data-t], [data-big]`).forEach((el) => { el.textContent = fmt(r.secs); });
   }, 1000);
   render();
 })();
