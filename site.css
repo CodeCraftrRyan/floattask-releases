@@ -100,6 +100,8 @@ html:not(.prelaunch) .prelaunch-only { display: none !important; }
    in both light and dark mode. */
 .ground { background: var(--bg); color: var(--ink); box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax);
   padding-bottom: clamp(56px, 9vw, 104px); }
+/* breathing room before each band, so content above never touches its edge */
+.ground { margin-top: clamp(56px, 9vw, 104px); }
 .ground-underwater { --bg: oklch(0.270 0.050 232); --surface: oklch(0.330 0.055 230); --raised: oklch(0.311 0.048 231); --raised-2: oklch(0.345 0.046 231); --line: oklch(0.950 0.015 195 / 0.16); --line-strong: oklch(0.950 0.015 195 / 0.22); --ink: oklch(0.950 0.015 195); --ink-2: oklch(0.882 0.018 205); --muted: oklch(0.800 0.022 213); --gold: oklch(0.820 0.120 85); --gold-ink: oklch(0.859 0.083 88); --a-tasks: oklch(0.800 0.070 195); --a-calendar: oklch(0.800 0.070 320); --a-projects: oklch(0.800 0.080 150); --a-insights: oklch(0.800 0.060 215); --a-assistant: oklch(0.830 0.090 45); --a-myday: oklch(0.850 0.110 65); --a-settings: oklch(0.800 0.030 75); --a-classes: oklch(0.760 0.080 300); --danger: oklch(0.682 0.160 23); color-scheme: dark;
   --shadow: 0 18px 44px oklch(0 0 0 / .45), 0 2px 6px oklch(0 0 0 / .3); --shadow-sm: 0 8px 24px oklch(0 0 0 / .35); }
 .ground-underwater .btn.primary { background: oklch(0.528 0.013 110); }
