@@ -1,13 +1,8 @@
 /* floattask.com — shared styles, in the app's own look: Warm Paper and Dark, Source Serif
    headings with DM Sans body, cards that open with a soft pastel band, peach buttons. */
 :root {
-  /* Warm Paper (src/app/app.css) */
-  --bg: oklch(0.962 0.0123 75); --surface: oklch(0.988 0.0065 75); --raised: oklch(0.935 0.013 75); --raised-2: oklch(0.895 0.0143 75);
-  --line: oklch(0.88 0.013 75); --line-strong: oklch(0.83 0.0143 75);
-  --ink: oklch(0.26 0.02 75); --ink-2: oklch(0.42 0.02 75); --muted: oklch(0.55 0.018 75);
-  --gold: oklch(0.7 0.105 72); --gold-ink: oklch(0.48 0.11 50);
-  --a-tasks: oklch(0.43 0.07 265); --a-calendar: oklch(0.47 0.075 335); --a-projects: oklch(0.47 0.07 155); --a-insights: oklch(0.47 0.07 215);
-  --a-assistant: oklch(0.54 0.1 40); --a-myday: oklch(0.6 0.11 65); --a-settings: oklch(0.45 0.025 70); --a-classes: oklch(0.47 0.08 300);
+  /* Warm Paper — values from the FloatTask style guide */
+  --bg: oklch(0.958 0.014 85); --surface: oklch(0.990 0.008 88); --raised: oklch(0.917 0.014 82); --raised-2: oklch(0.882 0.015 80); --line: oklch(0.270 0.022 55 / 0.16); --line-strong: oklch(0.270 0.022 55 / 0.22); --ink: oklch(0.270 0.022 55); --ink-2: oklch(0.373 0.021 58); --muted: oklch(0.463 0.019 61); --gold: oklch(0.700 0.105 72); --gold-ink: oklch(0.571 0.080 71); --a-tasks: oklch(0.430 0.070 265); --a-calendar: oklch(0.470 0.075 335); --a-projects: oklch(0.470 0.070 155); --a-insights: oklch(0.470 0.070 215); --a-assistant: oklch(0.540 0.100 40); --a-myday: oklch(0.600 0.110 65); --a-settings: oklch(0.450 0.025 70); --a-classes: oklch(0.470 0.080 300); --danger: oklch(0.577 0.205 27);
   --danger: oklch(0.577 0.205 27);
   --shadow: 0 18px 44px oklch(0.35 0.04 75 / .16), 0 2px 6px oklch(0.35 0.04 75 / .06);
   --shadow-sm: 0 8px 24px oklch(0.35 0.04 75 / .1);
@@ -18,25 +13,13 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: oklch(0.17 0.006 270); --surface: oklch(0.23 0.01 272); --raised: oklch(0.27 0.01 272); --raised-2: oklch(0.32 0.01 272);
-    --line: oklch(0.3 0.01 272); --line-strong: oklch(0.36 0.012 272);
-    --ink: oklch(0.93 0.01 270); --ink-2: oklch(0.8 0.012 272); --muted: oklch(0.66 0.014 272);
-    --gold: oklch(0.82 0.13 80); --gold-ink: oklch(0.85 0.1 80);
-    --a-tasks: oklch(0.76 0.07 265); --a-calendar: oklch(0.76 0.075 335); --a-projects: oklch(0.76 0.07 155); --a-insights: oklch(0.76 0.07 215);
-    --a-assistant: oklch(0.76 0.1 40); --a-myday: oklch(0.82 0.11 65); --a-settings: oklch(0.76 0.025 70); --a-classes: oklch(0.76 0.08 300);
-    --danger: oklch(0.682 0.16 23);
+    --bg: oklch(0.170 0.006 270); --surface: oklch(0.230 0.010 272); --raised: oklch(0.216 0.006 270); --raised-2: oklch(0.254 0.006 270); --line: oklch(0.930 0.010 270 / 0.16); --line-strong: oklch(0.930 0.010 270 / 0.22); --ink: oklch(0.930 0.010 270); --ink-2: oklch(0.816 0.009 270); --muted: oklch(0.717 0.009 270); --gold: oklch(0.820 0.130 80); --gold-ink: oklch(0.853 0.088 80); --a-tasks: oklch(0.760 0.070 265); --a-calendar: oklch(0.760 0.075 335); --a-projects: oklch(0.760 0.070 155); --a-insights: oklch(0.760 0.070 215); --a-assistant: oklch(0.760 0.100 40); --a-myday: oklch(0.820 0.110 65); --a-settings: oklch(0.760 0.025 70); --a-classes: oklch(0.760 0.080 300); --danger: oklch(0.682 0.160 23);
     --shadow: 0 18px 44px oklch(0 0 0 / .45), 0 2px 6px oklch(0 0 0 / .3); --shadow-sm: 0 8px 24px oklch(0 0 0 / .35);
     --show-l: none; --show-d: block; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: oklch(0.17 0.006 270); --surface: oklch(0.23 0.01 272); --raised: oklch(0.27 0.01 272); --raised-2: oklch(0.32 0.01 272);
-  --line: oklch(0.3 0.01 272); --line-strong: oklch(0.36 0.012 272);
-  --ink: oklch(0.93 0.01 270); --ink-2: oklch(0.8 0.012 272); --muted: oklch(0.66 0.014 272);
-  --gold: oklch(0.82 0.13 80); --gold-ink: oklch(0.85 0.1 80);
-  --a-tasks: oklch(0.76 0.07 265); --a-calendar: oklch(0.76 0.075 335); --a-projects: oklch(0.76 0.07 155); --a-insights: oklch(0.76 0.07 215);
-  --a-assistant: oklch(0.76 0.1 40); --a-myday: oklch(0.82 0.11 65); --a-settings: oklch(0.76 0.025 70); --a-classes: oklch(0.76 0.08 300);
-  --danger: oklch(0.682 0.16 23);
+  --bg: oklch(0.170 0.006 270); --surface: oklch(0.230 0.010 272); --raised: oklch(0.216 0.006 270); --raised-2: oklch(0.254 0.006 270); --line: oklch(0.930 0.010 270 / 0.16); --line-strong: oklch(0.930 0.010 270 / 0.22); --ink: oklch(0.930 0.010 270); --ink-2: oklch(0.816 0.009 270); --muted: oklch(0.717 0.009 270); --gold: oklch(0.820 0.130 80); --gold-ink: oklch(0.853 0.088 80); --a-tasks: oklch(0.760 0.070 265); --a-calendar: oklch(0.760 0.075 335); --a-projects: oklch(0.760 0.070 155); --a-insights: oklch(0.760 0.070 215); --a-assistant: oklch(0.760 0.100 40); --a-myday: oklch(0.820 0.110 65); --a-settings: oklch(0.760 0.025 70); --a-classes: oklch(0.760 0.080 300); --danger: oklch(0.682 0.160 23);
   --shadow: 0 18px 44px oklch(0 0 0 / .45), 0 2px 6px oklch(0 0 0 / .3); --shadow-sm: 0 8px 24px oklch(0 0 0 / .35);
   --show-l: none; --show-d: block; color-scheme: dark;
 }
@@ -110,3 +93,14 @@ html:not(.prelaunch) .prelaunch-only { display: none !important; }
 .page th, .page td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .page th { font-weight: 600; color: var(--ink); }
 @media (max-width: 600px) { .top nav a:not(.btn) { display: none; } footer .right { margin-left: 0; } }
+
+/* ---------- deep-sea bands ----------
+   Warm Paper page with full-width bands in the Underwater theme (style-guide tokens only).
+   .ground-underwater swaps the theme tokens locally, so cards, bands, text and buttons inside follow Underwater
+   in both light and dark mode. */
+.ground { background: var(--bg); color: var(--ink); box-shadow: 0 0 0 100vmax var(--bg); clip-path: inset(0 -100vmax);
+  padding-bottom: clamp(56px, 9vw, 104px); }
+.ground-underwater { --bg: oklch(0.270 0.050 232); --surface: oklch(0.330 0.055 230); --raised: oklch(0.311 0.048 231); --raised-2: oklch(0.345 0.046 231); --line: oklch(0.950 0.015 195 / 0.16); --line-strong: oklch(0.950 0.015 195 / 0.22); --ink: oklch(0.950 0.015 195); --ink-2: oklch(0.882 0.018 205); --muted: oklch(0.800 0.022 213); --gold: oklch(0.820 0.120 85); --gold-ink: oklch(0.859 0.083 88); --a-tasks: oklch(0.800 0.070 195); --a-calendar: oklch(0.800 0.070 320); --a-projects: oklch(0.800 0.080 150); --a-insights: oklch(0.800 0.060 215); --a-assistant: oklch(0.830 0.090 45); --a-myday: oklch(0.850 0.110 65); --a-settings: oklch(0.800 0.030 75); --a-classes: oklch(0.760 0.080 300); --danger: oklch(0.682 0.160 23); color-scheme: dark;
+  --shadow: 0 18px 44px oklch(0 0 0 / .45), 0 2px 6px oklch(0 0 0 / .3); --shadow-sm: 0 8px 24px oklch(0 0 0 / .35); }
+.ground-underwater .btn.primary { background: oklch(0.528 0.013 110); }
+.ground-underwater .btn.primary:hover { background: oklch(0.590 0.029 79); }
