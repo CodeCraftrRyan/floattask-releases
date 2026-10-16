@@ -96,7 +96,7 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--
       <div class="aside">
         <div><b>Found a bug?</b><span>In the app, <b style="font-weight:600">Settings › About › Report a bug</b> fills in your version and OS for you. Or pick “Bug report” here.</span></div>
         <div><b>Have an idea?</b><span>Feature requests shape what comes next. The more specific, the better.</span></div>
-        <div><b>Prefer email?</b><span><a href="mailto:admin@floattask.com">admin@floattask.com</a></span></div>
+        <div><b>Prefer email?</b><span><a href="mailto:admin@yourtrinkets.com">admin@yourtrinkets.com</a></span></div>
       </div>
     </div>
 
@@ -207,7 +207,7 @@ input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--
         </div>`;
       card.querySelector('b').textContent = data.email;
     } catch (x) {
-      showError(`${x.message} You can also email admin@floattask.com.`);
+      showError(`${x.message} You can also email admin@yourtrinkets.com.`);
       send.disabled = false; send.textContent = 'Send message';
     }
   });

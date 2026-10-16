@@ -4,8 +4,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>FloatTask — always in your corner</title>
-<meta name="description" content="FloatTask is a calm planner that floats over your work on Mac and Windows: a few goals for today, a timer on each, your day on one screen — for work, school and the rest of life.">
+<title>FloatTask — the always-on-top planner and focus timer for Mac &amp; Windows</title>
+<meta name="description" content="FloatTask keeps today's goals and a running timer on top of every app, so you stay on the work you meant to do. Plan your day around your calendar, track time by project, and let Assist sort the rest. Mac and Windows, 7-day free trial.">
+<meta name="theme-color" content="#f6f1e8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,500;1,8..60,600&display=swap">
@@ -13,11 +14,17 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23b07a3a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='11' rx='5.5'/%3E%3Cpath d='M9 8.5l2 2 4-4M5 18h14M8 21.5h8'/%3E%3C/g%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://floattask.com/">
-<meta property="og:title" content="FloatTask — always in your corner">
-<meta property="og:description" content="A calm planner that floats over your work: a few goals for today, a timer on each, and your whole day on one screen. For Mac and Windows.">
+<meta property="og:title" content="FloatTask — your day, always in view">
+<meta property="og:description" content="Today's goals and a running timer that stay on top of every app. A calm planner for Mac and Windows — 7 days free.">
 <meta property="og:image" content="https://floattask.com/shots/og-home.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FloatTask","url":"https://floattask.com/",
+ "applicationCategory":"ProductivityApplication","operatingSystem":"macOS, Windows 10, Windows 11",
+ "description":"An always-on-top planner and focus timer: a few goals for today, a timer on each, and your whole day on one screen.",
+ "offers":[{"@type":"Offer","name":"FloatTask Pro","price":"8","priceCurrency":"USD"},{"@type":"Offer","name":"FloatTask Pro+","price":"15","priceCurrency":"USD"}]}
+</script>
 <style>
 /* ---------- this page ---------- */
 /* hero: a desktop seen from its lower-left corner — the full app, with the widget and the ring pinned in the corner */
@@ -99,6 +106,16 @@
 .how-upgrade { font-size: 13.5px; color: var(--muted); }
 .trial-tag { margin-left: auto; padding: 4px 10px; border-radius: 999px; background: var(--surface); font: 600 12px/1 var(--f-body); color: var(--ink-2); }
 
+/* faq */
+.faq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; align-items: start; }
+.faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 0 20px; }
+.faq summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 12px; padding: 18px 0; font: 600 17px/1.35 var(--f-body); color: var(--ink); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; margin-left: auto; font: 500 22px/1 var(--f-body); color: var(--muted); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { color: var(--ink-2); font-size: 15.5px; padding-bottom: 18px; }
+.faq summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
 /* download */
 .download { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px 44px; padding: clamp(26px, 5vw, 52px); }
 .download h2 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); line-height: 1.05; }
@@ -161,7 +178,7 @@
   .uses { grid-template-columns: 1fr; }
   .themes { grid-template-columns: 1fr 1fr; }
   .facts { grid-template-columns: 1fr 1fr; }
-  .download, .plans { grid-template-columns: 1fr; }
+  .download, .plans, .faq { grid-template-columns: 1fr; }
   .screen .corner-note { display: none; }
 }
 @media (max-width: 600px) {
@@ -201,6 +218,7 @@
       <a href="#features">Features</a>
       <a href="#uses">Work, school &amp; life</a>
       <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
       <a href="/contact.html">Contact</a>
       <a class="btn primary small launch-only" href="#download"><svg><use href="#down"/></svg>Download</a>
       <a class="btn primary small prelaunch-only" href="/contact.html">Get early access</a>
@@ -209,14 +227,14 @@
 
   <main id="top">
     <div class="hero">
-      <p class="eyebrow">A calm planner for Mac &amp; Windows</p>
+      <p class="eyebrow">The planner that stays on screen</p>
       <h1>FloatTask <em>always in your corner</em></h1>
-      <p class="lede">A few goals for today, one timer that counts the time you give them, and your whole day on one screen. FloatTask floats over every app in a small widget — for work, for school, and for everything else.</p>
+      <p class="lede">Most planners live in a tab you forget. FloatTask keeps today's goals and a running timer on top of every app, so the work you meant to do stays in front of you — and your whole day sits on one calm screen when you need the bigger picture.</p>
       <div class="cta">
         <a class="btn primary launch-only" id="hero-dl" href="#download"><svg><use href="#down"/></svg><span>Download FloatTask</span></a>
         <a class="btn primary prelaunch-only" href="/contact.html">Request early access</a>
         <a class="btn quiet" href="#how">See how it works</a>
-        <p class="meta"><span>7-day free trial</span><span>macOS &amp; Windows</span><span id="hero-version">Free download</span></p>
+        <p class="meta"><span>7 days free</span><span>Cancel anytime</span><span>macOS &amp; Windows</span><span id="hero-version">Free download</span></p>
       </div>
 
       <div class="screen" role="img" aria-label="A desktop with FloatTask's home page open: My Day with a running timer, goals beside the day's schedule, and Tasks, Assist and Insights cards. The FloatTask widget is pinned in the lower-left corner, and the collapsed timer ring sits above it.">
@@ -378,46 +396,58 @@
         <div class="fact"><h3>A nudge at the right time</h3><p>Reminders at the time you set, and a note the day before anything is due.</p></div>
         <div class="fact"><h3>Out of the way when you need it</h3><p>Tucks into the ring when an app goes full-screen, and fades back until you hover over it.</p></div>
         <div class="fact"><h3>Jot it from anywhere</h3><p><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>Space</kbd> opens a quick box over any app. Type, press return, carry on.</p></div>
-        <div class="fact"><h3>Your tasks stay on your computer</h3><p>Tasks, notes and timers are stored locally. Sign in with Google to turn on AI and your plan.</p></div>
+        <div class="fact"><h3>Your tasks stay on your computer</h3><p>Tasks, notes and timers are stored on your computer. Signing in with Google turns on Assist and your plan.</p></div>
       </div>
     </section>
 
     <section id="pricing" class="ground ground-underwater" aria-labelledby="price-h">
       <div class="sec-head">
         <p class="eyebrow">Pricing</p>
-        <h2 id="price-h">Two plans. Both start with 7 days free.</h2>
-        <p>Download FloatTask, sign in with Google and start your trial. Your plan is tied to that Google account, so it follows you to every computer. Switch between Pro and Pro+ anytime.</p>
+        <h2 id="price-h">Simple pricing. Seven days free.</h2>
+        <p>Download FloatTask, sign in with Google and your trial starts. One plan covers every computer you sign in on. Switch between Pro and Pro+, or cancel, anytime from Settings.</p>
       </div>
       <div class="plans">
         <div class="plan pro" style="--c: var(--a-myday)">
           <div class="band"><h3>FloatTask Pro</h3><span class="trial-tag">7 days free</span></div>
-          <p class="price"><b>$8</b><span>/ month</span></p>
-          <p class="alt-price">or $72 / year — save 25%</p>
+          <p class="price"><b>$8</b><span>/mo</span></p>
+          <p class="alt-price">or $72/yr — save 25%</p>
           <ul class="ticks">
             <li>The ring, widget and full app on Mac and Windows</li>
-            <li>FloatTask AI: Assist, Add with AI, smart reminders and briefs</li>
+            <li>Assist: plan your day, break down big tasks, add tasks in plain words, and daily briefs</li>
             <li>Google Calendar, timers, Classes and all four painted scenes</li>
             <li>Try it free for 7 days — cancel before it ends and you pay nothing</li>
           </ul>
-          <a class="btn primary launch-only" href="#download"><svg><use href="#down"/></svg>Download, then start your free trial</a>
+          <a class="btn primary launch-only" href="#download"><svg><use href="#down"/></svg>Start 7-day free trial</a>
           <a class="btn primary prelaunch-only" href="/contact.html">Request early access</a>
           <p class="how-upgrade prelaunch-only">Launching soon — this is the price at launch. Nothing can be purchased yet.</p>
           <p class="how-upgrade launch-only">You start the trial the first time you open FloatTask. Card required; secure checkout by Stripe. One trial per account.</p>
         </div>
         <div class="plan" style="--c: var(--a-insights)">
           <div class="band"><h3>FloatTask Pro+</h3><span class="trial-tag">7 days free</span></div>
-          <p class="price"><b>$15</b><span>/ month</span></p>
-          <p class="alt-price">or $135 / year — save 25%</p>
+          <p class="price"><b>$15</b><span>/mo</span></p>
+          <p class="alt-price">or $135/yr — save 25%</p>
           <ul class="ticks">
             <li>Everything in Pro</li>
-            <li>2–3× the AI allowance: up to 1,000 chats and 6,000 quick actions a day</li>
+            <li>More room in Assist: up to 1,000 chats and 6,000 quick actions a day</li>
             <li>The strongest model in Assist for deeper planning and longer briefs</li>
             <li>First access to new features as they land</li>
           </ul>
-          <a class="btn quiet launch-only" href="#download"><svg><use href="#down"/></svg>Download, then pick Pro+</a>
+          <a class="btn quiet launch-only" href="#download"><svg><use href="#down"/></svg>Start with Pro+</a>
           <a class="btn quiet prelaunch-only" href="/contact.html">Request early access</a>
           <p class="how-upgrade">Already on Pro? Upgrade from Settings — the difference is prorated.</p>
         </div>
+      </div>
+    </section>
+
+    <section id="faq" aria-labelledby="faq-h">
+      <div class="sec-head"><p class="eyebrow">Questions</p><h2 id="faq-h">Before you download.</h2></div>
+      <div class="faq">
+        <details><summary>What makes FloatTask different from other task apps?</summary><p>It stays on screen. Today's goals and the running timer float over every app, so you don't have to remember to open a planner. The full app is there when you want to plan, and out of the way when you don't.</p></details>
+        <details><summary>Do I need a Google account?</summary><p>Yes — you sign in with Google to start your trial, and your plan follows that account to every computer. Connecting Google Calendar is optional and read-only.</p></details>
+        <details><summary>Where is my data kept?</summary><p>Tasks, notes and timers are stored on your computer. When you use Assist, only the tasks and events it needs are sent to generate a reply — FloatTask keeps counts, not content. No ads, no tracking, no selling data. Details are in the <a href="/privacy.html">privacy policy</a>.</p></details>
+        <details><summary>What happens when the trial ends?</summary><p>Your plan starts on day 8 unless you cancel before then from Settings — no charge if you do. You can switch plans or cancel at any time after that too.</p></details>
+        <details><summary>Does it work for school, or only work?</summary><p>Both, plus personal life. Pick Work, School, Personal or any mix when you first open FloatTask; School adds a Classes page with your timetable and what's due.</p></details>
+        <details><summary>Which computers does it run on?</summary><p>macOS on Apple Silicon or Intel, and Windows 10 or 11. The app updates itself when a new version is out.</p></details>
       </div>
     </section>
 
@@ -435,7 +465,7 @@
         </div>
         <div class="beta-note prelaunch-only">
           <p><b>Downloads open at launch.</b> FloatTask is being tested by a small group right now.</p>
-          <p>Want to try it before then? Send a note and we'll get you set up.</p>
+          <p>Want to try it before then? Send a note to join the beta.</p>
           <a class="btn primary small" href="/contact.html" style="justify-self:start">Ask for early access</a>
         </div>
         <div class="dl-list launch-only" id="dl-list">
