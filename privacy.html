@@ -44,6 +44,15 @@
   footer .right { margin-left: 0; }
 }
 </style>
+<!-- Google tag (gtag.js): website visits only, never the app -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B4QZBKSNK3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B4QZBKSNK3');
+</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -71,7 +80,7 @@
       <p class="eyebrow">Privacy</p>
       <h1>Privacy <em style="color:var(--gold-text)">policy</em></h1>
       <p>What FloatTask collects, what stays on your computer, and who else is involved.</p>
-      <p><strong style="color:var(--ink)">Last updated:</strong> October 12, 2026</p>
+      <p><strong style="color:var(--ink)">Last updated:</strong> October 20, 2026</p>
       <nav class="toc" aria-label="On this page">
         <a href="#summary">The short version</a>
         <a href="#what">What we collect</a>
@@ -95,7 +104,7 @@
         <li><strong>Calendar is read-only and optional.</strong> If you connect it, FloatTask reads upcoming events on your device to show meetings and help you prepare. We don't store your calendar on our servers.</li>
         <li><strong>AI features send what they need, when you use them.</strong> The relevant tasks and calendar events go through our servers to Anthropic to generate a response. We keep counts, not content.</li>
         <li><strong>Stripe handles payment.</strong> We never see your card number.</li>
-        <li><strong>No ads, no tracking, no selling data.</strong> We don't use advertising or analytics trackers on the site or in the app.</li>
+        <li><strong>No ads, no selling data.</strong> The website uses Google Analytics to count visits. The app has no analytics or trackers.</li>
       </ul>
 
       <h2 id="what">What we collect</h2>
@@ -106,7 +115,9 @@
       <h3>Support messages</h3>
       <p>If you use the contact form we keep the message, your name and email, and the topic you chose so we can reply and keep track of bugs.</p>
       <h3>What we don't collect</h3>
-      <p>We don't run analytics or advertising trackers, don't collect your IP address beyond what our hosting providers log for security, and don't read your files, screen or other apps. The only cookie-like storage on floattask.com is your light/dark preference.</p>
+      <p>We don't run advertising trackers anywhere, and the app has no analytics. We don't collect your IP address beyond what our hosting providers and Google Analytics log, and don't read your files, screen or other apps.</p>
+      <h3>Website analytics</h3>
+      <p>floattask.com uses Google Analytics to understand how many people visit and which pages they read. It sets cookies and records pages viewed, approximate location, device and browser, and where the visit came from. We use this only to improve the site; it is never linked to your FloatTask account or tasks. You can opt out with your browser's tracking protection or <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">Google's opt-out add-on</a>. The site also remembers your light/dark preference in your browser.</p>
 
       <h2 id="google">Google data</h2>
       <p>FloatTask asks Google for two things, at two different times:</p>
@@ -139,6 +150,7 @@
         <tr><td>Google</td><td>Sign-in and Calendar</td><td>Your sign-in and, if connected, calendar permission</td></tr>
         <tr><td>SendGrid</td><td>Delivers contact-form email</td><td>Your support message and email address</td></tr>
         <tr><td>GitHub Pages</td><td>Hosts floattask.com and downloads</td><td>Standard web server logs</td></tr>
+        <tr><td>Google Analytics</td><td>Website visit statistics (floattask.com only)</td><td>Pages viewed, device, browser, approximate location, cookies</td></tr>
       </table>
       <p>We may also disclose information if required by law, or to protect the rights and safety of FloatTask and its users.</p>
 
