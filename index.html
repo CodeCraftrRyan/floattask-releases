@@ -18,6 +18,7 @@
 <meta property="og:description" content="Today's goals and a running timer that stay on top of every app. A calm planner for Mac and Windows — 7 days free.">
 <meta property="og:image" content="https://floattask.com/shots/og-home.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="site.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"FloatTask","url":"https://floattask.com/",
@@ -30,21 +31,21 @@
 /* hero: a desktop seen from its lower-left corner — the full app, with the widget and the ring pinned in the corner */
 .hero { padding-block: clamp(20px, 5vw, 56px) 0; display: grid; gap: 26px; }
 .hero h1 { font-size: clamp(2.6rem, 6.6vw, 4.9rem); line-height: 1; letter-spacing: -.025em; max-width: 12ch; }
-.hero h1 em { display: block; font-style: italic; font-weight: 600; color: var(--gold-ink); }
+.hero h1 em { display: block; font-style: italic; font-weight: 600; color: var(--gold-text); }
 .lede { font-size: clamp(1.06rem, 1.6vw, 1.22rem); color: var(--ink-2); max-width: 56ch; }
 .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
 .cta .meta { font-size: 14px; color: var(--muted); }
 .cta .meta span + span::before { content: "·"; margin: 0 7px; }
 
 .screen { position: relative; margin-top: 10px; border-radius: 22px; overflow: hidden; border: 1px solid var(--line);
-  background: oklch(0.311 0.048 231); /* Underwater raised */
+  background: var(--raised); /* Underwater raised: the frame carries .ground-underwater */
   box-shadow: var(--shadow); aspect-ratio: 16 / 10.2; }
 .screen .app { position: absolute; top: 5%; right: 3%; width: 78%; border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); }
 .screen .widget { position: absolute; left: 2.6%; bottom: 4%; width: 20%; filter: drop-shadow(0 18px 30px oklch(0 0 0 / .25)); z-index: 2; }
 .screen .ring { position: absolute; left: 3%; top: 10%; width: 8.5%; z-index: 2; filter: drop-shadow(0 10px 18px oklch(0 0 0 / .2)); }
 .screen .corner-note { position: absolute; left: 24%; bottom: 5%; z-index: 3; display: flex; align-items: center; gap: 8px; font: 500 13px/1.3 var(--f-body); color: var(--ink);
   background: var(--surface); border: 1px solid var(--line); padding: 8px 12px; border-radius: 999px; box-shadow: 0 6px 18px oklch(0 0 0 / .12); }
-.screen .corner-note svg { width: 14px; height: 14px; color: var(--gold-ink); flex-shrink: 0; }
+.screen .corner-note svg { width: 14px; height: 14px; color: var(--gold-text); flex-shrink: 0; }
 
 
 /* one day, three sizes */
@@ -123,12 +124,12 @@
 .download .copy p { color: var(--ink-2); }
 .dl-list { display: grid; gap: 10px; align-content: start; }
 .dl { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--line-strong); border-radius: 14px; text-decoration: none; color: var(--ink); background: var(--surface); }
-.dl:hover { border-color: var(--gold-ink); }
+.dl:hover { border-color: var(--gold-text); }
 .dl.suggested { border-color: transparent; background: color-mix(in oklab, var(--a-myday) 24%, var(--surface)); }
 .dl svg.os { width: 24px; height: 24px; color: var(--ink); }
 .dl b { display: block; font-weight: 600; font-size: 16px; }
 .dl small { display: block; color: var(--muted); font-size: 13.5px; }
-.dl .get { font: 600 13.5px/1 var(--f-body); color: var(--gold-ink); }
+.dl .get { font: 600 13.5px/1 var(--f-body); color: var(--gold-text); }
 .first-run { font-size: 14px; color: var(--muted); display: grid; gap: 6px; padding-top: 6px; }
 .first-run b { color: var(--ink-2); font-weight: 600; }
 .beta-note { display: grid; gap: 12px; align-content: start; padding: 22px; border: 1.5px dashed color-mix(in oklab, var(--a-myday) 60%, var(--line-strong)); border-radius: 18px; background: var(--bg); }
@@ -137,7 +138,7 @@
 /* ---------- the live widget in this page's corner ---------- */
 .demo { position: fixed; left: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 50; font-family: var(--f-body); }
 @media (max-width: 1240px) { .demo { display: none; } }
-.demo-ring { position: relative; width: 66px; height: 66px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: var(--surface); color: var(--gold-ink);
+.demo-ring { position: relative; width: 66px; height: 66px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: var(--surface); color: var(--gold-text);
   box-shadow: 0 0 0 1px var(--line-strong), 0 12px 28px oklch(0 0 0 / .22); display: grid; place-items: center; }
 .demo-ring svg.arc { position: absolute; inset: 4px; width: calc(100% - 8px); height: calc(100% - 8px); transform: rotate(-90deg); }
 .demo-ring svg.arc circle { fill: none; stroke-width: 5; stroke-linecap: round; }
@@ -237,13 +238,13 @@
         <p class="meta"><span>7 days free</span><span>Cancel anytime</span><span>macOS &amp; Windows</span><span id="hero-version">Free download</span></p>
       </div>
 
-      <div class="screen" role="img" aria-label="A desktop with FloatTask's home page open: My Day with a running timer, goals beside the day's schedule, and Tasks, Assist and Insights cards. The FloatTask widget is pinned in the lower-left corner, and the collapsed timer ring sits above it.">
-        <img class="app shot-l" src="shots/home-light.webp" width="2400" height="1500" alt="">
-        <img class="app shot-d" src="shots/home-dark.webp" width="2400" height="1500" alt="">
-        <img class="ring shot-l" src="shots/ring-light.webp" width="240" height="184" alt="">
-        <img class="ring shot-d" src="shots/ring-dark.webp" width="240" height="184" alt="">
-        <img class="widget shot-l" src="shots/widget-light.webp" width="640" height="1040" alt="">
-        <img class="widget shot-d" src="shots/widget-dark.webp" width="640" height="1040" alt="">
+      <div class="screen ground-underwater" role="img" aria-label="A desktop with FloatTask open on My Day: the task in focus with a running timer and its next small step, what's next, today's three must-dos, and the rest of the day laid out between meetings. The FloatTask widget is pinned in the lower-left corner, and the collapsed timer ring sits above it.">
+        <img class="app shot-l" src="shots/myday-light.webp" width="2400" height="1500" alt="">
+        <img class="app shot-d" src="shots/myday-dark.webp" width="2400" height="1500" alt="">
+        <img class="ring shot-l" src="shots/ring-light.webp" width="202" height="156" alt="">
+        <img class="ring shot-d" src="shots/ring-dark.webp" width="202" height="156" alt="">
+        <img class="widget shot-l" src="shots/widget-light.webp" width="538" height="874" alt="">
+        <img class="widget shot-d" src="shots/widget-dark.webp" width="538" height="874" alt="">
         <span class="corner-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>Floats over every app, out of the way when you go full-screen</span>
       </div>
     </div>
@@ -258,17 +259,17 @@
         <div class="card size" style="--c: var(--a-myday)">
           <div class="band"><h3>The ring</h3></div>
           <figure class="stage">
-            <img class="r shot-l" src="shots/ring-light.webp" width="240" height="184" alt="The collapsed FloatTask ring with a running timer of 42:01 in a small pill.">
-            <img class="r shot-d" src="shots/ring-dark.webp" width="240" height="184" alt="The collapsed FloatTask ring with a running timer of 42:01 in a small pill.">
+            <img class="r shot-l" src="shots/ring-light.webp" width="202" height="156" alt="The collapsed FloatTask ring with a running timer of 26:09 in a small pill.">
+            <img class="r shot-d" src="shots/ring-dark.webp" width="202" height="156" alt="The collapsed FloatTask ring with a running timer of 26:09 in a small pill.">
           </figure>
-          <p>A small circle with one arc per goal, and the running time beside it. Click to start or pause; drag it anywhere.</p>
+          <p>A small circle with the FloatTask mark and one arc per goal, and the running time beside it. Click to start or pause; drag it anywhere.</p>
           <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>L</kbd> to show or tuck away</p>
         </div>
         <div class="card size" style="--c: var(--a-tasks)">
           <div class="band"><h3>The widget</h3></div>
           <figure class="stage">
-            <img class="w shot-l" src="shots/widget-light.webp" width="640" height="1040" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals and every other open task, each with a timer.">
-            <img class="w shot-d" src="shots/widget-dark.webp" width="640" height="1040" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals and every other open task, each with a timer.">
+            <img class="w shot-l" src="shots/widget-light.webp" width="538" height="874" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals and every other open task, each with a timer.">
+            <img class="w shot-d" src="shots/widget-dark.webp" width="538" height="874" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals and every other open task, each with a timer.">
           </figure>
           <p>Every open task with a timer on each, plus a Meetings tab. Drag its top edge to make it taller.</p>
           <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>Space</kbd> jots a task from any app</p>
@@ -276,11 +277,11 @@
         <div class="card size" style="--c: var(--a-insights)">
           <div class="band"><h3>The full app</h3></div>
           <figure class="stage">
-            <img class="a shot-l" src="shots/home-light.webp" width="2400" height="1500" alt="FloatTask's home page in the full app.">
-            <img class="a shot-d" src="shots/home-dark.webp" width="2400" height="1500" alt="FloatTask's home page in the full app.">
+            <img class="a shot-l" src="shots/myday-light.webp" width="2400" height="1500" alt="My Day in the full app.">
+            <img class="a shot-d" src="shots/myday-dark.webp" width="2400" height="1500" alt="My Day in the full app.">
           </figure>
-          <p>Your day on one screen: the task in focus, goals beside your schedule, notes, reminders, tasks, Assist and a week of insights.</p>
-          <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>F</kbd> opens it on home</p>
+          <p>Your day on one screen: the task in focus and its next small step, what's next, three must-dos, and the rest of today around your meetings.</p>
+          <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>F</kbd> opens it on My Day</p>
         </div>
       </div>
     </section>
@@ -290,17 +291,18 @@
         <div class="copy">
           <p class="eyebrow">My Day</p>
           <h3 id="day-h">Pick a few goals. Give each one your time.</h3>
-          <p>Home opens on what matters now: the goal in focus with a big Start focus button, the rest of today's goals beside your schedule, and a line for when you're free next.</p>
+          <p>The full app opens on My Day: the task in focus with its timer and the next small step, the one task after it, three must-dos, and the rest of today laid out in the gaps between your meetings.</p>
           <ul class="ticks">
             <li>A timer that only counts up — nothing ticks down at you</li>
-            <li>Google Calendar meetings and class times on the same schedule</li>
-            <li>A notes pad and quick reminders with a time, right on home</li>
-            <li>An evening reflection to close the day, if you want one</li>
+            <li>Break a task into small steps and finish them one at a time</li>
+            <li>Google Calendar meetings and class times on the same timeline</li>
+            <li>Park a stray thought in Notes without leaving the task</li>
+            <li>An evening journal to close the day and set up tomorrow</li>
           </ul>
         </div>
         <div class="art" style="--c: var(--a-myday)">
-          <img class="wide shot-l" src="shots/home-light.webp" width="2400" height="1500" alt="The home page: My Day with the current focus and its timer, five goals, the schedule with meetings and a Now line, Notes and Reminders, and Tasks, Assist, Insights and Settings down the right.">
-          <img class="wide shot-d" src="shots/home-dark.webp" width="2400" height="1500" alt="The home page in the Dark theme.">
+          <img class="wide shot-l" src="shots/myday-light.webp" width="2400" height="1500" alt="My Day: the task in focus with a count-up timer of 26 minutes and three small steps, the next task after a client check-in, today's three must-dos, and the rest of today with meetings and goals on a timeline.">
+          <img class="wide shot-d" src="shots/myday-dark.webp" width="2400" height="1500" alt="My Day in the Dark theme.">
         </div>
       </div>
 
@@ -308,7 +310,7 @@
         <div class="copy">
           <p class="eyebrow">Projects</p>
           <h3>Every project at a glance — and what it's taking.</h3>
-          <p>Projects sit side by side with a description, a task count and progress. Open one for its tasks, or switch to Insights to see where the time went.</p>
+          <p>Every project in one list, its tasks grouped under it. Open one for its tasks and notes, or switch to Insights to see where the time went.</p>
           <ul class="ticks">
             <li>Insights across projects: tasks, done this week, progress and time logged</li>
             <li>Time taken against your estimates, once tasks finish</li>
@@ -325,14 +327,14 @@
         <div class="copy">
           <p class="eyebrow">Assist</p>
           <h3>Type it the way you'd say it.</h3>
-          <p>Ask FloatTask to plan your day, break a big task into steps, or sum up your notes. Or jot a messy line and let it work out the title, due date and project.</p>
+          <p>Ask Assist to plan your day, break a big task into steps, or sum up your notes. Or jot a messy line and let it work out the title, due date and project.</p>
           <p class="example">send budget draft to sam fri 3pm for q4 planning, use revised version w/ travel split out
             <span class="arrow">→ “Send budget draft to Sam” · Friday 3:00 PM · Follow-up · Q4 planning</span></p>
           <p style="font-size:15px;color:var(--muted)">It asks before it changes or deletes anything. Built in — sign in with Google and it's on, no API key needed.</p>
         </div>
         <div class="art" style="--c: var(--a-assistant)">
-          <img class="tall shot-l" src="shots/widget-light.webp" width="640" height="1040" alt="The FloatTask widget with the task in focus and every open task, each with a timer.">
-          <img class="tall shot-d" src="shots/widget-dark.webp" width="640" height="1040" alt="The FloatTask widget in the Dark theme.">
+          <img class="tall shot-l" src="shots/widget-light.webp" width="538" height="874" alt="The FloatTask widget with the task in focus and every open task, each with a timer.">
+          <img class="tall shot-d" src="shots/widget-dark.webp" width="538" height="874" alt="The FloatTask widget in the Dark theme.">
         </div>
       </div>
     </section>
@@ -396,7 +398,7 @@
         <div class="fact"><h3>A nudge at the right time</h3><p>Reminders at the time you set, and a note the day before anything is due.</p></div>
         <div class="fact"><h3>Out of the way when you need it</h3><p>Tucks into the ring when an app goes full-screen, and fades back until you hover over it.</p></div>
         <div class="fact"><h3>Jot it from anywhere</h3><p><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>Space</kbd> opens a quick box over any app. Type, press return, carry on.</p></div>
-        <div class="fact"><h3>Your tasks stay on your computer</h3><p>Tasks, notes and timers are stored on your computer. Signing in with Google turns on Assist and your plan.</p></div>
+        <div class="fact"><h3>Your tasks stay on your computer</h3><p>Tasks, notes and timers are stored on your computer, with a daily backup. Signing in with Google turns on Assist and your plan.</p></div>
       </div>
     </section>
 
@@ -428,7 +430,7 @@
           <p class="alt-price">or $135/yr — save 25%</p>
           <ul class="ticks">
             <li>Everything in Pro</li>
-            <li>More room in Assist: up to 1,000 chats and 6,000 quick actions a day</li>
+            <li>More room in Assist each day</li>
             <li>The strongest model in Assist for deeper planning and longer briefs</li>
             <li>First access to new features as they land</li>
           </ul>

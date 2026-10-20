@@ -1,0 +1,165 @@
+/* Generated from design/tokens.json by scripts/build-tokens.js for floattask.com.
+ * Do not edit by hand: change the JSON and run `npm run tokens`. */
+
+/* Warm Paper */
+:root {
+  color-scheme: light;
+  --show-l: block; --show-d: none;
+  --bg: oklch(0.958 0.014 85);
+  --surface: oklch(0.990 0.008 88);
+  --raised: oklch(0.917 0.014 82);
+  --raised-2: oklch(0.882 0.015 80);
+  --ink: oklch(0.270 0.022 55);
+  --ink-2: oklch(0.373 0.021 58);
+  --muted: oklch(0.463 0.019 61);
+  --faint: oklch(0.648 0.017 68);
+  --line: oklch(0.270 0.022 55 / 0.16);
+  --line-strong: oklch(0.270 0.022 55 / 0.22);
+  --gold: oklch(0.700 0.105 72);
+  --gold-text: oklch(0.507 0.080 71);
+  --gold-soft: oklch(0.700 0.105 72 / 0.18);
+  --primary: oklch(0.842 0.046 67);
+  --primary-hover: oklch(0.795 0.059 67);
+  --ok: oklch(0.522 0.120 150);
+  --danger: oklch(0.557 0.205 27);
+  --area-myday: oklch(0.600 0.110 65);
+  --area-myday-text: oklch(0.540 0.110 65);
+  --area-tasks: oklch(0.430 0.070 265);
+  --area-calendar: oklch(0.470 0.075 335);
+  --area-projects: oklch(0.470 0.070 155);
+  --area-insights: oklch(0.470 0.070 215);
+  --area-assistant: oklch(0.540 0.100 40);
+  --area-settings: oklch(0.450 0.025 70);
+  --area-classes: oklch(0.470 0.080 300);
+  --gold-ink: oklch(0.270 0.022 55);
+  --focus: oklch(0.604 0.105 72);
+  --ok-soft: oklch(0.550 0.120 150 / 0.14);
+  --danger-soft: oklch(0.958 0.028 25);
+  --overlay: oklch(0.000 0.000 0 / 0.4);
+  --glass-fill: oklch(0.99 0.008 88 / 0.82);
+  --shadow-card: 0 1px 2px oklch(0.27 0.022 55 / 0.06), 0 14px 28px -16px oklch(0.27 0.022 55 / 0.22);
+  --shadow-site: 0 18px 44px oklch(0.35 0.04 75 / 0.16), 0 2px 6px oklch(0.35 0.04 75 / 0.06);
+  --shadow-site-sm: 0 8px 24px oklch(0.35 0.04 75 / 0.1);
+}
+
+/* Dark: the visitor's system setting, or data-theme="dark" */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --show-l: none; --show-d: block;
+    --bg: oklch(0.170 0.006 270);
+    --surface: oklch(0.230 0.010 272);
+    --raised: oklch(0.262 0.009 272);
+    --raised-2: oklch(0.300 0.008 272);
+    --ink: oklch(0.930 0.010 270);
+    --ink-2: oklch(0.816 0.009 270);
+    --muted: oklch(0.717 0.009 270);
+    --faint: oklch(0.512 0.008 270);
+    --line: oklch(0.930 0.010 270 / 0.16);
+    --line-strong: oklch(0.930 0.010 270 / 0.22);
+    --gold: oklch(0.820 0.130 80);
+    --gold-text: oklch(0.853 0.088 80);
+    --gold-soft: oklch(0.820 0.130 80 / 0.18);
+    --primary: oklch(0.454 0.036 61);
+    --primary-hover: oklch(0.525 0.051 62);
+    --ok: oklch(0.780 0.120 155);
+    --danger: oklch(0.682 0.160 23);
+    --area-myday: oklch(0.820 0.110 65);
+    --area-myday-text: oklch(0.820 0.110 65);
+    --area-tasks: oklch(0.760 0.070 265);
+    --area-calendar: oklch(0.760 0.075 335);
+    --area-projects: oklch(0.760 0.070 155);
+    --area-insights: oklch(0.760 0.070 215);
+    --area-assistant: oklch(0.760 0.100 40);
+    --area-settings: oklch(0.760 0.025 70);
+    --area-classes: oklch(0.760 0.080 300);
+    --gold-ink: oklch(0.170 0.006 270);
+    --focus: oklch(0.820 0.130 80);
+    --ok-soft: oklch(0.780 0.120 155 / 0.18);
+    --danger-soft: oklch(0.310 0.047 15);
+    --overlay: oklch(0.000 0.000 0 / 0.8);
+    --glass-fill: oklch(0.23 0.01 272 / 0.85);
+    --shadow-card: inset 0 1px 0 oklch(0.93 0.01 270 / 0.16), 0 8px 24px oklch(0.1 0.01 260 / 0.4);
+    --shadow-site: 0 18px 44px oklch(0 0 0 / 0.45), 0 2px 6px oklch(0 0 0 / 0.3);
+    --shadow-site-sm: 0 8px 24px oklch(0 0 0 / 0.35);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --show-l: none; --show-d: block;
+  --bg: oklch(0.170 0.006 270);
+  --surface: oklch(0.230 0.010 272);
+  --raised: oklch(0.262 0.009 272);
+  --raised-2: oklch(0.300 0.008 272);
+  --ink: oklch(0.930 0.010 270);
+  --ink-2: oklch(0.816 0.009 270);
+  --muted: oklch(0.717 0.009 270);
+  --faint: oklch(0.512 0.008 270);
+  --line: oklch(0.930 0.010 270 / 0.16);
+  --line-strong: oklch(0.930 0.010 270 / 0.22);
+  --gold: oklch(0.820 0.130 80);
+  --gold-text: oklch(0.853 0.088 80);
+  --gold-soft: oklch(0.820 0.130 80 / 0.18);
+  --primary: oklch(0.454 0.036 61);
+  --primary-hover: oklch(0.525 0.051 62);
+  --ok: oklch(0.780 0.120 155);
+  --danger: oklch(0.682 0.160 23);
+  --area-myday: oklch(0.820 0.110 65);
+  --area-myday-text: oklch(0.820 0.110 65);
+  --area-tasks: oklch(0.760 0.070 265);
+  --area-calendar: oklch(0.760 0.075 335);
+  --area-projects: oklch(0.760 0.070 155);
+  --area-insights: oklch(0.760 0.070 215);
+  --area-assistant: oklch(0.760 0.100 40);
+  --area-settings: oklch(0.760 0.025 70);
+  --area-classes: oklch(0.760 0.080 300);
+  --gold-ink: oklch(0.170 0.006 270);
+  --focus: oklch(0.820 0.130 80);
+  --ok-soft: oklch(0.780 0.120 155 / 0.18);
+  --danger-soft: oklch(0.310 0.047 15);
+  --overlay: oklch(0.000 0.000 0 / 0.8);
+  --glass-fill: oklch(0.23 0.01 272 / 0.85);
+  --shadow-card: inset 0 1px 0 oklch(0.93 0.01 270 / 0.16), 0 8px 24px oklch(0.1 0.01 260 / 0.4);
+  --shadow-site: 0 18px 44px oklch(0 0 0 / 0.45), 0 2px 6px oklch(0 0 0 / 0.3);
+  --shadow-site-sm: 0 8px 24px oklch(0 0 0 / 0.35);
+}
+
+/* Underwater: the full-width deep-sea bands */
+.ground-underwater {
+  color-scheme: dark;
+  --bg: oklch(0.270 0.050 232);
+  --surface: oklch(0.330 0.055 230);
+  --raised: oklch(0.362 0.047 230);
+  --raised-2: oklch(0.400 0.044 230);
+  --ink: oklch(0.950 0.015 195);
+  --ink-2: oklch(0.882 0.018 205);
+  --muted: oklch(0.800 0.022 213);
+  --faint: oklch(0.576 0.033 225);
+  --line: oklch(0.950 0.015 195 / 0.16);
+  --line-strong: oklch(0.950 0.015 195 / 0.22);
+  --gold: oklch(0.820 0.120 85);
+  --gold-text: oklch(0.859 0.083 88);
+  --gold-soft: oklch(0.820 0.120 85 / 0.18);
+  --primary: oklch(0.528 0.013 110);
+  --primary-hover: oklch(0.590 0.029 79);
+  --ok: oklch(0.780 0.120 155);
+  --danger: oklch(0.722 0.160 23);
+  --area-myday: oklch(0.850 0.110 65);
+  --area-myday-text: oklch(0.850 0.110 65);
+  --area-tasks: oklch(0.800 0.070 195);
+  --area-calendar: oklch(0.800 0.070 320);
+  --area-projects: oklch(0.800 0.080 150);
+  --area-insights: oklch(0.800 0.060 215);
+  --area-assistant: oklch(0.830 0.090 45);
+  --area-settings: oklch(0.800 0.030 75);
+  --area-classes: oklch(0.8 0.07 295);
+  --gold-ink: oklch(0.270 0.050 232);
+  --focus: oklch(0.820 0.120 85);
+  --ok-soft: oklch(0.780 0.120 155 / 0.18);
+  --danger-soft: oklch(0.310 0.047 15);
+  --overlay: oklch(0.000 0.000 0 / 0.6);
+  --glass-fill: oklch(0.33 0.055 230 / 0.85);
+  --shadow-card: inset 0 1px 0 oklch(0.95 0.015 195 / 0.16), 0 8px 24px oklch(0.14 0.035 238 / 0.4);
+  --shadow-site: 0 18px 44px oklch(0 0 0 / 0.45), 0 2px 6px oklch(0 0 0 / 0.3);
+  --shadow-site-sm: 0 8px 24px oklch(0 0 0 / 0.35);
+}
