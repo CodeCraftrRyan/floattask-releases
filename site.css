@@ -92,3 +92,14 @@ html:not(.prelaunch) .prelaunch-only { display: none !important; }
   padding-bottom: clamp(56px, 9vw, 104px); }
 /* breathing room before each band, so content above never touches its edge */
 .ground { margin-top: clamp(56px, 9vw, 104px); }
+
+/* ---------- cookie choice (consent.js) ---------- */
+.consent { position: fixed; right: 16px; bottom: 16px; z-index: 300; width: min(380px, calc(100vw - 32px));
+  background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow);
+  padding: 18px 20px 20px; display: grid; gap: 10px; font-size: 14.5px; line-height: 1.5; }
+.consent[hidden] { display: none; }
+.consent p { margin: 0; color: var(--ink-2); }
+.consent .consent-title { font: 700 19px/1.15 var(--f-serif); color: var(--ink); }
+.consent a { color: var(--gold-text); font-weight: 600; }
+.consent-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+@media (prefers-reduced-motion: no-preference) { .consent { animation: consent-rise .38s cubic-bezier(.2,.8,.2,1); } @keyframes consent-rise { from { transform: translateY(8px); opacity: 0; } } }

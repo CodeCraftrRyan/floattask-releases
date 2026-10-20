@@ -193,15 +193,7 @@
 }
 @media (prefers-reduced-motion: no-preference) { .demo-panel { animation: rise .18s ease-out; } @keyframes rise { from { transform: translateY(8px); opacity: .6; } } }
 </style>
-<!-- Google tag (gtag.js): website visits only, never the app -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B4QZBKSNK3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B4QZBKSNK3');
-</script>
+<script src="/consent.js" defer></script>
 </head>
 <body>
 <div class="beta-bar prelaunch-only" role="note">FloatTask is in private beta — public launch is coming soon. <a href="/contact.html">Ask for early access</a></div>
@@ -247,13 +239,13 @@
         <p class="meta"><span>7 days free</span><span>Cancel anytime</span><span>macOS &amp; Windows</span><span id="hero-version">Free download</span></p>
       </div>
 
-      <div class="screen ground-underwater" role="img" aria-label="A desktop with FloatTask open on My Day: the task in focus with a running timer and its next small step, what's next, today's three must-dos, and the rest of the day laid out between meetings. The FloatTask widget is pinned in the lower-left corner, and the collapsed timer ring sits above it.">
+      <div class="screen ground-underwater" role="img" aria-label="A desktop with FloatTask open on My Day: the task in focus with a running timer and its small steps, the rest of today's goals in a list, and the rest of the day laid out between meetings. The FloatTask widget is pinned in the lower-left corner, and the collapsed timer ring sits above it.">
         <img class="app shot-l" src="shots/myday-light.webp" width="2400" height="1500" alt="">
         <img class="app shot-d" src="shots/myday-dark.webp" width="2400" height="1500" alt="">
-        <img class="ring shot-l" src="shots/ring-light.webp" width="202" height="156" alt="">
-        <img class="ring shot-d" src="shots/ring-dark.webp" width="202" height="156" alt="">
-        <img class="widget shot-l" src="shots/widget-light.webp" width="538" height="874" alt="">
-        <img class="widget shot-d" src="shots/widget-dark.webp" width="538" height="874" alt="">
+        <img class="ring shot-l" src="shots/ring-light.webp" width="247" height="175" alt="">
+        <img class="ring shot-d" src="shots/ring-dark.webp" width="247" height="175" alt="">
+        <img class="widget shot-l" src="shots/widget-light.webp" width="640" height="879" alt="">
+        <img class="widget shot-d" src="shots/widget-dark.webp" width="640" height="879" alt="">
         <span class="corner-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>Floats over every app, out of the way when you go full-screen</span>
       </div>
     </div>
@@ -268,8 +260,8 @@
         <div class="card size" style="--c: var(--a-myday)">
           <div class="band"><h3>The ring</h3></div>
           <figure class="stage">
-            <img class="r shot-l" src="shots/ring-light.webp" width="202" height="156" alt="The collapsed FloatTask ring with a running timer of 26:09 in a small pill.">
-            <img class="r shot-d" src="shots/ring-dark.webp" width="202" height="156" alt="The collapsed FloatTask ring with a running timer of 26:09 in a small pill.">
+            <img class="r shot-l" src="shots/ring-light.webp" width="247" height="175" alt="The collapsed FloatTask ring with a running timer of 26:05 in a small pill.">
+            <img class="r shot-d" src="shots/ring-dark.webp" width="247" height="175" alt="The collapsed FloatTask ring with a running timer of 26:05 in a small pill.">
           </figure>
           <p>A small circle with the FloatTask mark and one arc per goal, and the running time beside it. Click to start or pause; drag it anywhere.</p>
           <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>L</kbd> to show or tuck away</p>
@@ -277,8 +269,8 @@
         <div class="card size" style="--c: var(--a-tasks)">
           <div class="band"><h3>The widget</h3></div>
           <figure class="stage">
-            <img class="w shot-l" src="shots/widget-light.webp" width="538" height="874" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals and every other open task, each with a timer.">
-            <img class="w shot-d" src="shots/widget-dark.webp" width="538" height="874" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals and every other open task, each with a timer.">
+            <img class="w shot-l" src="shots/widget-light.webp" width="640" height="879" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals and every other open task, each with a timer.">
+            <img class="w shot-d" src="shots/widget-dark.webp" width="640" height="879" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals and every other open task, each with a timer.">
           </figure>
           <p>Every open task with a timer on each, plus a Meetings tab. Drag its top edge to make it taller.</p>
           <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>Space</kbd> jots a task from any app</p>
@@ -289,7 +281,7 @@
             <img class="a shot-l" src="shots/myday-light.webp" width="2400" height="1500" alt="My Day in the full app.">
             <img class="a shot-d" src="shots/myday-dark.webp" width="2400" height="1500" alt="My Day in the full app.">
           </figure>
-          <p>Your day on one screen: the task in focus and its next small step, what's next, three must-dos, and the rest of today around your meetings.</p>
+          <p>Your day on one screen: the task in focus and its small steps, the rest of your goals in a list, and the rest of today around your meetings.</p>
           <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>F</kbd> opens it on My Day</p>
         </div>
       </div>
@@ -300,7 +292,7 @@
         <div class="copy">
           <p class="eyebrow">My Day</p>
           <h3 id="day-h">Pick a few goals. Give each one your time.</h3>
-          <p>The full app opens on My Day: the task in focus with its timer and the next small step, the one task after it, three must-dos, and the rest of today laid out in the gaps between your meetings.</p>
+          <p>The full app opens on My Day: one card for the task in focus, with its timer and small steps, then the rest of today's goals as a plain list, and the rest of today laid out in the gaps between your meetings.</p>
           <ul class="ticks">
             <li>A timer that only counts up — nothing ticks down at you</li>
             <li>Break a task into small steps and finish them one at a time</li>
@@ -310,7 +302,7 @@
           </ul>
         </div>
         <div class="art" style="--c: var(--a-myday)">
-          <img class="wide shot-l" src="shots/myday-light.webp" width="2400" height="1500" alt="My Day: the task in focus with a count-up timer of 26 minutes and three small steps, the next task after a client check-in, today's three must-dos, and the rest of today with meetings and goals on a timeline.">
+          <img class="wide shot-l" src="shots/myday-light.webp" width="2400" height="1500" alt="My Day: the task in focus with a count-up timer of 26 minutes, its description and three small steps, the rest of today's goals as a list, and the rest of today with meetings and goals on a timeline.">
           <img class="wide shot-d" src="shots/myday-dark.webp" width="2400" height="1500" alt="My Day in the Dark theme.">
         </div>
       </div>
@@ -342,8 +334,8 @@
           <p style="font-size:15px;color:var(--muted)">It asks before it changes or deletes anything. Built in — sign in with Google and it's on, no API key needed.</p>
         </div>
         <div class="art" style="--c: var(--a-assistant)">
-          <img class="tall shot-l" src="shots/widget-light.webp" width="538" height="874" alt="The FloatTask widget with the task in focus and every open task, each with a timer.">
-          <img class="tall shot-d" src="shots/widget-dark.webp" width="538" height="874" alt="The FloatTask widget in the Dark theme.">
+          <img class="tall shot-l" src="shots/widget-light.webp" width="640" height="879" alt="The FloatTask widget with the task in focus and every open task, each with a timer.">
+          <img class="tall shot-d" src="shots/widget-dark.webp" width="640" height="879" alt="The FloatTask widget in the Dark theme.">
         </div>
       </div>
     </section>
@@ -495,6 +487,7 @@
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>
     <a href="/contact.html">Contact</a>
+    <a href="#" data-cookie-settings>Cookie settings</a>
     <span class="right">floattask.com</span>
   </footer>
 </div>

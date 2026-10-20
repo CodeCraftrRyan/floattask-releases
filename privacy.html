@@ -44,15 +44,7 @@
   footer .right { margin-left: 0; }
 }
 </style>
-<!-- Google tag (gtag.js): website visits only, never the app -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B4QZBKSNK3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-B4QZBKSNK3');
-</script>
+<script src="/consent.js" defer></script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -116,8 +108,9 @@
       <p>If you use the contact form we keep the message, your name and email, and the topic you chose so we can reply and keep track of bugs.</p>
       <h3>What we don't collect</h3>
       <p>We don't run advertising trackers anywhere, and the app has no analytics. We don't collect your IP address beyond what our hosting providers and Google Analytics log, and don't read your files, screen or other apps.</p>
-      <h3>Website analytics</h3>
-      <p>floattask.com uses Google Analytics to understand how many people visit and which pages they read. It sets cookies and records pages viewed, approximate location, device and browser, and where the visit came from. We use this only to improve the site; it is never linked to your FloatTask account or tasks. You can opt out with your browser's tracking protection or <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">Google's opt-out add-on</a>. The site also remembers your light/dark preference in your browser.</p>
+      <h3 id="analytics">Website analytics</h3>
+      <p>floattask.com uses Google Analytics to understand how many people visit and which pages they read. When it runs, it sets cookies and records pages viewed, approximate location, device and browser, and where the visit came from. We use this only to improve the site; it is never linked to your FloatTask account or tasks.</p>
+      <p>If your device is set to a time zone in Europe (including the UK and Switzerland), the site asks first, and Google Analytics stays off unless you choose <em>Allow analytics</em>. Elsewhere it runs by default. Anyone can change their choice at any time from <a href="#" data-cookie-settings>Cookie settings</a> at the bottom of every page; choosing <em>No thanks</em> stops it and removes its cookies. Your choice is kept in your browser. You can also opt out with your browser's tracking protection or <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">Google's opt-out add-on</a>. The site also remembers your light/dark preference in your browser.</p>
 
       <h2 id="google">Google data</h2>
       <p>FloatTask asks Google for two things, at two different times:</p>
@@ -183,6 +176,7 @@
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>
     <a href="/contact.html">Contact</a>
+    <a href="#" data-cookie-settings>Cookie settings</a>
     <span class="right">floattask.com</span>
   </footer>
 </div>
