@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /billing.html
+
+Sitemap: https://floattask.com/sitemap.xml

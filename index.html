@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://floattask.com/">
 <meta property="og:title" content="FloatTask — your day, always in view">
-<meta property="og:description" content="Today's goals and a running timer that stay on top of every app. A calm planner for Mac and Windows — 7 days free.">
+<meta property="og:description" content="Today's goals and a running timer that stay on top of every app. A planner for Mac and Windows, free for 7 days.">
 <meta property="og:image" content="https://floattask.com/shots/og-home.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="tokens.css">
@@ -192,11 +192,33 @@
   .demo-ring .hint { display: none; }
 }
 @media (prefers-reduced-motion: no-preference) { .demo-panel { animation: rise .18s ease-out; } @keyframes rise { from { transform: translateY(8px); opacity: .6; } } }
+
+/* My Day headline is the page's h2 now */
+.feature .feature-head { font-size: clamp(1.9rem, 3.4vw, 2.6rem); line-height: 1.06; letter-spacing: -.015em; margin: 0; text-wrap: balance; }
+/* Assist: one typed line and what FloatTask makes of it */
+.typed-wrap { margin-top: clamp(72px, 10vw, 128px); max-width: 860px; margin-inline: auto; text-align: center; display: grid; gap: 22px; justify-items: center; }
+.typed-head { font: 700 clamp(1.6rem, 2.8vw, 2.1rem)/1.1 var(--f-serif); margin: 0; }
+.typed-in { margin: 0; font: 400 clamp(19px, 2.3vw, 25px)/1.45 var(--f-body); color: var(--ink); padding: 18px 24px; border-radius: 14px;
+  background: var(--surface); border: 1px solid var(--line-strong); box-shadow: var(--shadow-sm); text-align: left; width: 100%; box-sizing: border-box; }
+.typed-in::after { content: ""; display: inline-block; width: 2px; height: 1.05em; margin-left: 3px; vertical-align: -.15em; background: var(--focus); }
+@media (prefers-reduced-motion: no-preference) { .typed-in::after { animation: caret 1.1s steps(1) infinite; } @keyframes caret { 50% { opacity: 0; } } }
+.typed-out { margin: 0; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.typed-out span { font: 600 15px/1 var(--f-body); padding: 9px 14px; border-radius: 999px; background: color-mix(in oklab, var(--a-assistant) 14%, var(--surface)); border: 1px solid color-mix(in oklab, var(--a-assistant) 30%, transparent); color: var(--ink); }
+.typed-out span:first-child { font: 700 16px/1 var(--f-serif); }
+.typed-note { margin: 0; max-width: 54ch; color: var(--ink-2); font-size: 16px; }
+/* Work and school, side by side */
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px, 3vw, 32px); }
+.pane { margin: 0; display: grid; gap: 14px; align-content: start; }
+.pane img { width: 100%; height: auto; border-radius: 14px; box-shadow: var(--shadow); border: 1px solid var(--line); }
+.pane figcaption { color: var(--ink-2); font-size: 16px; max-width: 46ch; }
+.pane figcaption b { color: var(--ink); font-family: var(--f-serif); font-size: 18px; }
+.also-line { margin: clamp(20px, 3vw, 28px) 0 0; color: var(--muted); font-size: 15px; }
+@media (max-width: 760px) { .pair { grid-template-columns: 1fr; } }
 </style>
 <script src="/consent.js" defer></script>
 </head>
 <body>
-<div class="beta-bar prelaunch-only" role="note">FloatTask is in private beta — public launch is coming soon. <a href="/contact.html">Ask for early access</a></div>
+<div class="beta-bar prelaunch-only" role="note">FloatTask is in private beta. Public launch is coming soon. <a href="/contact.html">Ask for early access</a></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="mark" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="11" rx="5.5"/><path d="M9 8.5l2 2 4-4M5 18h14M8 21.5h8"/></g></symbol>
   <symbol id="apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.9-.9-3.1-.8-1.6 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6-.1 0-2.4-.9-2.4-3.7zM14.2 5.6c.6-.8 1.1-1.8 1-2.9-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.3z"/></symbol>
@@ -217,8 +239,6 @@
     <a class="logo" href="/" aria-label="FloatTask home"><svg width="26" height="26"><use href="#mark"/></svg>FloatTask</a>
     <nav aria-label="Site">
       <a href="#how">How it works</a>
-      <a href="#features">Features</a>
-      <a href="#uses">Work, school &amp; life</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="/contact.html">Contact</a>
@@ -229,14 +249,13 @@
 
   <main id="top">
     <div class="hero">
-      <p class="eyebrow">The planner that stays on screen</p>
       <h1>FloatTask <em>always in your corner</em></h1>
-      <p class="lede">Most planners live in a tab you forget. FloatTask keeps today's goals and a running timer on top of every app, so the work you meant to do stays in front of you — and your whole day sits on one calm screen when you need the bigger picture.</p>
+      <p class="lede">Most planners fail for one reason: you forget to open them. FloatTask sits on top of every app with today's goals and a timer for the thing you're doing right now, so there's nothing to remember.</p>
       <div class="cta">
         <a class="btn primary launch-only" id="hero-dl" href="#download"><svg><use href="#down"/></svg><span>Download FloatTask</span></a>
         <a class="btn primary prelaunch-only" href="/contact.html">Request early access</a>
         <a class="btn quiet" href="#how">See how it works</a>
-        <p class="meta"><span>7 days free</span><span>Cancel anytime</span><span>macOS &amp; Windows</span><span id="hero-version">Free download</span></p>
+        <p class="meta"><span>7 days free, then $8/mo</span><span>Cancel anytime</span><span>macOS &amp; Windows</span><span id="hero-version" hidden></span></p>
       </div>
 
       <div class="screen ground-underwater" role="img" aria-label="A desktop with FloatTask open on My Day: the task in focus with a running timer and its small steps, the rest of today's goals in a list, and the rest of the day laid out between meetings. The FloatTask widget is pinned in the lower-left corner, and the collapsed timer ring sits above it.">
@@ -250,10 +269,19 @@
       </div>
     </div>
 
+    <section class="letter-wrap" aria-labelledby="letter-h">
+      <article class="letter">
+        <h2 id="letter-h">Why I made this</h2>
+        <p>I love task managers. None of them ever worked for me.</p>
+        <p>My job is never a straight line, and I kept bending my work to fit the app instead of the other way round. Boards felt like clutter. And the moment I switched windows, the list was gone, and my focus went with it.</p>
+        <p>So I built the one I wanted: today's goals, and a timer for the thing I'm doing right now, sitting on top of everything else on my screen. I use it every day. I hope it helps you too.</p>
+        <p class="sig">Ryan Haviland<span>Maker of FloatTask</span></p>
+      </article>
+    </section>
+
     <section id="how" class="ground ground-underwater" aria-labelledby="how-h">
       <div class="sec-head">
-        <p class="eyebrow">One day, three sizes</p>
-        <h2 id="how-h">As small or as big as the moment needs.</h2>
+        <h2 id="how-h">It stays on your screen until you tell it to go.</h2>
         <p>The ring, the widget and the full app show the same day. Start a timer in one and it's running in the others.</p>
       </div>
       <div class="sizes">
@@ -263,25 +291,25 @@
             <img class="r shot-l" src="shots/ring-light.webp" width="247" height="175" alt="The collapsed FloatTask ring with a running timer of 26:05 in a small pill.">
             <img class="r shot-d" src="shots/ring-dark.webp" width="247" height="175" alt="The collapsed FloatTask ring with a running timer of 26:05 in a small pill.">
           </figure>
-          <p>A small circle with the FloatTask mark and one arc per goal, and the running time beside it. Click to start or pause; drag it anywhere.</p>
+          <p>A small circle with the running time beside it. Click to pause, drag it anywhere. When an app goes full-screen, the widget tucks into it.</p>
           <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>L</kbd> to show or tuck away</p>
         </div>
         <div class="card size" style="--c: var(--a-tasks)">
           <div class="band"><h3>The widget</h3></div>
           <figure class="stage">
-            <img class="w shot-l" src="shots/widget-light.webp" width="640" height="879" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals and every other open task, each with a timer.">
-            <img class="w shot-d" src="shots/widget-dark.webp" width="640" height="879" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals and every other open task, each with a timer.">
+            <img class="w shot-l" src="shots/widget-light.webp" width="640" height="879" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals, each with a timer." loading="lazy">
+            <img class="w shot-d" src="shots/widget-dark.webp" width="640" height="879" alt="The FloatTask widget: the task in focus with its timer ring, then today's goals, each with a timer." loading="lazy">
           </figure>
-          <p>Every open task with a timer on each, plus a Meetings tab. Drag its top edge to make it taller.</p>
+          <p>Every open task with its own timer, and a Meetings tab. Drag the top edge to make it taller.</p>
           <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>Space</kbd> jots a task from any app</p>
         </div>
         <div class="card size" style="--c: var(--a-insights)">
           <div class="band"><h3>The full app</h3></div>
           <figure class="stage">
-            <img class="a shot-l" src="shots/myday-light.webp" width="2400" height="1500" alt="My Day in the full app.">
-            <img class="a shot-d" src="shots/myday-dark.webp" width="2400" height="1500" alt="My Day in the full app.">
+            <img class="a shot-l" src="shots/myday-light.webp" width="2400" height="1500" alt="My Day in the full app." loading="lazy">
+            <img class="a shot-d" src="shots/myday-dark.webp" width="2400" height="1500" alt="My Day in the full app." loading="lazy">
           </figure>
-          <p>Your day on one screen: the task in focus and its small steps, the rest of your goals in a list, and the rest of today around your meetings.</p>
+          <p>The whole day on one screen, for when you want to plan instead of do.</p>
           <p class="keys"><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>F</kbd> opens it on My Day</p>
         </div>
       </div>
@@ -290,97 +318,33 @@
     <section id="features" aria-labelledby="day-h">
       <div class="feature">
         <div class="copy">
-          <p class="eyebrow">My Day</p>
-          <h3 id="day-h">Pick a few goals. Give each one your time.</h3>
-          <p>The full app opens on My Day: one card for the task in focus, with its timer and small steps, then the rest of today's goals as a plain list, and the rest of today laid out in the gaps between your meetings.</p>
+          <h2 id="day-h" class="feature-head">Pick a few goals. Give them your time.</h2>
+          <p>The full app opens on My Day. One card holds the task you're on, with its timer and small steps. Everything else for today waits in a plain list, and your meetings sit on a timeline beside it.</p>
           <ul class="ticks">
-            <li>A timer that only counts up — nothing ticks down at you</li>
-            <li>Break a task into small steps and finish them one at a time</li>
-            <li>Google Calendar meetings and class times on the same timeline</li>
-            <li>Park a stray thought in Notes without leaving the task</li>
-            <li>An evening journal to close the day and set up tomorrow</li>
+            <li>The timer only counts up. Nothing ticks down at you.</li>
+            <li>Big tasks become small steps you finish one at a time.</li>
+            <li>Reminders at the time you set, and a nudge the day before something's due.</li>
+            <li>Wrap up day opens a short journal and sets up tomorrow.</li>
           </ul>
         </div>
         <div class="art" style="--c: var(--a-myday)">
-          <img class="wide shot-l" src="shots/myday-light.webp" width="2400" height="1500" alt="My Day: the task in focus with a count-up timer of 26 minutes, its description and three small steps, the rest of today's goals as a list, and the rest of today with meetings and goals on a timeline.">
-          <img class="wide shot-d" src="shots/myday-dark.webp" width="2400" height="1500" alt="My Day in the Dark theme.">
-        </div>
-      </div>
-
-      <div class="feature flip">
-        <div class="copy">
-          <p class="eyebrow">Projects</p>
-          <h3>Every project at a glance — and what it's taking.</h3>
-          <p>Every project in one list, its tasks grouped under it. Open one for its tasks and notes, or switch to Insights to see where the time went.</p>
-          <ul class="ticks">
-            <li>Insights across projects: tasks, done this week, progress and time logged</li>
-            <li>Time taken against your estimates, once tasks finish</li>
-            <li>Rename a project or pick any colour for its label</li>
-          </ul>
-        </div>
-        <div class="art" style="--c: var(--a-projects)">
-          <img class="wide shot-l" src="shots/projects-light.webp" width="2400" height="1500" alt="The Projects page on its Insights tab: totals, tasks finished per day, and a table of every project with tasks, open, done this week, progress and time logged.">
-          <img class="wide shot-d" src="shots/projects-dark.webp" width="2400" height="1500" alt="The Projects Insights tab in the Dark theme.">
-        </div>
-      </div>
-
-      <div class="feature">
-        <div class="copy">
-          <p class="eyebrow">Assist</p>
-          <h3>Type it the way you'd say it.</h3>
-          <p>Ask Assist to plan your day, break a big task into steps, or sum up your notes. Or jot a messy line and let it work out the title, due date and project.</p>
-          <p class="example">send budget draft to sam fri 3pm for q4 planning, use revised version w/ travel split out
-            <span class="arrow">→ “Send budget draft to Sam” · Friday 3:00 PM · Follow-up · Q4 planning</span></p>
-          <p style="font-size:15px;color:var(--muted)">It asks before it changes or deletes anything. Built in — sign in with Google and it's on, no API key needed.</p>
-        </div>
-        <div class="art" style="--c: var(--a-assistant)">
-          <img class="tall shot-l" src="shots/widget-light.webp" width="640" height="879" alt="The FloatTask widget with the task in focus and every open task, each with a timer.">
-          <img class="tall shot-d" src="shots/widget-dark.webp" width="640" height="879" alt="The FloatTask widget in the Dark theme.">
+          <img class="wide shot-l" src="shots/myday-light.webp" width="2400" height="1500" alt="My Day: the task in focus with a count-up timer of 26 minutes, its description and three small steps, the rest of today's goals as a list, and the rest of today with meetings and goals on a timeline." loading="lazy">
+          <img class="wide shot-d" src="shots/myday-dark.webp" width="2400" height="1500" alt="My Day in the Dark theme." loading="lazy">
         </div>
       </div>
     </section>
 
-    <section id="uses" aria-labelledby="uses-h">
-      <div class="sec-head">
-        <p class="eyebrow">Work, school &amp; life</p>
-        <h2 id="uses-h">Pick what it's for. Pick more than one.</h2>
-        <p>Choose when you first open FloatTask, and change it any time in Settings. Turning one off hides it; nothing is deleted.</p>
-      </div>
-      <div class="uses">
-        <div class="card" style="--c: var(--a-tasks)">
-          <div class="band"><svg class="ico"><use href="#i-proj"/></svg><h3>Work</h3></div>
-          <p>Projects, meetings and the working day — with Google Calendar prep and time by project.</p>
-          <ul class="ticks"><li>Meeting notes and suggested prep tasks</li><li>Working hours and a plan for the free gaps</li></ul>
-        </div>
-        <div class="card" style="--c: var(--a-classes)">
-          <div class="band"><svg class="ico"><use href="#i-class"/></svg><h3>School</h3></div>
-          <p>A Classes page with your timetable, and homework sorted by when it's due.</p>
-          <ul class="ticks"><li>Teacher, room and meeting times for each class</li><li>Class times on My Day; "Due soon" in the widget</li><li>Study time by class in Insights</li></ul>
-        </div>
-        <div class="card" style="--c: var(--a-myday)">
-          <div class="band"><svg class="ico"><use href="#i-home"/></svg><h3>Personal</h3></div>
-          <p>Home, errands and life admin, with reminders at the time you set.</p>
-          <ul class="ticks"><li>Errand, Chore, Appointment, Bill and Call task types</li><li>Home, Errands and Family lists to start with</li></ul>
-        </div>
-      </div>
-      <div class="feature" style="margin-top: clamp(40px, 6vw, 72px)">
-        <div class="copy">
-          <p class="eyebrow">For students</p>
-          <h3>Your week of classes, and what's due next.</h3>
-          <p>Add each class once — its teacher, room and when it meets. The week lays itself out, and every class keeps its own homework, reading and exam prep in order of due date.</p>
-        </div>
-        <div class="art" style="--c: var(--a-classes)">
-          <img class="wide shot-l" src="shots/classes-light.webp" width="2400" height="1500" alt="The Classes page: this week's timetable with Biology, Calculus, English and Chemistry, and a card per class with its teacher, room, times, next class and homework by due date.">
-          <img class="wide shot-d" src="shots/classes-dark.webp" width="2400" height="1500" alt="The Classes page in the Dark theme.">
-        </div>
-      </div>
+    <section class="typed-wrap" aria-labelledby="assist-h">
+      <h2 id="assist-h" class="typed-head">Type it the way you'd say it.</h2>
+      <p class="typed-in">send budget draft to sam fri 3pm for q4 planning, use revised version w/ travel split out</p>
+      <p class="typed-out"><span>Send budget draft to Sam</span><span>Friday 3:00 PM</span><span>Follow-up</span><span>Q4 planning</span></p>
+      <p class="typed-note">That's Assist. It can also plan your day around your meetings or break a big task down. It asks before it changes or deletes anything, and there's no API key to set up.</p>
     </section>
 
     <section id="themes" class="ground ground-underwater" aria-labelledby="themes-h">
       <div class="sec-head">
-        <p class="eyebrow">Make it yours</p>
-        <h2 id="themes-h">Painted scenes, or something quieter.</h2>
-        <p>Four painted scenes come with a paid plan. The widget follows along.</p>
+        <h2 id="themes-h">Four painted scenes, if you want them.</h2>
+        <p>They come with a paid plan, and the widget follows along. Prefer plain? There are nine quieter themes too.</p>
       </div>
       <div class="themes">
         <figure><img src="shots/theme-garden.webp" width="1440" height="900" alt="FloatTask's home in the Garden theme, with leaves and blossoms around the edges." loading="lazy"><figcaption><b>Garden</b> · leaves &amp; blossoms</figcaption></figure>
@@ -388,47 +352,54 @@
         <figure><img src="shots/theme-underwater.webp" width="1440" height="900" alt="FloatTask's home in the Underwater theme." loading="lazy"><figcaption><b>Underwater</b> · deep sea &amp; sea glass</figcaption></figure>
         <figure><img src="shots/theme-space.webp" width="1440" height="900" alt="FloatTask's home in the Space theme." loading="lazy"><figcaption><b>Space</b> · starlight</figcaption></figure>
       </div>
-      <p class="also">Also: Warm Paper, Glacier, Light and Dark, plus four deep colour themes — Teal, Navy, Plum and Forest — or follow your computer's setting.<span class="swatches" aria-hidden="true"><i style="background:#f3ece0"></i><i style="background:#e3f1fb"></i><i style="background:#fafafb"></i><i style="background:#1b1c21"></i><i style="background:#243b3c"></i><i style="background:#262f4c"></i><i style="background:#3d2545"></i><i style="background:#223e2f"></i></span></p>
+      <p class="also">Warm Paper, Glacier, Light, Dark, Teal, Navy, Plum and Forest, or whatever your computer is set to.<span class="swatches" aria-hidden="true"><i style="background:#f3ece0"></i><i style="background:#e3f1fb"></i><i style="background:#fafafb"></i><i style="background:#1b1c21"></i><i style="background:#243b3c"></i><i style="background:#262f4c"></i><i style="background:#3d2545"></i><i style="background:#223e2f"></i></span></p>
     </section>
 
-    <section aria-labelledby="facts-h">
-      <div class="sec-head"><p class="eyebrow">The small things</p><h2 id="facts-h">Made to stay out of your way.</h2></div>
-      <div class="facts">
-        <div class="fact"><h3>A timer on every task</h3><p>One click to start. Time adds up by project, and an optional bell rings every 15, 30 or 60 minutes.</p></div>
-        <div class="fact"><h3>Ready for your meetings</h3><p>Connect Google Calendar to see what's next, keep notes per meeting, and get suggested prep tasks.</p></div>
-        <div class="fact"><h3>A nudge at the right time</h3><p>Reminders at the time you set, and a note the day before anything is due.</p></div>
-        <div class="fact"><h3>Out of the way when you need it</h3><p>Tucks into the ring when an app goes full-screen, and fades back until you hover over it.</p></div>
-        <div class="fact"><h3>Jot it from anywhere</h3><p><kbd>⌘</kbd> <kbd>⇧</kbd> <kbd>Space</kbd> opens a quick box over any app. Type, press return, carry on.</p></div>
-        <div class="fact"><h3>Your tasks stay on your computer</h3><p>Tasks, notes and timers are stored on your computer, with a daily backup. Signing in with Google turns on Assist and your plan.</p></div>
+    <section id="uses" aria-labelledby="uses-h">
+      <div class="sec-head">
+        <h2 id="uses-h">For work, for school, or both.</h2>
+        <p>Choose when you first open FloatTask, and change it any time. Turning one off hides it; nothing is deleted.</p>
       </div>
+      <div class="pair">
+        <figure class="pane" style="--c: var(--a-projects)">
+          <img class="shot-l" src="shots/projects-light.webp" width="2400" height="1500" alt="The Projects page on its Insights tab: totals, tasks finished per day, and a table of every project with tasks, open, done this week, progress and time logged." loading="lazy">
+          <img class="shot-d" src="shots/projects-dark.webp" width="2400" height="1500" alt="The Projects Insights tab in the Dark theme." loading="lazy">
+          <figcaption><b>Work.</b> Projects with their tasks and notes, meeting prep from Google Calendar, and where the time actually went.</figcaption>
+        </figure>
+        <figure class="pane" style="--c: var(--a-classes)">
+          <img class="shot-l" src="shots/classes-light.webp" width="2400" height="1500" alt="The Classes page: this week's timetable with Biology, Calculus, English and Chemistry, and a card per class with its teacher, room, times, next class and homework by due date." loading="lazy">
+          <img class="shot-d" src="shots/classes-dark.webp" width="2400" height="1500" alt="The Classes page in the Dark theme." loading="lazy">
+          <figcaption><b>School.</b> Add each class once. The week lays itself out, and homework sorts itself by when it's due.</figcaption>
+        </figure>
+      </div>
+      <p class="also-line">There's a Personal mode too, with errands, chores, bills and calls.</p>
     </section>
 
     <section id="pricing" class="ground ground-underwater" aria-labelledby="price-h">
       <div class="sec-head">
-        <p class="eyebrow">Pricing</p>
-        <h2 id="price-h">Simple pricing. Seven days free.</h2>
+        <h2 id="price-h">$8 a month. Free for the first week.</h2>
         <p>Download FloatTask, sign in with Google and your trial starts. One plan covers every computer you sign in on. Switch between Pro and Pro+, or cancel, anytime from Settings.</p>
       </div>
       <div class="plans">
         <div class="plan pro" style="--c: var(--a-myday)">
           <div class="band"><h3>FloatTask Pro</h3><span class="trial-tag">7 days free</span></div>
           <p class="price"><b>$8</b><span>/mo</span></p>
-          <p class="alt-price">or $72/yr — save 25%</p>
+          <p class="alt-price">or $72/yr, which saves 25%</p>
           <ul class="ticks">
             <li>The ring, widget and full app on Mac and Windows</li>
             <li>Assist: plan your day, break down big tasks, add tasks in plain words, and daily briefs</li>
             <li>Google Calendar, timers, Classes and all four painted scenes</li>
-            <li>Try it free for 7 days — cancel before it ends and you pay nothing</li>
+            <li>Free for 7 days. Cancel before it ends and you pay nothing</li>
           </ul>
           <a class="btn primary launch-only" href="#download"><svg><use href="#down"/></svg>Start 7-day free trial</a>
           <a class="btn primary prelaunch-only" href="/contact.html">Request early access</a>
-          <p class="how-upgrade prelaunch-only">Launching soon — this is the price at launch. Nothing can be purchased yet.</p>
+          <p class="how-upgrade prelaunch-only">Launching soon. This is the price at launch. Nothing can be purchased yet.</p>
           <p class="how-upgrade launch-only">You start the trial the first time you open FloatTask. Card required; secure checkout by Stripe. One trial per account.</p>
         </div>
         <div class="plan" style="--c: var(--a-insights)">
           <div class="band"><h3>FloatTask Pro+</h3><span class="trial-tag">7 days free</span></div>
           <p class="price"><b>$15</b><span>/mo</span></p>
-          <p class="alt-price">or $135/yr — save 25%</p>
+          <p class="alt-price">or $135/yr, which saves 25%</p>
           <ul class="ticks">
             <li>Everything in Pro</li>
             <li>More room in Assist each day</li>
@@ -437,19 +408,17 @@
           </ul>
           <a class="btn quiet launch-only" href="#download"><svg><use href="#down"/></svg>Start with Pro+</a>
           <a class="btn quiet prelaunch-only" href="/contact.html">Request early access</a>
-          <p class="how-upgrade">Already on Pro? Upgrade from Settings — the difference is prorated.</p>
+          <p class="how-upgrade">Already on Pro? Upgrade from Settings and pay only the difference.</p>
         </div>
       </div>
     </section>
 
     <section id="faq" aria-labelledby="faq-h">
-      <div class="sec-head"><p class="eyebrow">Questions</p><h2 id="faq-h">Before you download.</h2></div>
+      <div class="sec-head"><h2 id="faq-h">Before you download.</h2></div>
       <div class="faq">
-        <details><summary>What makes FloatTask different from other task apps?</summary><p>It stays on screen. Today's goals and the running timer float over every app, so you don't have to remember to open a planner. The full app is there when you want to plan, and out of the way when you don't.</p></details>
-        <details><summary>Do I need a Google account?</summary><p>Yes — you sign in with Google to start your trial, and your plan follows that account to every computer. Connecting Google Calendar is optional and read-only.</p></details>
-        <details><summary>Where is my data kept?</summary><p>Tasks, notes and timers are stored on your computer. When you use Assist, only the tasks and events it needs are sent to generate a reply — FloatTask keeps counts, not content. No ads, no tracking, no selling data. Details are in the <a href="/privacy.html">privacy policy</a>.</p></details>
-        <details><summary>What happens when the trial ends?</summary><p>Your plan starts on day 8 unless you cancel before then from Settings — no charge if you do. You can switch plans or cancel at any time after that too.</p></details>
-        <details><summary>Does it work for school, or only work?</summary><p>Both, plus personal life. Pick Work, School, Personal or any mix when you first open FloatTask; School adds a Classes page with your timetable and what's due.</p></details>
+        <details><summary>Do I need a Google account?</summary><p>Yes. You sign in with Google to start your trial, and your plan follows that account to every computer. Connecting Google Calendar is optional and read-only.</p></details>
+        <details><summary>Where is my data kept?</summary><p>Tasks, notes and timers are stored on your computer. When you use Assist, only the tasks and events it needs are sent to generate a reply, and FloatTask keeps counts, not content. No ads, and nothing is ever sold. The app itself has no analytics; this website uses Google Analytics, which you can turn off from Cookie settings. Details are in the <a href="/privacy.html">privacy policy</a>.</p></details>
+        <details><summary>What happens when the trial ends?</summary><p>Your plan starts on day 8 unless you cancel before then from Settings, and then there's no charge. You can switch plans or cancel at any time after that too.</p></details>
         <details><summary>Which computers does it run on?</summary><p>macOS on Apple Silicon or Intel, and Windows 10 or 11. The app updates itself when a new version is out.</p></details>
       </div>
     </section>
@@ -462,7 +431,7 @@
           <h2 class="prelaunch-only">Private beta</h2>
           <p>For macOS on Apple Silicon or Intel, and Windows 10 or 11. Sign in with Google on first launch to start your 7-day free trial. The app updates itself when a new version is out.</p>
           <div class="first-run">
-            <p><b>First launch on a Mac:</b> drag FloatTask to Applications and open it. If macOS says it can't verify the developer, click Done, then open System Settings › Privacy &amp; Security, scroll down and click <b>Open Anyway</b>. You only need to do this once.</p>
+            <p><b>First launch on a Mac:</b> drag FloatTask to Applications and open it. It's signed and checked by Apple, so it opens like any other app.</p>
             <p><b>On Windows:</b> if SmartScreen appears, choose More info, then Run anyway.</p>
           </div>
         </div>
@@ -525,7 +494,7 @@
         const name = files[a.dataset.os](v);
         if (names.has(name)) a.href = `https://github.com/${RELEASES_REPO}/releases/download/${rel.tag_name}/${name}`;
       });
-      if (v) document.getElementById('hero-version').textContent = `Version ${v}`;
+      if (v) { const hv = document.getElementById('hero-version'); hv.textContent = `Version ${v}`; hv.hidden = false; }
       if (os) heroBtn.href = document.querySelector(`.dl[data-os="${os}"]`).href;
     })
     .catch(() => { /* release info unavailable: buttons stay on the releases page */ });
@@ -552,7 +521,7 @@
       const doneN = tasks.filter((t) => t.done).length;
       root.innerHTML = `<button class="demo-ring" id="demo-ring" aria-expanded="false" aria-label="FloatTask demo: ${doneN} of ${tasks.length} goals done${r ? ', timer ' + fmt(r.secs) : ''}. Click to open.">
         <svg class="arc" viewBox="0 0 100 100" aria-hidden="true">${arc(44, (doneN + (r ? 0.5 : 0)) / tasks.length)}</svg>${icon('mark', 'mark')}
-        ${r ? `<span class="t" data-t>${fmt(r.secs)}</span>` : ''}<span class="hint">This is FloatTask — try it</span></button>`;
+        ${r ? `<span class="t" data-t>${fmt(r.secs)}</span>` : ''}<span class="hint">This is FloatTask. Try it</span></button>`;
       return;
     }
     root.innerHTML = `<div class="demo-panel" role="region" aria-label="FloatTask demo widget">
