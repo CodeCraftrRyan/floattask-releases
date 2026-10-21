@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Get updates · FloatTask</title>
+<meta name="description" content="Get FloatTask news by email: new features, release notes and School mode. A few emails a month at most.">
+<meta name="theme-color" content="#f6f1e8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,500;1,8..60,600&display=swap">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="site.css">
+<link rel="canonical" href="https://floattask.com/waitlist.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23b07a3a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='11' rx='5.5'/%3E%3Cpath d='M9 8.5l2 2 4-4M5 18h14M8 21.5h8'/%3E%3C/g%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://floattask.com/waitlist.html">
+<meta property="og:title" content="Get FloatTask updates">
+<meta property="og:description" content="New features and release notes by email. A few emails a month at most.">
+<meta property="og:image" content="https://floattask.com/shots/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FloatTask: Most planners fail because you forget to open them. This one stays on top.">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+/* this page: phone-first (most visitors arrive from an Instagram bio link) */
+.join { padding-block: clamp(16px, 5vw, 56px) 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(28px, 6vw, 72px); align-items: center; }
+.join .copy { display: grid; gap: 16px; align-content: start; max-width: 480px; }
+.join h1 { font-size: clamp(2.3rem, 6vw, 3.9rem); line-height: 1.02; letter-spacing: -.025em; max-width: 12ch; }
+.join h1 em { display: block; font-style: italic; font-weight: 600; color: var(--gold-text); }
+.join .lede { color: var(--ink-2); max-width: 44ch; }
+.shot { border-radius: 22px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow); }
+.shot img { width: 100%; vertical-align: top; }
+
+.signup { display: grid; gap: 14px; margin-top: 6px; }
+.signup label.field { display: grid; gap: 7px; }
+.signup label.field > span { font: 600 14px/1 var(--f-body); color: var(--ink); }
+.signup input[type=email] {
+  width: 100%; height: 46px; font: 400 16px/1.2 var(--f-body); color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line-strong); border-radius: 14px; padding: 0 14px;
+}
+.signup input[type=email]::placeholder { color: var(--muted); }
+.signup input[type=email]:focus { outline: none; border-color: var(--focus); box-shadow: 0 0 0 2px var(--focus); }
+.signup input[aria-invalid="true"] { border-color: var(--danger); }
+.check { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: start; font-size: 15px; line-height: 1.4; color: var(--ink-2); cursor: pointer; }
+.check input { width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--gold-text); }
+.signup .btn { justify-content: center; width: 100%; }
+.signup .btn[disabled] { opacity: .6; cursor: progress; }
+.fine { font-size: 14px; line-height: 1.45; color: var(--muted); }
+.fine a { color: var(--ink-2); }
+.err { display: flex; gap: 8px; align-items: flex-start; font-size: 15px; font-weight: 600; color: var(--danger); }
+.err[hidden] { display: none; }
+.err svg { width: 18px; height: 18px; flex: none; margin-top: 2px; }
+.hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.trial { border-top: 1px solid var(--line); padding-top: 14px; margin-top: 4px; font-size: 15px; color: var(--ink-2); }
+.trial a { font-weight: 600; }
+
+.done { display: grid; gap: 14px; justify-items: start; }
+.done .ok { display: flex; align-items: center; gap: 10px; font: 700 clamp(1.6rem, 4vw, 2rem)/1.1 var(--f-serif); color: var(--ink); }
+.done .ok svg { width: 26px; height: 26px; color: var(--ok); flex: none; }
+.done .msg { color: var(--ink-2); max-width: 44ch; }
+.done .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+
+@media (max-width: 860px) {
+  .join { grid-template-columns: 1fr; }
+  .join .copy { max-width: none; }
+  .join .shot { order: 2; }
+}
+@media (max-width: 600px) {
+  .done .actions .btn { width: 100%; justify-content: center; }
+}
+</style>
+<script src="/consent.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="11" rx="5.5"/><path d="M9 8.5l2 2 4-4M5 18h14M8 21.5h8"/></g></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="alert" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5h.01"/></g></symbol>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/" aria-label="FloatTask home"><svg width="26" height="26"><use href="#mark"/></svg>FloatTask</a>
+    <nav aria-label="Site">
+      <a href="/#how">How it works</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/whats-new.html">What's new</a>
+    </nav>
+  </header>
+
+  <main class="join">
+    <div class="copy" id="panel">
+      <p class="eyebrow">Updates list</p>
+      <h1>A calm day, <em>one goal at a time.</em></h1>
+      <p class="lede">A task companion that floats in the corner of your screen and counts the time you give today's goals. Get new features and release notes by email.</p>
+
+      <form class="signup" id="signup" novalidate>
+        <label class="field"><span>Email</span><input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required></label>
+        <label class="check"><input type="checkbox" name="school"><span>Include news about School mode (Classes)</span></label>
+        <label class="hp" aria-hidden="true">Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        <p class="err" id="err" role="alert" hidden></p>
+        <button class="btn primary" type="submit" id="send">Get updates</button>
+        <p class="fine">A few emails a month at most. Every email has a link to unsubscribe. <a href="/privacy.html#updates">Privacy</a></p>
+        <p class="trial">Ready now? <a href="/#download">Start 7-day free trial</a> · from $8/mo</p>
+      </form>
+    </div>
+
+    <div class="shot">
+      <img class="shot-l" src="shots/myday-light.webp" width="2400" height="1500" alt="My Day in FloatTask: the task in focus with a count-up timer, its small steps, and the rest of today's goals.">
+      <img class="shot-d" src="shots/myday-dark.webp" width="2400" height="1500" alt="My Day in FloatTask: the task in focus with a count-up timer, its small steps, and the rest of today's goals.">
+    </div>
+  </main>
+
+  <footer>
+    <a class="logo" href="/"><svg width="22" height="22"><use href="#mark"/></svg>FloatTask</a>
+    <span>© 2026 FloatTask</span>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/whats-new.html">What's new</a>
+    <a href="#" data-cookie-settings>Cookie settings</a>
+    <span class="right">floattask.com</span>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const ENDPOINT = 'https://gpblsohnxoerwlgcqsaw.supabase.co/functions/v1/waitlist-signup';
+  const panel = document.getElementById('panel');
+  const form = document.getElementById('signup');
+  const err = document.getElementById('err');
+  const send = document.getElementById('send');
+  const q = new URLSearchParams(location.search);
+
+  const post = async (data) => {
+    const res = await fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    const body = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(body.error || "That didn't go through. Try again in a minute.");
+  };
+
+  const showDone = (title, text, email) => {
+    panel.innerHTML = `
+      <div class="done" role="status">
+        <p class="eyebrow">Updates list</p>
+        <p class="ok"><svg><use href="#check"/></svg><span></span></p>
+        <p class="msg"></p>
+        <div class="actions">
+          <a class="btn primary" href="/whats-new.html">See what's new</a>
+          <a class="btn quiet" href="/">Try FloatTask free</a>
+        </div>
+      </div>`;
+    panel.querySelector('.ok span').textContent = title;
+    const msg = panel.querySelector('.msg');
+    if (email) {
+      msg.append('Updates will go to ');
+      const b = document.createElement('b'); b.textContent = email; msg.append(b);
+      msg.append('. The first one comes with the next release.');
+    } else {
+      msg.textContent = text;
+    }
+  };
+
+  // Unsubscribe links in update emails: /waitlist.html?unsubscribe=<token>
+  const token = q.get('unsubscribe');
+  if (token) {
+    post({ action: 'unsubscribe', token })
+      .then(() => showDone("You're unsubscribed.", 'No more update emails will go to this address. Signing up again here turns them back on.'))
+      .catch((x) => { err.innerHTML = '<svg><use href="#alert"/></svg><span></span>'; err.querySelector('span').textContent = `${x.message} You can also email admin@floattask.com.`; err.hidden = false; });
+  }
+
+  // Where the visit came from: ?utm_source=instagram, ?ref=instagram, or Instagram's in-app browser.
+  const fromRef = /instagram\./i.test(document.referrer) ? 'instagram' : '';
+  const source = q.get('utm_source') || q.get('ref') || fromRef;
+  const campaign = q.get('utm_campaign') || '';
+
+  const showError = (text, field) => {
+    err.innerHTML = '<svg><use href="#alert"/></svg><span></span>';
+    err.querySelector('span').textContent = text;
+    err.hidden = false;
+    form.elements.email.removeAttribute('aria-invalid');
+    if (field) { field.setAttribute('aria-invalid', 'true'); field.focus(); }
+  };
+  form.elements.email.addEventListener('input', () => { err.hidden = true; form.elements.email.removeAttribute('aria-invalid'); });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    err.hidden = true;
+    const f = form.elements;
+    const email = f.email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return showError("That email address doesn't look right. Check it and try again.", f.email);
+
+    send.disabled = true; send.textContent = 'Signing up…';
+    try {
+      await post({ action: 'signup', email, wantsSchool: f.school.checked, source, campaign, website: f.website.value });
+      showDone("You're on the list.", '', email);
+    } catch (x) {
+      showError(`${x.message} You can also email admin@floattask.com.`);
+      send.disabled = false; send.textContent = 'Get updates';
+    }
+  });
+})();
+</script>
+</body>
+</html>
