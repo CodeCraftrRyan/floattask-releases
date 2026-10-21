@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What's new · FloatTask</title>
+<meta name="description" content="What changed in each FloatTask release, newest first.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,500;1,8..60,600&display=swap">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="site.css">
+<link rel="canonical" href="https://floattask.com/whats-new.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23b07a3a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='11' rx='5.5'/%3E%3Cpath d='M9 8.5l2 2 4-4M5 18h14M8 21.5h8'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+/* this page */
+.top nav a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+
+/* ---------- legal ---------- */
+.legal { padding-block: clamp(32px, 7vw, 80px) 0; display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 68ch); gap: clamp(32px, 6vw, 80px); align-items: start; }
+.legal h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.02; font-weight: 750; letter-spacing: -.03em; }
+.legal .meta { display: grid; gap: 14px; position: sticky; top: 24px; }
+.legal .meta p { color: var(--ink-2); font-size: 15px; }
+.legal .toc { display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 14px; font-size: 14.5px; }
+.legal .toc a { color: var(--ink-2); text-decoration: none; }
+.legal .toc a:hover { color: var(--ink); }
+.doc { display: grid; gap: 14px; color: var(--ink-2); }
+.doc h2 { font-size: 1.45rem; font-weight: 700; letter-spacing: -.02em; color: var(--ink); margin-top: 22px; scroll-margin-top: 24px; }
+.doc h2:first-child { margin-top: 0; }
+.doc h3 { font-size: 1.05rem; font-weight: 650; color: var(--ink); margin-top: 6px; }
+.doc ul { margin: 0; padding-left: 22px; display: grid; gap: 8px; }
+.doc li::marker { color: var(--gold-text); }
+.doc strong { color: var(--ink); font-weight: 600; }
+.doc table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.doc th, .doc td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); }
+.doc th { font: 500 12.5px/1 var(--f-body); letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.doc .note { padding: 14px 18px; border-left: 3px solid var(--gold-text); background: var(--surface); border-radius: 0 10px 10px 0; font-size: 15.5px; }
+@media (max-width: 860px) {
+  .legal { grid-template-columns: 1fr; }
+  .legal .meta { position: static; }
+}
+@media (max-width: 560px) {
+  .top nav a:not(.btn):not([aria-current]) { display: none; }
+  footer .right { margin-left: 0; }
+}
+</style>
+<script src="/consent.js" defer></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="mark" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="11" rx="5.5"/><path d="M9 8.5l2 2 4-4M5 18h14M8 21.5h8"/></g></symbol>
+  <symbol id="down" viewBox="0 0 24 24"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="/" aria-label="FloatTask home"><svg width="26" height="26"><use href="#mark"/></svg>FloatTask</a>
+    <nav aria-label="Site">
+      <a href="/#how">How it works</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/contact.html">Contact</a>
+      <a class="btn primary small launch-only" href="/#download"><svg><use href="#down"/></svg>Download</a>
+      <a class="btn primary small prelaunch-only" href="/contact.html">Get early access</a>
+    </nav>
+  </header>
+
+  <main class="changes">
+    <h1>What's new</h1>
+    <p class="intro">FloatTask updates itself, so you'll usually have these already. Here's what changed, newest first.</p>
+      <section class="rel" aria-labelledby="v0-4-5">
+        <h2 id="v0-4-5"><span class="d">Oct 20, 2026</span><span class="v">Version 0.4.5</span></h2>
+        <ul>
+          <li>Notes on My Day now sit in a small card under your list, so they don't push the day off the screen.</li>
+          <li>Wrap up day moved to the top, next to Edit day.</li>
+        </ul>
+      </section>
+      <section class="rel" aria-labelledby="v0-4-4">
+        <h2 id="v0-4-4"><span class="d">Oct 20, 2026</span><span class="v">Version 0.4.4</span></h2>
+        <ul>
+          <li>My Day is simpler. One card holds the task you're on; everything else for today is a plain list. Hover a task and click Start this to switch.</li>
+          <li>Finished tasks fold away into a single “N done” line.</li>
+          <li>There's one done button now, unless the task still has steps left.</li>
+          <li>Notes on Overview is a ruled page with room to actually write.</li>
+          <li>The timer pill on the collapsed ring no longer gets cut off once you pass an hour.</li>
+        </ul>
+      </section>
+      <section class="rel" aria-labelledby="v0-4-3">
+        <h2 id="v0-4-3"><span class="d">Oct 20, 2026</span><span class="v">Version 0.4.3</span></h2>
+        <ul>
+          <li>The Mac app is signed and notarized by Apple, so it opens like any other app. No more trip to Privacy & Security.</li>
+          <li>Connecting Google Calendar asks for less: read-only access to events on calendars you own, nothing else. If you connected before, you'll be asked once more.</li>
+        </ul>
+      </section>
+      <section class="rel" aria-labelledby="v0-4-0">
+        <h2 id="v0-4-0"><span class="d">Oct 20, 2026</span><span class="v">Version 0.4.0</span></h2>
+        <ul>
+          <li>The app opens on My Day.</li>
+          <li>Reflections arrived under Insights: one for each month, one at mid-year and one at the end of the year.</li>
+          <li>Timers stop counting while your computer is asleep.</li>
+          <li>Assist asks you to click before it deletes anything.</li>
+          <li>Your sign-in is encrypted on your computer, and Settings has an Export data button.</li>
+          <li>Plan & billing has its own place in Settings, and says exactly what a plan change costs.</li>
+        </ul>
+      </section>
+      <section class="rel" aria-labelledby="v0-3-0">
+        <h2 id="v0-3-0"><span class="d">Oct 16, 2026</span><span class="v">Version 0.3.0</span></h2>
+        <ul>
+          <li>A new Overview page with everything that isn't today's work.</li>
+          <li>Pick Work, School, Personal or any mix. School adds a Classes page with your timetable and homework by due date.</li>
+          <li>A fourth painted scene: Science, with lab notes and star charts.</li>
+          <li>The FloatTask mark replaces the old sun icon.</li>
+        </ul>
+      </section>
+      <section class="rel" aria-labelledby="v0-2-0">
+        <h2 id="v0-2-0"><span class="d">Oct 8, 2026</span><span class="v">Version 0.2.0</span></h2>
+        <ul>
+          <li>Assist is built in. Sign in with Google and it works, with no API key to set up.</li>
+          <li>FloatTask Pro, with a 7-day free trial.</li>
+          <li>floattask.com went up.</li>
+        </ul>
+      </section>
+      <section class="rel" aria-labelledby="v0-1">
+        <h2 id="v0-1"><span class="d">Oct 6, 2026</span><span class="v">Version 0.1</span></h2>
+        <ul>
+          <li>The first builds, for a few friends: a widget in the corner, a timer on every task, and your Google Calendar meetings beside them.</li>
+        </ul>
+      </section>
+    <p class="all">Every build is on the <a href="https://github.com/CodeCraftrRyan/floattask-releases/releases" rel="noopener">releases page</a>.</p>
+  </main>
+  <style>
+    .changes { max-width: 760px; padding-block: clamp(48px, 8vw, 96px); }
+    .changes h1 { font: 700 clamp(2.4rem, 5vw, 3.4rem)/1.02 var(--f-serif); margin: 0 0 14px; }
+    .changes .intro { color: var(--ink-2); margin: 0 0 clamp(32px, 5vw, 56px); max-width: 52ch; }
+    .rel { display: grid; grid-template-columns: 170px 1fr; gap: 8px 32px; padding-block: 28px; border-top: 1px solid var(--line); }
+    .rel h2 { margin: 0; display: grid; gap: 6px; align-content: start; }
+    .rel .d { font: 700 20px/1.15 var(--f-serif); color: var(--ink); }
+    .rel .v { font: 400 14px/1 var(--f-body); color: var(--muted); }
+    .rel ul { margin: 0; padding-left: 1.1em; display: grid; gap: 10px; color: var(--ink); }
+    .rel li::marker { color: var(--area-myday); }
+    .changes .all { color: var(--muted); font-size: 15px; border-top: 1px solid var(--line); padding-top: 24px; margin: 0; }
+    .changes .all a { color: var(--gold-text); }
+    @media (max-width: 640px) { .rel { grid-template-columns: 1fr; } .rel h2 { grid-auto-flow: column; justify-content: start; align-items: baseline; gap: 10px; } }
+  </style>
+
+  <footer>
+    <a class="logo" href="/"><svg width="22" height="22"><use href="#mark"/></svg>FloatTask</a>
+    <span>© 2026 FloatTask</span>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/whats-new.html">What's new</a>
+    <a href="#" data-cookie-settings>Cookie settings</a>
+    <span class="right">floattask.com</span>
+  </footer>
+</div>
+</body>
+</html>
