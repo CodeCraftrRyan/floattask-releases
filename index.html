@@ -31,25 +31,52 @@
 </script>
 <style>
 /* ---------- this page ---------- */
-/* hero: a desktop seen from its lower-left corner — the full app, with the widget and the ring pinned in the corner */
-.hero { padding-block: clamp(20px, 5vw, 56px) 0; display: grid; gap: 26px; }
-.hero h1 { font-size: clamp(2.6rem, 6.6vw, 4.9rem); line-height: 1; letter-spacing: -.025em; max-width: 12ch; }
-.hero h1 em { display: block; font-style: italic; font-weight: 600; color: var(--gold-text); }
-.lede { font-size: clamp(1.06rem, 1.6vw, 1.22rem); color: var(--ink-2); max-width: 56ch; }
-.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
-.cta .meta { font-size: 14px; color: var(--muted); }
+/* hero: copy on the left; on the right, someone else's app with the FloatTask widget floating over it */
+.hero { padding-block: clamp(8px, 2.5vw, 28px) 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  grid-template-areas: "copy scene"; gap: clamp(28px, 4vw, 56px); align-items: center; min-height: min(calc(100svh - 92px), 720px); }
+.hero-copy { grid-area: copy; display: grid; gap: 20px; align-content: center; min-width: 0; }
+.hero-copy .eyebrow { display: inline-flex; align-items: center; gap: 8px; }
+.hero h1 { font-size: clamp(2.2rem, 3.9vw, 3.15rem); line-height: 1.05; letter-spacing: -.025em; max-width: 16ch; }
+.hero h1 em { white-space: nowrap; font-style: italic; font-weight: 600; color: var(--gold-text); }
+.lede { font-size: clamp(1.05rem, 1.35vw, 1.16rem); color: var(--ink-2); max-width: 44ch; }
+.proof { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.proof li { display: flex; align-items: center; gap: 11px; font: 500 15.5px/1.35 var(--f-body); color: var(--ink); }
+.proof svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--gold-text); }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 14px; margin-top: 4px; }
+.phone-note, .phone-only { display: none; }
+.cta .meta { flex-basis: 100%; font-size: 14px; color: var(--muted); }
 .cta .meta span + span::before { content: "·"; margin: 0 7px; }
 
-.screen { position: relative; margin-top: 10px; border-radius: 22px; overflow: hidden; border: 1px solid var(--line);
-  background: var(--raised); /* Underwater raised: the frame carries .ground-underwater */
-  box-shadow: var(--shadow); aspect-ratio: 16 / 10.2; }
-.screen .app { position: absolute; top: 5%; right: 3%; width: 78%; border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); }
-.screen .widget { position: absolute; left: 2.6%; bottom: 4%; width: 20%; filter: drop-shadow(0 18px 30px oklch(0 0 0 / .25)); z-index: 2; }
-.screen .ring { position: absolute; left: 3%; top: 10%; width: 8.5%; z-index: 2; filter: drop-shadow(0 10px 18px oklch(0 0 0 / .2)); }
-.screen .corner-note { position: absolute; left: 24%; bottom: 5%; z-index: 3; display: flex; align-items: center; gap: 8px; font: 500 13px/1.3 var(--f-body); color: var(--ink);
-  background: var(--surface); border: 1px solid var(--line); padding: 8px 12px; border-radius: 999px; box-shadow: 0 6px 18px oklch(0 0 0 / .12); }
-.screen .corner-note svg { width: 14px; height: 14px; color: var(--gold-text); flex-shrink: 0; }
-
+/* the scene: a plain desktop, one other app open, FloatTask on top of it */
+.scene { grid-area: scene; position: relative; height: clamp(440px, 72svh, 600px); border-radius: 22px; overflow: hidden;
+  border: 1px solid var(--line); box-shadow: var(--shadow); min-width: 0; isolation: isolate; }
+/* the desktop wallpaper takes the Underwater palette; the widget on top keeps the visitor's own theme */
+.scene .wallpaper { position: absolute; inset: 0; background: var(--raised); z-index: -1; }
+.other-app { position: absolute; left: 5%; top: 6%; width: 76%; height: 70%; border-radius: 12px; overflow: hidden;
+  background: oklch(0.985 0.002 250); border: 1px solid oklch(0 0 0 / .12); box-shadow: 0 18px 40px oklch(0 0 0 / .28); color: oklch(0.32 0.01 250); }
+.other-app .bar { height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 12px; background: oklch(0.94 0.003 250); border-bottom: 1px solid oklch(0 0 0 / .08); }
+.other-app .bar i { width: 11px; height: 11px; border-radius: 50%; background: oklch(0.82 0.005 250); }
+.other-app .bar span { margin-left: 10px; font: 500 12.5px/1 var(--f-body); color: oklch(0.5 0.01 250); }
+.other-app .doc { padding: 24px 28px; display: grid; gap: 12px; font: 400 14.5px/1.55 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 34em; }
+.other-app .doc b { font-size: 21px; font-weight: 700; line-height: 1.2; margin-bottom: 2px; }
+.other-app .doc .dim { color: oklch(0.55 0.01 250); }
+.float { position: absolute; right: 4%; bottom: 5%; width: min(58%, 340px); z-index: 2; }
+/* the hero's widget is the working demo, drawn like the app's expanded widget */
+.float .demo-panel { width: 100%; padding: 16px; border-radius: 24px; box-shadow: 0 0 0 1px var(--line-strong), 0 26px 50px oklch(0 0 0 / .34); }
+.float .demo-focus { grid-template-columns: 84px 1fr; gap: 14px; }
+.float .demo-focus .big { width: 84px; height: 84px; font: 600 19px/1 var(--f-serif); font-variant-numeric: tabular-nums lining-nums; }
+.float .demo-focus b { font: 600 17px/1.2 var(--f-serif); }
+.float .demo-foot { display: flex; align-items: center; gap: 7px; color: var(--ink-2); }
+.float .demo-foot svg { width: 14px; height: 14px; color: var(--gold-text); flex-shrink: 0; }
+.float-note { position: absolute; z-index: 3; left: 5%; bottom: 7%; display: flex; align-items: center; gap: 8px;
+  font: 600 13.5px/1.25 var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong);
+  padding: 9px 13px; border-radius: 999px; box-shadow: 0 8px 20px oklch(0 0 0 / .16); white-space: nowrap; }
+.float-note svg { width: 15px; height: 15px; color: var(--gold-text); }
+@media (prefers-reduced-motion: no-preference) {
+  .float { animation: settle .6s cubic-bezier(.2,.8,.2,1) .15s both; }
+  .float-note { animation: settle .5s cubic-bezier(.2,.8,.2,1) .55s both; }
+  @keyframes settle { from { transform: translateY(14px); opacity: 0; } }
+}
 
 /* one day, three sizes */
 .sizes { display: grid; grid-template-columns: 1fr 1fr 1.7fr; gap: 18px; align-items: stretch; }
@@ -141,6 +168,10 @@
 /* ---------- the live widget in this page's corner ---------- */
 .demo { position: fixed; left: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 50; font-family: var(--f-body); }
 @media (max-width: 1240px) { .demo { display: none; } }
+/* the hero already shows the widget, so the live one waits until the hero scrolls away */
+.demo.tucked { opacity: 0; translate: 0 12px; pointer-events: none; visibility: hidden; }
+.demo { transition: opacity .38s cubic-bezier(.2,.8,.2,1), translate .38s cubic-bezier(.2,.8,.2,1), visibility .38s; }
+@media (prefers-reduced-motion: reduce) { .demo { transition: none; } }
 .demo-ring { position: relative; width: 66px; height: 66px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: var(--surface); color: var(--gold-text);
   box-shadow: 0 0 0 1px var(--line-strong), 0 12px 28px oklch(0 0 0 / .22); display: grid; place-items: center; }
 .demo-ring svg.arc { position: absolute; inset: 4px; width: calc(100% - 8px); height: calc(100% - 8px); transform: rotate(-90deg); }
@@ -176,20 +207,34 @@
 .demo-foot { margin-top: 10px; font-size: 12.5px; color: var(--muted); }
 
 /* ---------- responsive ---------- */
-@media (max-width: 900px) {
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; grid-template-areas: "copy" "scene"; min-height: 0; gap: 28px; }
+  .hero h1 { max-width: 16ch; }
+  .scene { height: clamp(380px, 70vw, 520px); }
   .sizes { grid-template-columns: 1fr 1fr; } .sizes .size:last-child { grid-column: 1 / -1; }
   .feature, .feature.flip { grid-template-columns: 1fr; } .feature.flip .copy { order: 0; }
   .uses { grid-template-columns: 1fr; }
   .themes { grid-template-columns: 1fr 1fr; }
   .facts { grid-template-columns: 1fr 1fr; }
   .download, .plans, .faq { grid-template-columns: 1fr; }
-  .screen .corner-note { display: none; }
 }
 @media (max-width: 600px) {
-  .screen { aspect-ratio: 4 / 3.6; }
-  .screen .app { width: 94%; right: 3%; top: 4%; }
-  .screen .widget { width: 36%; }
-  .screen .ring { display: none; }
+  .hero { gap: 16px; grid-template-areas: none; }
+  .hero-copy { display: contents; }
+  .hero-copy > * { grid-area: auto; }
+  .scene { grid-area: auto; order: 4; margin-block: 6px 4px; }
+  .cta { order: 5; }
+  .top nav .launch-only { display: none; }
+  .proof { display: none; }
+  .scene { height: 470px; }
+  .other-app { width: 88%; height: 62%; left: 4%; }
+  .other-app .doc { padding: 18px 20px; }
+  .float { width: 82%; right: 4%; bottom: 4%; }
+  .float-note { display: none; }
+  .other-app .doc { font-size: 13px; }
+  .phone-note { display: block; flex-basis: 100%; font-size: 15px; color: var(--ink-2); }
+  .phone-only { display: inline-flex; }
+  #hero-dl, .cta .btn.quiet { display: none; }
   .sizes { grid-template-columns: 1fr; } .sizes .size:last-child { grid-column: auto; }
   .facts { grid-template-columns: 1fr; }
   .demo-ring .hint { display: none; }
@@ -252,23 +297,38 @@
 
   <main id="top">
     <div class="hero">
-      <h1>FloatTask <em>always in your corner</em></h1>
-      <p class="lede">Most planners fail for one reason: you forget to open them. FloatTask sits on top of every app with today's goals and a timer for the thing you're doing right now, so there's nothing to remember.</p>
-      <div class="cta">
-        <a class="btn primary launch-only" id="hero-dl" href="#download"><svg><use href="#down"/></svg><span>Download FloatTask</span></a>
-        <a class="btn primary prelaunch-only" href="/contact.html">Request early access</a>
-        <a class="btn quiet" href="#how">See how it works</a>
-        <p class="meta"><span>7 days free, then $8/mo</span><span>Cancel anytime</span><span>macOS &amp; Windows</span><span id="hero-version" hidden></span></p>
+      <div class="hero-copy">
+        <p class="eyebrow">Day planner and focus timer for Mac &amp; Windows</p>
+        <h1>The to-do list that floats <em>on top of every app.</em></h1>
+        <p class="lede">Most planners fail because you forget to open them. FloatTask keeps today's goals and a running timer in the corner of your screen, over whatever you're working in.</p>
+        <ul class="proof">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="13" height="10" rx="2"/><rect x="10" y="10" width="11" height="10" rx="2.5"/></svg>Stays on top of your browser, email and docs</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M10 2.5h4"/></svg>Shows how long the task in front of you is taking</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h4"/></svg>Plans your day around your calendar</li>
+        </ul>
+        <div class="cta">
+          <a class="btn primary launch-only" id="hero-dl" href="#download"><svg><use href="#down"/></svg><span>Download FloatTask</span></a>
+          <a class="btn primary prelaunch-only" href="/contact.html">Request early access</a>
+          <a class="btn quiet" href="#how">See how it works</a>
+          <p class="phone-note">FloatTask runs on your Mac or Windows computer. Open floattask.com there to download, or get updates by email for now.</p>
+          <a class="btn primary phone-only" href="/waitlist.html?utm_source=site&amp;utm_campaign=hero-phone">Get updates by email</a>
+          <p class="meta"><span>7 days free, then $8/mo</span><span>Cancel anytime</span><span id="hero-version" hidden></span></p>
+        </div>
       </div>
 
-      <div class="screen ground-underwater" role="img" aria-label="A desktop with FloatTask open on My Day: the task in focus with a running timer and its small steps, the rest of today's goals in a list, and the rest of the day laid out between meetings. The FloatTask widget is pinned in the lower-left corner, and the collapsed timer ring sits above it.">
-        <img class="app shot-l" src="shots/myday-light.webp" width="2400" height="1500" alt="">
-        <img class="app shot-d" src="shots/myday-dark.webp" width="2400" height="1500" alt="">
-        <img class="ring shot-l" src="shots/ring-light.webp" width="247" height="175" alt="">
-        <img class="ring shot-d" src="shots/ring-dark.webp" width="247" height="175" alt="">
-        <img class="widget shot-l" src="shots/widget-light.webp" width="640" height="879" alt="">
-        <img class="widget shot-d" src="shots/widget-dark.webp" width="640" height="879" alt="">
-        <span class="corner-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0l6-6m-6 6l6 6"/></svg>Floats over every app, out of the way when you go full-screen</span>
+      <div class="scene">
+        <div class="wallpaper ground-underwater" aria-hidden="true"></div>
+        <div class="other-app" aria-hidden="true">
+          <div class="bar"><i></i><i></i><i></i><span>Launch plan — Docs</span></div>
+          <div class="doc">
+            <b>Launch plan</b>
+            <p>Goal for the week: get the announcement out on Thursday and the homepage copy reviewed before then.</p>
+            <p>Open questions: which screenshots to use, and whether the newsletter goes out the same morning.</p>
+            <p class="dim">Owners: draft by Ryan, review by Sam. Send to the list once both are done.</p>
+          </div>
+        </div>
+        <div class="float" id="hero-widget" role="region" aria-label="Try FloatTask: a working copy of the widget"></div>
+        <span class="float-note" aria-hidden="true" data-note><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>On top of your work</span>
       </div>
     </div>
 
@@ -466,7 +526,7 @@
 </div>
 
 <!-- A working copy of the widget, in this page's own lower-left corner -->
-<div class="demo" id="demo" aria-live="polite"></div>
+<div class="demo tucked" id="demo" aria-live="polite"></div>
 
 <script>
 (() => {
@@ -514,13 +574,40 @@
   ];
   let open = false, tickFrom = Date.now();
   const root = document.getElementById('demo');
+  const heroEl = document.querySelector('.hero');
+  if (heroEl && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => root.classList.toggle('tucked', e.isIntersecting && !open), { threshold: 0.35 }).observe(heroEl);
+  } else root.classList.remove('tucked');
   const running = () => tasks.find((t) => t.running);
   const focusT = () => running() || tasks.find((t) => !t.done) || tasks[0];
   const C = (r) => 2 * Math.PI * r;
   const arc = (r, pct) => `<circle class="trk" cx="50" cy="50" r="${r}"/><circle class="val" cx="50" cy="50" r="${r}" stroke-dasharray="${(C(r) * Math.min(1, pct)).toFixed(1)} ${C(r).toFixed(1)}"/>`;
 
-  function render() {
+  const heroW = document.getElementById('hero-widget');
+  const panelHTML = (inHero) => {
     const r = running(), f = focusT();
+    const ring = arc(44, f.secs / f.est).replace('class="trk"', 'class="trk" style="stroke:color-mix(in oklab, var(--ink) 10%, transparent)"').replace('class="val"', 'class="val" style="stroke:color-mix(in oklab, var(--a-myday) 80%, var(--surface))"');
+    return `<div class="demo-panel" ${inHero ? '' : 'role="region" aria-label="FloatTask demo widget"'}>
+      <div class="demo-head"><span class="tag">Today · ${tasks.filter((t) => t.done).length} of ${tasks.length} done</span>
+        ${inHero ? '' : `<button type="button" data-collapse aria-label="Shrink to the ring"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 12h12"/></svg></button>`}</div>
+      <div class="demo-focus"><div class="big"><svg viewBox="0 0 100 100" aria-hidden="true">${ring}</svg><span data-big>${fmt(f.secs)}</span></div>
+        <div><b>${f.name}</b><small>${f.sub.split(' · ')[0]} · ${r ? 'running' : 'paused'}</small></div></div>
+      <div class="demo-list">${tasks.map((t) => `
+        <div class="demo-task ${t.running ? 'running' : ''} ${t.done ? 'done' : ''}" data-id="${t.id}" style="--c:${t.c}">
+          <button type="button" class="chk" data-done aria-label="${t.done ? 'Mark not done' : 'Mark done'}: ${t.name}">${t.done ? '<svg viewBox="0 0 14 14" width="11" height="11"><path d="m3 7 3 3 5-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>' : ''}</button>
+          <div class="name">${t.name}<small>${t.sub}</small></div>
+          <span class="tm" data-t="${t.id}">${fmt(t.secs)}</span>
+          <button type="button" class="play" data-play aria-label="${t.running ? 'Pause' : 'Start'} timer: ${t.name}">${icon(t.running ? 'pause' : 'play')}</button>
+        </div>`).join('')}</div>
+      <p class="demo-foot">${inHero
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-.5a6 6 0 0 1-5-2.7L4 15.5a1.5 1.5 0 0 1 2.4-1.8L8 15.5V11"/></svg>It works. Start a timer or tick a goal off.'
+        : 'Start a timer, tick a goal off, then shrink it back to the ring.'}</p>
+    </div>`;
+  };
+
+  function render() {
+    if (heroW) heroW.innerHTML = panelHTML(true);
+    const r = running();
     if (!open) {
       const doneN = tasks.filter((t) => t.done).length;
       root.innerHTML = `<button class="demo-ring" id="demo-ring" aria-expanded="false" aria-label="FloatTask demo: ${doneN} of ${tasks.length} goals done${r ? ', timer ' + fmt(r.secs) : ''}. Click to open.">
@@ -528,35 +615,29 @@
         ${r ? `<span class="t" data-t>${fmt(r.secs)}</span>` : ''}<span class="hint">This is FloatTask. Try it</span></button>`;
       return;
     }
-    root.innerHTML = `<div class="demo-panel" role="region" aria-label="FloatTask demo widget">
-      <div class="demo-head"><span class="tag">Today · ${tasks.filter((t) => t.done).length} of ${tasks.length} done</span>
-        <button type="button" data-collapse aria-label="Shrink to the ring"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 12h12"/></svg></button></div>
-      <div class="demo-focus"><div class="big"><svg viewBox="0 0 100 100" aria-hidden="true" style="--x:0">${arc(44, f.secs / f.est).replace('class="trk"', 'class="trk" style="stroke:color-mix(in oklab, var(--ink) 10%, transparent)"').replace('class="val"', 'class="val" style="stroke:color-mix(in oklab, var(--a-myday) 80%, var(--surface))"')}</svg><span data-big>${fmt(f.secs)}</span></div>
-        <div><b>${f.name}</b><small>${f.sub.split(' · ')[0]} · ${r ? 'running' : 'paused'}</small></div></div>
-      <div class="demo-list">${tasks.map((t) => `
-        <div class="demo-task ${t.running ? 'running' : ''} ${t.done ? 'done' : ''}" data-id="${t.id}" style="--c:${t.c}">
-          <button type="button" class="chk" data-done aria-label="${t.done ? 'Mark not done' : 'Mark done'}: ${t.name}">${t.done ? '<svg viewBox="0 0 14 14" width="11" height="11"><path d="m3 7 3 3 5-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>' : ''}</button>
-          <div class="name">${t.name}<small>${t.sub}</small></div>
-          <span class="tm" data-t="${t.id}">${fmt(t.secs)}</span>
-          <button type="button" class="play" data-play aria-label="${t.running ? 'Pause' : 'Start'} timer">${icon(t.running ? 'pause' : 'play')}</button>
-        </div>`).join('')}</div>
-      <p class="demo-foot">Start a timer, tick a goal off, then shrink it back to the ring.</p>
-    </div>`;
+    root.innerHTML = panelHTML(false);
   }
-  root.addEventListener('click', (e) => {
+  const onClick = (e) => {
     if (e.target.closest('#demo-ring')) { open = true; render(); root.querySelector('[data-collapse]')?.focus(); return; }
     if (e.target.closest('[data-collapse]')) { open = false; render(); document.getElementById('demo-ring')?.focus(); return; }
     const row = e.target.closest('.demo-task'); if (!row) return;
     const t = tasks.find((x) => x.id === Number(row.dataset.id));
-    if (e.target.closest('[data-done]')) { t.done = !t.done; if (t.done) t.running = false; }
-    if (e.target.closest('[data-play]')) { const was = t.running; tasks.forEach((x) => { x.running = false; }); t.running = !was; if (t.running) t.done = false; }
+    const which = e.target.closest('[data-done]') ? '[data-done]' : e.target.closest('[data-play]') ? '[data-play]' : null;
+    if (which === '[data-done]') { t.done = !t.done; if (t.done) t.running = false; }
+    if (which === '[data-play]') { const was = t.running; tasks.forEach((x) => { x.running = false; }); t.running = !was; if (t.running) t.done = false; }
+    const inHero = heroW && heroW.contains(e.target);
+    if (inHero) document.querySelector('[data-note]')?.remove();
     render();
-  });
+    // keep keyboard focus on the same control after redrawing
+    if (which) (inHero ? heroW : root).querySelector(`.demo-task[data-id="${t.id}"] ${which}`)?.focus();
+  };
+  root.addEventListener('click', onClick);
+  heroW?.addEventListener('click', onClick);
   setInterval(() => {
     const now = Date.now(), dt = (now - tickFrom) / 1000; tickFrom = now;
     const r = running(); if (!r) return;
     r.secs += dt;
-    root.querySelectorAll(`[data-t="${r.id}"], .demo-ring [data-t], [data-big]`).forEach((el) => { el.textContent = fmt(r.secs); });
+    document.querySelectorAll(`.demo-task [data-t="${r.id}"], .demo-ring [data-t], [data-big]`).forEach((el) => { el.textContent = fmt(r.secs); });
   }, 1000);
   render();
 })();
