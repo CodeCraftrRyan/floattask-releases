@@ -262,6 +262,188 @@
 .pane figcaption b { color: var(--ink); font-family: var(--f-serif); font-size: 18px; }
 .also-line { margin: clamp(20px, 3vw, 28px) 0 0; color: var(--muted); font-size: 15px; }
 @media (max-width: 760px) { .pair { grid-template-columns: 1fr; } }
+
+/* ---------- the silent walk-through: a sketched computer, FloatTask drawn for real ----------
+   Everything inside .desk is sized in cqw of the desk, so the scene scales like a video.
+   data-beat on .reel picks the moment; data-app picks which sketched app sits behind. */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.reel { margin: 0 auto clamp(36px, 5vw, 56px); max-width: 900px; display: grid; gap: 16px; --pen: color-mix(in oklab, var(--ink) 70%, transparent); }
+.pc { width: 100%; }
+.pc .bezel { background: var(--surface); border: 2px solid var(--pen); border-radius: clamp(14px, 2.2vw, 22px); padding: clamp(6px, 1.3vw, 13px); box-shadow: var(--shadow); }
+.pc .neck { width: 13%; height: clamp(14px, 2.6vw, 28px); margin: 0 auto; background: var(--surface); border-inline: 2px solid var(--pen); }
+.pc .foot { width: 32%; height: clamp(8px, 1.3vw, 13px); margin: 0 auto; background: var(--surface); border: 2px solid var(--pen); border-radius: 999px; }
+.screen { position: relative; overflow: hidden; border-radius: clamp(6px, 1vw, 10px); border: 1.5px solid var(--line-strong); container-type: inline-size; isolation: isolate; }
+.desk { position: relative; width: 100%; aspect-ratio: 16 / 10; container-type: inline-size; overflow: hidden;
+  background: color-mix(in oklab, var(--a-insights) 30%, var(--bg)); font-family: var(--f-body); color: var(--ink); }
+.desk .blob { position: absolute; border-radius: 50%; background: color-mix(in oklab, var(--a-insights) 18%, var(--bg)); }
+.desk .b1 { width: 60cqw; height: 60cqw; right: -18cqw; top: -22cqw; }
+.desk .b2 { width: 44cqw; height: 44cqw; left: -14cqw; bottom: -26cqw; background: color-mix(in oklab, var(--a-projects) 16%, var(--bg)); }
+.strip { position: absolute; inset: 0 0 auto; height: 2.6cqw; display: flex; align-items: center; gap: 1.2cqw; padding: 0 1.8cqw;
+  background: color-mix(in oklab, var(--surface) 72%, transparent); }
+.strip i { width: 3.4cqw; height: .7cqw; border-radius: 99px; background: color-mix(in oklab, var(--ink) 20%, transparent); }
+.strip .dot { width: 1.1cqw; height: 1.1cqw; border-radius: 50%; }
+.strip .end { margin-left: auto; width: 5cqw; }
+
+/* sketched apps, softened so FloatTask is the only crisp thing on screen */
+.win { position: absolute; left: 4.5cqw; top: 5.4cqw; width: 58cqw; height: 46cqw; border-radius: 1.3cqw; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--line); box-shadow: 0 1.6cqw 3.6cqw oklch(0 0 0 / .16);
+  filter: blur(.11cqw) saturate(.85); opacity: 0; transition: opacity .6s ease; }
+.reel[data-app="doc"] .win.doc, .reel[data-app="sheet"] .win.sheet, .reel[data-app="call"] .win.call { opacity: 1; }
+.win .tb, .md .tb { height: 3cqw; display: flex; align-items: center; gap: .65cqw; padding: 0 1.3cqw; background: var(--raised); border-bottom: 1px solid var(--line); }
+.win .tb i, .md .tb i { width: .95cqw; height: .95cqw; border-radius: 50%; background: color-mix(in oklab, var(--ink) 18%, transparent); }
+.win .body { padding: 3.4cqw 4.4cqw; display: grid; gap: 1.35cqw; }
+.win .ln { display: block; height: 1cqw; border-radius: 99px; background: color-mix(in oklab, var(--ink) 12%, transparent); }
+.win .ln.h { height: 2.1cqw; margin-bottom: .8cqw; background: color-mix(in oklab, var(--ink) 22%, transparent); }
+.win .gap { height: .6cqw; }
+.win .grid { display: grid; grid-template-columns: 1.6fr repeat(4, 1fr); }
+.win .grid span { height: 5.6cqw; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; align-items: center; padding: 0 1cqw; }
+.win .grid span b { height: .95cqw; border-radius: 99px; background: color-mix(in oklab, var(--ink) 13%, transparent); }
+.win .grid .hd { height: 3.6cqw; background: color-mix(in oklab, var(--a-projects) 16%, var(--surface)); }
+.win.call { background: oklch(0.27 0.014 258); }
+.win .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 1cqw; padding: 1.2cqw; height: calc(100% - 3cqw - 6cqw); }
+.win .tiles span { position: relative; overflow: hidden; border-radius: 1cqw; background: color-mix(in oklab, var(--a-tasks) 30%, var(--raised)); }
+.win .tiles span:nth-child(2) { background: color-mix(in oklab, var(--a-projects) 30%, var(--raised)); }
+.win .tiles span:nth-child(3) { background: color-mix(in oklab, var(--a-calendar) 26%, var(--raised)); }
+.win .tiles span:nth-child(4) { background: color-mix(in oklab, var(--a-myday) 30%, var(--raised)); }
+.win .tiles .head { position: absolute; left: 50%; top: 22%; width: 5.4cqw; height: 5.4cqw; translate: -50% 0; border-radius: 50%; background: color-mix(in oklab, var(--ink) 30%, var(--surface)); }
+.win .tiles .body { position: absolute; left: 50%; bottom: -3cqw; width: 12cqw; height: 8cqw; translate: -50% 0; border-radius: 50% 50% 0 0; background: color-mix(in oklab, var(--ink) 30%, var(--surface)); }
+.win .ctl { height: 6cqw; display: flex; align-items: center; justify-content: center; gap: 1.4cqw; }
+.win .ctl i { width: 3.2cqw; height: 3.2cqw; border-radius: 50%; background: color-mix(in oklab, var(--surface) 30%, transparent); }
+.win .ctl .end { background: color-mix(in oklab, var(--danger) 70%, var(--surface)); }
+
+/* the ring: a round disc, its timer pill just outside the upper right, filled with gold while it runs */
+.fr { position: absolute; right: 10cqw; bottom: 10cqw; width: 6.4cqw; height: 6.4cqw; border-radius: 50%; background: var(--surface); color: var(--gold-text);
+  box-shadow: 0 0 0 1px var(--line-strong), 0 1.4cqw 3cqw oklch(0 0 0 / .24); display: grid; place-items: center; z-index: 3;
+  opacity: 0; scale: .6; transition: opacity .38s cubic-bezier(.2,.8,.2,1), scale .38s cubic-bezier(.2,.8,.2,1); }
+.fr .arc { position: absolute; inset: .4cqw; width: calc(100% - .8cqw); height: calc(100% - .8cqw); rotate: -90deg; }
+.fr .mark { width: 2.6cqw; height: 2.6cqw; }
+.fr .t { position: absolute; left: 80%; bottom: 82%; padding: .45cqw .9cqw; border-radius: 999px; background: var(--gold); color: var(--gold-ink);
+  font: 700 1.35cqw/1 var(--f-body); font-variant-numeric: tabular-nums lining-nums; box-shadow: 0 .5cqw 1.2cqw oklch(0 0 0 / .16); white-space: nowrap; }
+.desk svg circle { fill: none; stroke-width: 6; stroke-linecap: round; }
+.desk svg .trk { stroke: color-mix(in oklab, var(--ink) 10%, transparent); }
+.desk svg .val { stroke: var(--gold); transition: stroke-dasharray .6s ease; }
+.reel:is([data-beat="0"], [data-beat="6"]) .fr { opacity: 1; scale: 1; }
+
+/* the widget, and the heads-up above it */
+.corner { position: absolute; right: 4cqw; bottom: 10cqw; width: 27cqw; display: flex; flex-direction: column; align-items: flex-end; gap: 1cqw; z-index: 4; }
+.fh { display: flex; align-items: center; gap: .8cqw; padding: .9cqw 1.4cqw; border-radius: 999px; background: var(--surface); border: 1px solid var(--line-strong);
+  font: 600 1.25cqw/1.2 var(--f-body); color: var(--ink); box-shadow: 0 .8cqw 2cqw oklch(0 0 0 / .16); white-space: nowrap;
+  opacity: 0; translate: 0 1cqw; transition: opacity .38s cubic-bezier(.2,.8,.2,1), translate .38s cubic-bezier(.2,.8,.2,1); }
+.fh svg { width: 1.5cqw; height: 1.5cqw; color: color-mix(in oklab, var(--a-calendar) 85%, var(--ink)); }
+.reel[data-beat="4"] .fh { opacity: 1; translate: 0 0; }
+.fw { width: 100%; padding: 1.5cqw; border-radius: 2.1cqw; background: var(--surface); box-shadow: 0 0 0 1px var(--line-strong), 0 2.4cqw 4.6cqw oklch(0 0 0 / .3);
+  display: grid; gap: .5cqw; transform-origin: 70% 100%;
+  transition: opacity .38s cubic-bezier(.2,.8,.2,1), scale .38s cubic-bezier(.2,.8,.2,1), translate .38s cubic-bezier(.2,.8,.2,1); }
+.reel:is([data-beat="0"], [data-beat="6"]) .fw { opacity: 0; scale: .3; translate: -3cqw 0; pointer-events: none; }
+.fw-head { margin: 0 0 .4cqw; font: 600 1.2cqw/1 var(--f-body); color: var(--ink-2); }
+.fw-done { margin: 0; display: grid; grid-template-columns: 1.8cqw 1fr; gap: .8cqw; align-items: center; padding: 0 1cqw; border-radius: 1.2cqw;
+  background: var(--ok-soft); font: 400 1.15cqw/1.3 var(--f-body); color: var(--ink-2);
+  max-height: 0; opacity: 0; overflow: hidden; transition: max-height .38s cubic-bezier(.2,.8,.2,1), opacity .38s ease, padding .38s cubic-bezier(.2,.8,.2,1); }
+.fw-done svg { width: 1.8cqw; height: 1.8cqw; color: var(--ok); }
+.fw-done b { color: var(--ink); font-weight: 600; }
+.reel[data-beat="2"] .fw-done { max-height: 8cqw; opacity: 1; padding: 1cqw; }
+.fw-focus { display: grid; grid-template-columns: 7cqw 1fr; gap: 1.3cqw; align-items: center; margin: .4cqw 0 .6cqw; }
+.fw-focus .big { position: relative; width: 7cqw; height: 7cqw; display: grid; place-items: center; font: 600 1.6cqw/1 var(--f-serif); font-variant-numeric: tabular-nums lining-nums; }
+.fw-focus .big svg { position: absolute; inset: 0; rotate: -90deg; }
+.fw-focus b { display: block; font: 600 1.5cqw/1.2 var(--f-serif); }
+.fw-focus small { display: block; margin-top: .3cqw; font-size: 1.1cqw; color: var(--muted); }
+.fw-row { display: grid; grid-template-columns: 1.7cqw minmax(0, 1fr) auto; gap: 1cqw; align-items: center; padding: .8cqw .8cqw .8cqw .6cqw; border-radius: 1.2cqw;
+  font: 600 1.22cqw/1.25 var(--f-body); transition: background-color .38s ease; }
+.fw-row small { display: block; font-size: 1.02cqw; font-weight: 400; color: var(--muted); }
+.fw-row em { font-style: normal; font-size: 1.15cqw; color: var(--ink-2); font-variant-numeric: tabular-nums lining-nums; }
+.fw-row .chk { width: 1.7cqw; height: 1.7cqw; border-radius: 50%; border: .22cqw solid var(--c); box-sizing: border-box; display: grid; place-items: center; transition: background-color .3s ease; }
+.fw-row.run { background: color-mix(in oklab, var(--a-myday) 18%, var(--surface)); }
+.fw-row.done .chk { background: var(--c); }
+.fw-row.done .chk::after { content: ""; width: .7cqw; height: .38cqw; border-left: .2cqw solid var(--surface); border-bottom: .2cqw solid var(--surface); rotate: -45deg; translate: 0 -.08cqw; }
+.fw-row.done > span { color: var(--muted); text-decoration: line-through; }
+
+/* the full app, full screen; the widget steps aside while it's in front */
+.md { position: absolute; inset: 2.6cqw 0 0 0; z-index: 5; background: var(--bg); padding: 2.4cqw 3cqw 9cqw; display: grid; grid-template-rows: auto 1fr; gap: 1.8cqw;
+  opacity: 0; translate: 0 1.6cqw; pointer-events: none; transition: opacity .38s cubic-bezier(.2,.8,.2,1), translate .38s cubic-bezier(.2,.8,.2,1); }
+.reel[data-beat="5"] .md { opacity: 1; translate: 0 0; }
+.reel[data-beat="5"] :is(.corner, .fr) { opacity: 0 !important; }
+.md-top { display: flex; align-items: baseline; gap: 1.2cqw; }
+.md-top b { font: 700 3.4cqw/1 var(--f-serif); color: var(--area-myday-text); }
+.md-top small { font-size: 1.35cqw; color: var(--muted); }
+.md-pill { align-self: center; padding: .9cqw 1.6cqw; border-radius: 1.2cqw; background: var(--primary); font: 600 1.2cqw/1 var(--f-body); }
+.md-top .md-pill:first-of-type { margin-left: auto; }
+.md-pill.quiet { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.md .k { display: block; font: 600 1cqw/1 var(--f-body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.md-cols { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 1.8cqw; min-height: 0; }
+.md-mid { display: grid; gap: 1.8cqw; align-content: start; }
+.md-card { margin: 0; padding: 1.6cqw; border-radius: 2cqw; background: var(--surface); border: 1px solid var(--line); display: grid; gap: .8cqw; align-content: start; min-width: 0; }
+.md-now { justify-items: start; }
+.md-clock { position: relative; width: 14cqw; height: 14cqw; display: grid; place-items: center; justify-self: center; margin: .4cqw 0; }
+.md-clock svg { position: absolute; inset: 0; rotate: -90deg; }
+.md-clock .ticks line { stroke: color-mix(in oklab, var(--ink) 18%, transparent); stroke-width: 1.4; stroke-linecap: round; }
+.md-clock .ticks line.on { stroke: var(--gold); }
+.md-clock span { display: grid; justify-items: center; gap: .3cqw; }
+.md-clock b { font: 600 3cqw/1 var(--f-serif); font-variant-numeric: tabular-nums lining-nums; }
+.md-clock small { font-size: 1.1cqw; color: var(--muted); }
+.md-plan { margin: 0; justify-self: center; font-size: 1.1cqw; color: var(--muted); }
+.md-title { font: 600 1.9cqw/1.15 var(--f-serif); }
+.md-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: .25cqw; width: 100%; font-size: 1.2cqw; color: var(--ink-2); }
+.md-steps li { display: flex; align-items: center; gap: .8cqw; padding: .4cqw .8cqw; border-radius: .9cqw; }
+.md-steps li::before { content: ""; flex: none; width: 1.2cqw; height: 1.2cqw; border-radius: .35cqw; border: .16cqw solid var(--line-strong); box-sizing: border-box; }
+.md-steps .ok { color: var(--muted); text-decoration: line-through; }
+.md-steps .ok::before { background: var(--ok); border-color: var(--ok); }
+.md-steps .on { background: var(--gold-soft); color: var(--ink); font-weight: 600; }
+.md-btn { padding: .9cqw 1.6cqw; border-radius: 1.2cqw; background: var(--ink); color: var(--surface); font: 600 1.2cqw/1 var(--f-body); }
+.md-next small { font-size: 1.1cqw; color: var(--muted); }
+.md-next b { font: 600 1.6cqw/1.2 var(--f-serif); }
+.md-must p { margin: 0; display: flex; align-items: center; gap: .9cqw; font: 600 1.25cqw/1.25 var(--f-body); }
+.md-must p::before { content: ""; flex: none; width: 1.5cqw; height: 1.5cqw; border-radius: 50%; border: .2cqw solid var(--a-projects); box-sizing: border-box; }
+.md-must p.ok { color: var(--muted); text-decoration: line-through; }
+.md-must p.ok::before { background: var(--a-projects); }
+.md-must p.on { color: var(--ink); } .md-must p.on::before { border-color: var(--gold); }
+.md-must small { font-size: 1.1cqw; color: var(--muted); }
+.md-rest { gap: .6cqw; }
+.md-rest p { margin: 0; display: flex; gap: 1cqw; align-items: center; padding: .7cqw 1cqw; border-radius: .9cqw; font: 600 1.15cqw/1.2 var(--f-body); border-left: .35cqw solid; }
+.md-rest time { width: 3.4cqw; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
+.md-rest .hu { border: 0; padding: .3cqw 0; font-weight: 400; color: var(--ink-2); }
+.md-rest .mt { background: color-mix(in oklab, var(--a-calendar) 14%, var(--surface)); border-color: var(--a-calendar); }
+.md-rest .gl { background: color-mix(in oklab, var(--a-myday) 16%, var(--surface)); border-color: var(--a-myday); }
+.md-rest .wu { background: var(--surface); border-color: var(--line-strong); color: var(--ink-2); }
+
+/* the pointer that moves the widget */
+.cursor { position: absolute; left: 0; top: 0; width: 2.6cqw; height: 2.6cqw; z-index: 7; opacity: 0; pointer-events: none;
+  filter: drop-shadow(0 .3cqw .5cqw oklch(0 0 0 / .3)); transition: opacity .2s ease; }
+.corner, .fr { translate: var(--dx, 0) 0; }
+.fw.held { box-shadow: 0 0 0 1px var(--line-strong), 0 3.6cqw 6cqw oklch(0 0 0 / .38); translate: 0 -.4cqw; }
+/* between loops the whole desk fades so nothing jumps back */
+.desk { transition: opacity .3s ease; }
+.reel.wrap .desk { opacity: 0; }
+
+/* at rest the widget and ring are see-through, like the app's widget; solid while the pointer is on them */
+.reel { --rest: .6; }
+.corner { opacity: var(--rest); transition: opacity .25s ease; }
+.reel.hover .corner { opacity: 1; }
+.fr { transition: opacity .38s cubic-bezier(.2,.8,.2,1), scale .38s cubic-bezier(.2,.8,.2,1), background-color .25s ease; }
+.reel:not(.hover) .fr { background: color-mix(in oklab, var(--surface) 55%, transparent); }
+.reel:not(.hover) .fr .t { opacity: .75; }
+
+/* closed captions: the only words in the walk-through, no voice */
+.cc { position: absolute; left: 50%; bottom: 2.2cqw; translate: -50% 0; z-index: 6; margin: 0; width: max-content; max-width: min(72cqw, calc(100% - 24px));
+  padding: .55em 1em; border-radius: .45em; background: oklch(0.17 0.01 270 / .84); color: oklch(0.985 0 0);
+  font: 600 max(13px, 1.9cqw)/1.35 var(--f-body); text-align: center; text-wrap: balance; transition: opacity .25s ease; }
+.cc.swap { opacity: 0; }
+
+.reel-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 14px; }
+.reel-bar .btn svg { width: 12px; height: 12px; }
+.reel-note { font-size: 14px; color: var(--ink-2); }
+
+/* phones: the camera moves in on the corner where FloatTask lives */
+@media (max-width: 600px) {
+  .desk { width: 165%; margin-left: -65%; }
+  .corner { bottom: 15cqw; } .fr { bottom: 17cqw; }
+  .md { padding-left: 41cqw; } .md-cols { grid-template-columns: 1.2fr 1fr; } .md-mid { display: none; }
+  .reel-note .long { display: none; }
+}
+/* reduced motion: nothing travels or scales; scenes only cross-fade, and nothing plays until asked */
+@media (prefers-reduced-motion: reduce) {
+  .fr, .fw { scale: none !important; }
+  .fh, .md { translate: none !important; scale: none !important; transition: opacity .2s ease; }
+}
 </style>
 <script src="/consent.js" defer></script>
 </head>
@@ -347,6 +529,102 @@
         <h2 id="how-h">It stays on your screen until you tell it to go.</h2>
         <p>The ring, the widget and the full app show the same day. Start a timer in one and it's running in the others.</p>
       </div>
+      <figure class="reel" id="reel" data-beat="1" data-app="doc" aria-labelledby="reel-cap">
+        <div class="pc" aria-hidden="true">
+          <div class="bezel">
+            <div class="screen">
+              <div class="desk">
+                <i class="blob b1"></i><i class="blob b2"></i>
+                <div class="strip"><i class="dot"></i><i></i><i></i><i></i><i class="end"></i></div>
+
+                <!-- someone else's apps, drawn as a sketch -->
+                <div class="win doc"><div class="tb"><i></i><i></i><i></i></div>
+                  <div class="body"><b class="ln h" style="width:46%"></b><b class="ln" style="width:92%"></b><b class="ln" style="width:86%"></b><b class="ln" style="width:70%"></b><b class="gap"></b><b class="ln" style="width:90%"></b><b class="ln" style="width:80%"></b><b class="ln" style="width:58%"></b><b class="gap"></b><b class="ln" style="width:88%"></b><b class="ln" style="width:64%"></b></div></div>
+                <div class="win sheet"><div class="tb"><i></i><i></i><i></i></div>
+                  <div class="grid">
+                    <span class="hd"></span><span class="hd"></span><span class="hd"></span><span class="hd"></span><span class="hd"></span>
+                    <span><b style="width:70%"></b></span><span><b style="width:40%"></b></span><span><b style="width:55%"></b></span><span><b style="width:35%"></b></span><span><b style="width:50%"></b></span>
+                    <span><b style="width:60%"></b></span><span><b style="width:45%"></b></span><span><b style="width:30%"></b></span><span><b style="width:52%"></b></span><span><b style="width:40%"></b></span>
+                    <span><b style="width:80%"></b></span><span><b style="width:35%"></b></span><span><b style="width:50%"></b></span><span><b style="width:44%"></b></span><span><b style="width:60%"></b></span>
+                    <span><b style="width:55%"></b></span><span><b style="width:50%"></b></span><span><b style="width:42%"></b></span><span><b style="width:38%"></b></span><span><b style="width:30%"></b></span>
+                    <span><b style="width:65%"></b></span><span><b style="width:30%"></b></span><span><b style="width:58%"></b></span><span><b style="width:46%"></b></span><span><b style="width:52%"></b></span>
+                    <span><b style="width:48%"></b></span><span><b style="width:42%"></b></span><span><b style="width:36%"></b></span><span><b style="width:60%"></b></span><span><b style="width:44%"></b></span>
+                  </div></div>
+                <div class="win call"><div class="tb"><i></i><i></i><i></i></div>
+                  <div class="tiles"><span><i class="head"></i><i class="body"></i></span><span><i class="head"></i><i class="body"></i></span><span><i class="head"></i><i class="body"></i></span><span><i class="head"></i><i class="body"></i></span></div>
+                  <div class="ctl"><i></i><i></i><i class="end"></i></div></div>
+
+                <!-- FloatTask: the full app, full screen (the widget hides while it's in front) -->
+                <div class="md">
+                  <div class="md-top">
+                    <b>My Day</b><small>Fri, Oct 23</small>
+                    <span class="md-pill">Plan my day</span><span class="md-pill quiet">Wrap up day</span>
+                  </div>
+                  <div class="md-cols">
+                    <section class="md-card md-now">
+                      <span class="k">Now</span>
+                      <div class="md-clock"><svg viewBox="0 0 100 100"><g class="ticks" data-ticks></g><circle class="trk" cx="50" cy="50" r="38"/><circle class="val" cx="50" cy="50" r="38" data-arc="md"/></svg>
+                        <span><b data-time="2">0:00</b><small>Focusing</small></span></div>
+                      <p class="md-plan">30m planned</p>
+                      <b class="md-title">Review homepage copy</b>
+                      <ul class="md-steps"><li class="ok">Read the hero</li><li class="on">Check the prices</li><li>Fix the FAQ</li></ul>
+                      <span class="md-btn">Finish this step</span>
+                    </section>
+                    <div class="md-mid">
+                      <section class="md-card md-next"><span class="k">Next</span><small>11:30 AM, after Client check-in</small><b>Read chapter 4</b><small>0:00 so far · 45m planned</small></section>
+                      <section class="md-card md-must"><span class="k">Must-dos</span>
+                        <p class="ok">Draft launch announcement</p><p class="on">Review homepage copy</p><p>Read chapter 4</p>
+                        <small>+2 if there's time</small></section>
+                    </div>
+                    <section class="md-card md-rest"><span class="k">Rest of today</span>
+                      <p class="hu">Client check-in in 10 min</p>
+                      <p class="mt"><time>11:00</time>Client check-in</p>
+                      <p class="gl"><time>11:30</time>Read chapter 4</p>
+                      <p class="mt"><time>1:00</time>Team sync</p>
+                      <p class="gl"><time>2:00</time>Plan the newsletter</p>
+                      <p class="wu"><time>5:30</time>Wrap up day</p>
+                    </section>
+                  </div>
+                </div>
+
+                <!-- a pointer, for moving the widget -->
+                <svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.2v16.6l4.4-4.2 2.9 6.6 3-1.3-2.9-6.5h6.1z" fill="oklch(0.985 0 0)" stroke="oklch(0.2 0.01 270)" stroke-width="1.4" stroke-linejoin="round"/></svg>
+
+                <!-- FloatTask: the ring, and the widget it opens into -->
+                <div class="fr"><svg class="arc" viewBox="0 0 100 100"><circle class="trk" cx="50" cy="50" r="44"/><circle class="val" cx="50" cy="50" r="44" data-arc="ring"/></svg>
+                  <svg class="mark" viewBox="0 0 24 24"><use href="#mark"/></svg><span class="t" data-time="run">37:50</span></div>
+                <div class="corner">
+                  <p class="fh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Client check-in in 10 min</p>
+                  <div class="fw">
+                    <p class="fw-head">Today · <span data-done-n>0</span> of 3 done</p>
+                    <p class="fw-done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span><b>Draft launch announcement is done.</b> 38 min</span></p>
+                    <div class="fw-focus"><div class="big"><svg viewBox="0 0 100 100"><circle class="trk" cx="50" cy="50" r="44"/><circle class="val" cx="50" cy="50" r="44" data-arc="focus"/></svg><span data-time="run">37:50</span></div>
+                      <div><b data-focus-name>Draft launch announcement</b><small data-focus-sub>Website · running</small></div></div>
+                    <div class="fw-row r1" style="--c: var(--a-projects)"><i class="chk"></i><span>Draft launch announcement<small>Website · goal 1</small></span><em data-time="1">37:50</em></div>
+                    <div class="fw-row r2" style="--c: var(--a-projects)"><i class="chk"></i><span>Review homepage copy<small>Website · goal 2</small></span><em data-time="2">0:00</em></div>
+                    <div class="fw-row r3" style="--c: var(--a-classes)"><i class="chk"></i><span>Read chapter 4<small>History · goal 3</small></span><em>0:00</em></div>
+                  </div>
+                </div>
+              </div>
+              <p class="cc" data-cc>Open it to see today's goals. The timer counts up.</p>
+            </div>
+          </div>
+          <div class="neck"></div><div class="foot"></div>
+        </div>
+        <figcaption id="reel-cap" class="reel-bar">
+          <button type="button" class="btn quiet small" data-reel-toggle aria-pressed="false"><svg aria-hidden="true"><use href="#pause"/></svg><span>Pause</span></button>
+          <span class="reel-note"><span class="long">A silent, captioned walk-through of FloatTask over other apps. </span>Illustration, not to scale.</span>
+          <ol class="sr-only">
+            <li>FloatTask sits in the corner of your screen as a small ring with a running timer.</li>
+            <li>Open it to see today's goals. The timer counts up.</li>
+            <li>Finish a goal, then start the next.</li>
+            <li>Drag it anywhere on your screen.</li>
+            <li>Switch apps. It stays on top of every one.</li>
+            <li>Open the full app to see your whole day.</li>
+            <li>Close it, and the widget is right where you left it.</li>
+          </ol>
+        </figcaption>
+      </figure>
       <div class="sizes">
         <div class="card size" style="--c: var(--a-myday)">
           <div class="band"><h3>The ring</h3></div>
@@ -640,6 +918,149 @@
     document.querySelectorAll(`.demo-task [data-t="${r.id}"], .demo-ring [data-t], [data-big]`).forEach((el) => { el.textContent = fmt(r.secs); });
   }, 1000);
   render();
+})();
+</script>
+<script>
+// ---- the silent walk-through in How it works -----------------------------
+// One loop of seven beats. Captions are the only words; there is no sound. It plays while it's on
+// screen, pauses when it scrolls away or the tab is hidden, and waits for Play under reduced motion.
+(() => {
+  const reel = document.getElementById('reel');
+  if (!reel) return;
+  const beats = [
+    { ms: 4000, cc: 'FloatTask sits in the corner of your screen.' },
+    { ms: 4600, cc: "Open it to see today's goals. The timer counts up." },
+    { ms: 4200, cc: 'Finish a goal, then start the next.' },
+    { ms: 6200, cc: 'Drag it anywhere on your screen.' },
+    { ms: 5200, cc: 'Switch apps. It stays on top of every one.' },
+    { ms: 6400, cc: 'Open the full app to see your whole day.' },
+    { ms: 4400, cc: 'Close it, and the widget is right where you left it.' },
+  ];
+  const starts = []; let total = 0;
+  beats.forEach((b) => { starts.push(total); total += b.ms; });
+  const T2 = starts[2], DRAG = 3, SWITCH = 4;
+  const MOVE = -29;                                    // how far the widget is dragged, in cqw of the desk
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const CIRC = (r) => 2 * Math.PI * r;
+  const pad = (n) => String(n).padStart(2, '0');
+  const fmt = (s) => { s = Math.floor(s); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60; return h ? `${h}:${pad(m)}:${pad(x)}` : `${m}:${pad(x)}`; };
+  const ease = (x) => (x <= 0 ? 0 : x >= 1 ? 1 : x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
+  const $ = (sel) => reel.querySelector(sel);
+  const $$ = (sel) => reel.querySelectorAll(sel);
+  const desk = $('.desk'), cc = $('[data-cc]'), cursor = $('.cursor'), fw = $('.fw');
+  const rows = [$('.fw-row.r1'), $('.fw-row.r2')];
+  const arcs = { focus: [$('[data-arc="focus"]'), 44], ring: [$('[data-arc="ring"]'), 44], md: [$('[data-arc="md"]'), 38] };
+  const setArc = ([el, r], pct) => el && el.setAttribute('stroke-dasharray', `${(CIRC(r) * Math.max(0.02, Math.min(1, pct))).toFixed(1)} ${CIRC(r).toFixed(1)}`);
+
+  // the full app's clock face: 60 ticks, filled in gold for the minutes of the current hour
+  const tickG = $('[data-ticks]');
+  if (tickG) tickG.innerHTML = Array.from({ length: 60 }, (_, i) => {
+    const a = (i / 60) * 2 * Math.PI, r1 = i % 5 ? 45 : 43.5;
+    return `<line x1="${(50 + r1 * Math.cos(a)).toFixed(2)}" y1="${(50 + r1 * Math.sin(a)).toFixed(2)}" x2="${(50 + 47.5 * Math.cos(a)).toFixed(2)}" y2="${(50 + 47.5 * Math.sin(a)).toFixed(2)}"/>`;
+  }).join('');
+  const ticks = tickG ? [...tickG.children] : [];
+  const MIN_OF_HOUR = 47;                              // it's 10:47 in the story
+
+  // the pointer's path through the loop: [time in ms, where, pressed, shown]. Places are
+  // parts of FloatTask, measured each frame (so it follows the widget while dragging), or spots on the desk.
+  const desk_ = () => desk.getBoundingClientRect();
+  const at = (el, fx, fy, ox = 0, oy = 0) => () => {
+    const d = desk_(), r = el.getBoundingClientRect(), u = d.width / 100;
+    return { x: (r.left - d.left + r.width * fx) / u + ox, y: (r.top - d.top + r.height * fy) / u + oy };
+  };
+  const spot = (x, y) => () => ({ x, y });
+  const P = { ring: at($('.fr'), 0.5, 0.5), head: at(fw, 0, 0, 8, 1.6), check: at($('.fw-row.r1 .chk'), 0.5, 0.5, -0.3, -0.3),
+    park: spot(42, 44), away: spot(28, 30), away2: spot(20, 40), away3: spot(30, 22) };
+  const path = [
+    [0, 'park', 0, 0], [900, 'park', 0, 1], [3200, 'ring', 0, 1], [3550, 'ring', 1, 1], [3800, 'ring', 0, 1],   // click the ring to open
+    [5000, 'head', 0, 1], [5600, 'head', 0, 1], [6800, 'away', 0, 1],                                            // look, then move off: it fades
+    [7700, 'away', 0, 1], [8300, 'check', 0, 1], [8420, 'check', 1, 1], [8650, 'check', 0, 1], [9900, 'away2', 0, 1], // tick goal 1 off
+    [12900, 'away2', 0, 1], [14200, 'head', 0, 1], [14350, 'head', 1, 1], [17550, 'head', 1, 1], [17700, 'head', 0, 1], // drag it
+    [18900, 'away3', 0, 1], [19600, 'away3', 0, 0], [total, 'away3', 0, 0],
+  ];
+  const DRAG_FROM = 14600, DRAG_TO = 17300;
+  const pointer = (t) => {
+    let k = path.findLastIndex((p) => t >= p[0]);
+    const a = path[k], z = path[Math.min(k + 1, path.length - 1)];
+    const f = z[0] > a[0] ? ease((t - a[0]) / (z[0] - a[0])) : 1;
+    const A = P[a[1]](), Z = P[z[1]]();
+    return { x: A.x + (Z.x - A.x) * f, y: A.y + (Z.y - A.y) * f, down: !!a[2], show: !!a[3] };
+  };
+  const over = (pt, el) => {
+    const d = desk_(), r = el.getBoundingClientRect(), u = d.width / 100;
+    const x = (r.left - d.left) / u, y = (r.top - d.top) / u;
+    return pt.x >= x - 0.5 && pt.x <= x + r.width / u + 0.5 && pt.y >= y - 0.5 && pt.y <= y + r.height / u + 0.5;
+  };
+  const putCursor = (x, y, show, down) => {
+    cursor.style.transform = `translate(${x}cqw, ${y}cqw) scale(${down ? 0.88 : 1})`;
+    cursor.style.opacity = show ? '1' : '0';
+  };
+
+  let t = still ? starts[1] + 1500 : 0, beat = -1, ccText = cc.textContent;
+  function draw() {
+    const b = starts.findLastIndex((s) => t >= s);
+    const g1 = 2270 + Math.min(t, T2) / 1000;          // goal 1 started earlier: 37:50 when the loop begins
+    const g2 = Math.max(0, t - T2) / 1000;             // goal 2 starts when goal 1 is done
+    const second = t >= T2;
+    const run = second ? g2 : g1;
+    if (b !== beat) {
+      beat = b;
+      reel.dataset.beat = b;
+      if (beats[b].cc !== ccText) {
+        ccText = beats[b].cc;
+        cc.classList.add('swap');
+        setTimeout(() => { cc.textContent = ccText; cc.classList.remove('swap'); }, 220);
+      }
+      $('[data-focus-name]').textContent = second ? 'Review homepage copy' : 'Draft launch announcement';
+      $('[data-done-n]').textContent = second ? '1' : '0';
+      rows[0].classList.toggle('run', !second); rows[0].classList.toggle('done', second);
+      rows[1].classList.toggle('run', second);
+    }
+
+    // moving the widget: the pointer presses on its header and carries it across
+    const dx = t < DRAG_FROM ? 0 : still ? MOVE : MOVE * ease((t - DRAG_FROM) / (DRAG_TO - DRAG_FROM));
+    reel.style.setProperty('--dx', `${dx}cqw`);
+    const pt = pointer(t);
+    const shown = pt.show && !still;
+    putCursor(pt.x, pt.y, shown, pt.down);
+    const held = shown && pt.down && b === DRAG;
+    fw.classList.toggle('held', held);
+    // solid while the pointer is on it; see-through the rest of the time, so it never gets in the way
+    const ringUp = b === 0 || b === 6;
+    reel.classList.toggle('hover', shown && (held || over(pt, ringUp ? $('.fr') : fw)));
+
+    // the app behind: a document, then a spreadsheet, then a video call while switching apps
+    const sw = starts[SWITCH];
+    reel.dataset.app = t < sw ? 'doc' : t < sw + beats[SWITCH].ms / 2 ? 'sheet' : 'call';
+    // fade the desk out and back in around the loop's seam, so the widget doesn't jump home
+    reel.classList.toggle('wrap', !still && (t > total - 320 || t < 120));
+
+    $$('[data-time="run"]').forEach((el) => { el.textContent = fmt(run); });
+    $$('[data-time="1"]').forEach((el) => { el.textContent = fmt(g1); });
+    $$('[data-time="2"]').forEach((el) => { el.textContent = fmt(g2); });
+    setArc(arcs.focus, second ? g2 / 1800 : g1 / 3600);
+    setArc(arcs.ring, ((second ? 1 : 0) + 0.5) / 3);
+    setArc(arcs.md, g2 / 1800);
+    ticks.forEach((el, i) => el.classList.toggle('on', i <= MIN_OF_HOUR));
+  }
+
+  let userPaused = still, inView = false, last = 0;
+  const btn = reel.querySelector('[data-reel-toggle]');
+  const label = () => {
+    btn.setAttribute('aria-pressed', String(userPaused));
+    btn.querySelector('span').textContent = userPaused ? 'Play' : 'Pause';
+    btn.querySelector('use').setAttribute('href', userPaused ? '#play' : '#pause');
+  };
+  const playing = () => !userPaused && inView && !document.hidden;
+  function frame(now) {
+    if (playing()) { t = (t + Math.min(100, now - (last || now))) % total; draw(); }
+    last = now;
+    requestAnimationFrame(frame);
+  }
+  btn.addEventListener('click', () => { userPaused = !userPaused; label(); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { inView = e.isIntersecting; }, { threshold: 0.4 }).observe(reel);
+  else inView = true;
+  label(); draw(); requestAnimationFrame(frame);
 })();
 </script>
 </body>
